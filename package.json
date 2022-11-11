@@ -1,0 +1,25 @@
+{
+  "name": "projekt_koncowy",
+  "version": "1.0.0",
+  "description": "Puszek - final project",
+  "source": "development/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaulinaRog/projekt_koncowy.git"
+  },
+  "keywords": [],
+  "author": "Paulina Róg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PaulinaRog/projekt_koncowy/issues"
+  },
+  "homepage": "https://github.com/PaulinaRog/projekt_koncowy#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.6.0",
+    "parcel": "^2.7.0"
+  }
+}
