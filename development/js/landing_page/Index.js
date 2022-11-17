@@ -4,6 +4,7 @@ import Care from "./Care";
 import NavButtons from "./nav/NavButtons";
 import ContactForm from "./ContactForm";
 import Articles from "./Articles";
+import Footer from "./Footer";
 
 export default function Index() {
   return (
@@ -14,6 +15,7 @@ export default function Index() {
         <Care />
         <ContactForm />
         <Articles />
+        <Footer />
       </div>
     </>
   );

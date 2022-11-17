@@ -1,0 +1,58 @@
+.footer {
+  background-image: url(../assets/dog-paw-cut.jpg);
+  @include background-settings(100%, 500px);
+  background-position: center center;
+  position: relative;
+  z-index: -3;
+
+  &-logo {
+    width: 200px;
+    height: auto;
+    margin-top: 120%;
+    margin-left: 10%;
+  }
+
+  &-decorative-elem1 {
+    z-index: 2;
+    width: 250px;
+    height: 500px;
+    position: absolute;
+    top: -100px;
+    background-color: $semi-transparent-yelow;
+    left: 200px;
+  }
+  &-decorative-elem2 {
+    z-index: -2;
+    width: 170px;
+    height: 470px;
+    position: absolute;
+    top: -150px;
+    background-color: $semi-transparent-yelow;
+    right: 200px;
+  }
+
+  &-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 155px;
+    padding-top: 10px;
+    text-decoration: none;
+  }
+  &-menu {
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 20px;
+    align-items: flex-end;
+    padding-right: 327px;
+    font-size: 1.2em;
+    display: flex;
+  }
+  &-menu-link {
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 326px;
+    padding-top: 10px;
+    display: flex;
+  }
+}

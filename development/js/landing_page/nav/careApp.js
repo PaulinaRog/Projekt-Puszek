@@ -4,8 +4,10 @@ import HomeRoutLogo from "./homeRoutLogo";
 
 export default function CareApp() {
   return (
-    <NavLink to="/">
-      <HomeRoutLogo />
-    </NavLink>
+    <>
+      <NavLink to="/">
+        <HomeRoutLogo />
+      </NavLink>
+    </>
   );
 }

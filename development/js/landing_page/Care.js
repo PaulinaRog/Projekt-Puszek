@@ -1,5 +1,6 @@
 import React from "react";
 import SectionHeader from "./sectionHeader";
+import { NavLink } from "react-router-dom";
 
 const buttonsList = [
   "szukaj opiekuna",
@@ -21,12 +22,21 @@ export default function Care() {
     <div className="care-background">
       <SectionHeader title="OPIEKA" />
       <div className="care-button-container">
-        <CareButton
-          idx={0}
-          icon={<i className="fa-solid fa-hand-holding-heart"></i>}
-        />
-        <CareButton idx={1} icon={<i className="fa-solid fa-glasses"></i>} />
-        <CareButton idx={2} icon={<i className="fa-solid fa-shield-dog"></i>} />
+        <NavLink to="/care/sitters">
+          <CareButton
+            idx={0}
+            icon={<i className="fa-solid fa-hand-holding-heart"></i>}
+          />
+        </NavLink>
+        <NavLink to="/care/pets">
+          <CareButton idx={1} icon={<i className="fa-solid fa-glasses"></i>} />
+        </NavLink>
+        <NavLink to="/care/adoptions">
+          <CareButton
+            idx={2}
+            icon={<i className="fa-solid fa-shield-dog"></i>}
+          />
+        </NavLink>
       </div>
       <div className="care-background-element1"></div>
       <div className="care-background-element2">

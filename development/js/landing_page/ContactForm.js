@@ -21,9 +21,13 @@ function MailTo() {
   const form = useRef();
 
   const handleChange = (e) => {
-    e.preventDefault;
+    e.preventDefault();
     setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-    setCheck((prev) => !prev);
+  };
+
+  const checkboxChange = (e) => {
+    e.preventDefault();
+    setCheck(!check);
   };
 
   const sendEmail = (e) => {
@@ -40,7 +44,6 @@ function MailTo() {
       setMailErr(!formData.mail.includes("@"));
       setMessageErr(formData.message.length <= 10);
       setCheckboxErr(check === false);
-      setText("Błędnie wypełniony formularz!");
     } else {
       emailjs
         .sendForm(
@@ -116,7 +119,7 @@ function MailTo() {
             id="input-1"
             type="checkbox"
             value={check}
-            onChange={handleChange}
+            onChange={checkboxChange}
           />
           <label htmlFor="input-1">
             <span>Akceptuję politykę prywatności</span>

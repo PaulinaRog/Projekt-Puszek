@@ -9,11 +9,9 @@ export default function NavButtons() {
   return (
     <>
       <div className="header">
-        <NavLink to="/">
-          <HomeRoutLogo />
-        </NavLink>
+        <HomeRoutLogo />
         <NavLink
-          to="/puszek/care"
+          to="/care"
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           <button className="header_nav_button">
@@ -22,7 +20,7 @@ export default function NavButtons() {
           </button>
         </NavLink>
         <NavLink
-          to="/puszek/articles"
+          to="/articles"
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           <button className="header_nav_button">
@@ -31,7 +29,7 @@ export default function NavButtons() {
           </button>
         </NavLink>
         <NavLink
-          to="/puszek/contact"
+          to="/contact"
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           <button className="header_nav_button">
@@ -40,7 +38,7 @@ export default function NavButtons() {
           </button>
         </NavLink>
         <NavLink
-          to="/puszek/login"
+          to="/signup"
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           <button className="header_nav_button">

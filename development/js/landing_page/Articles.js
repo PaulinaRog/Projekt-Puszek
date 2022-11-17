@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SectionHeader from "./sectionHeader";
+import { NavLink } from "react-router-dom";
 
 function ArticleCards({ title, img, text }) {
   const [styles, setStyle] = useState({
@@ -46,7 +47,9 @@ export default function Articles() {
           />
         </article>
 
-        <button className="articles-button">PRZEJDZ DO ARTYKUŁÓW</button>
+        <NavLink to="articles">
+          <button className="articles-button">PRZEJDZ DO ARTYKUŁÓW</button>
+        </NavLink>
       </section>
     </>
   );
