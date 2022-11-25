@@ -1,0 +1,111 @@
+.contact {
+  background-image: url(../assets/black-frenchie.jpg);
+  @include background-settings(100%, 1200px);
+  background-position: top center;
+  position: relative;
+  z-index: -4;
+
+  @include panoramic {
+    height: 1700px;
+  }
+
+  &-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30em;
+    height: 30em;
+    border: 1px solid $yellow;
+    background-color: $semi-transparent-black;
+    color: white;
+    font-weight: 500;
+    border-radius: 20px;
+    align-items: center;
+    margin-left: 50%;
+    transform: translate(-50%);
+    margin-top: 10%;
+
+    &-label {
+      display: inline-block;
+      width: 128px;
+      text-align: right;
+    }
+
+    &-input {
+      @include input(250px, 2em);
+      margin-bottom: 10px;
+      margin-left: 30px;
+    }
+    &-textarea {
+      @include input(250px, 4em);
+      margin-bottom: 10px;
+      margin-left: 30px;
+    }
+    &-button {
+      @include black-button(0.7em 2em);
+    }
+    &-message {
+      margin-top: 20px;
+    }
+  }
+
+  .checkbox {
+    margin-bottom: 0.5em;
+    width: 200px;
+    input {
+      position: absolute;
+      visibility: hidden;
+      ~ label {
+        position: relative;
+        display: inline-block;
+        width: 4vw;
+        height: 2vw;
+        background: $yellow;
+        border-radius: 2.5vw;
+        border: 0.25vw inset rgba(0, 0, 0, 0.5);
+        box-shadow: inset 0 0 0.125vw 0.125vw rgba(0, 0, 0, 0.55);
+        cursor: pointer;
+        transition: background 0.25s ease-out;
+        &:after {
+          position: absolute;
+          content: "";
+          top: 5%;
+          left: 5%;
+          height: 90%;
+          width: 45%;
+          background: rgba(255, 225, 225, 1);
+          border-radius: 50%;
+          box-shadow: 2px 0 3px 3px rgba(0, 0, 0, 0.25),
+            inset 0 0 0.72vw 0.5vw rgba(55, 55, 55, 0.25);
+          transition: left 0.25s linear, background 0.25s linear,
+            box-shadow 0.25s linear;
+        }
+        span {
+          position: relative;
+          left: 100%;
+          line-height: 2vw;
+          margin-left: 1em;
+          width: 200px;
+          white-space: nowrap;
+        }
+      }
+      &:checked {
+        ~ label {
+          background: rgb(0, 255, 100);
+          &:after {
+            position: absolute;
+            background: rgba(255, 255, 255, 1);
+            content: "";
+            top: 5%;
+            left: 50%;
+            border-radius: 50%;
+            box-shadow: -2px 0 3px 3px rgba(0, 0, 0, 0.25),
+              inset 0 0 0.72vw 0.2vw rgba(0, 0, 0, 0.25);
+          }
+        }
+      }
+    }
+  }
+
+  //   WYŚRODKOWANE
+}

@@ -1,0 +1,67 @@
+.care-background {
+  background-image: url(../assets/grey-cat-green-eyes.jpg);
+  @include background-settings(100%, 1500px);
+  position: relative;
+  background-position: center center;
+  z-index: -3;
+
+  @include big-screen {
+    margin-top: 15%;
+  }
+  @include panoramic {
+    margin-top: 20%;
+    height: 2300px;
+  }
+
+  &-element1 {
+    background-color: $semi-transparent-yelow;
+    height: 70%;
+    width: 60%;
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    z-index: -2;
+  }
+  &-element2 {
+    background-color: $semi-transparent-yelow;
+    height: 25%;
+    width: 75%;
+    position: absolute;
+    top: 70%;
+    left: 20%;
+    z-index: 1;
+  }
+}
+
+.care-owner {
+  margin-top: 2%;
+  padding: 20px;
+
+  &-text {
+    color: white;
+  }
+}
+.care-pet {
+  margin-top: 5%;
+  text-align: right;
+  padding: 20px;
+  &-text {
+    color: white;
+  }
+}
+
+.care-button {
+  @include black-button(2em 1em);
+  width: 20em;
+  font-size: 1.2em;
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+    padding-right: 5em;
+    padding-top: 10em;
+    z-index: 2;
+  }
+}

@@ -1,0 +1,14 @@
+@import "generic/reset";
+@import "settings/variables";
+@import "generic/styles";
+@import "./settings/mixins";
+@import "./elements/header";
+@import "./elements/care.scss";
+@import "./elements/contact";
+@import "./elements/articles";
+@import "./elements/footer";
+@import "./elements/signup";
+@import "./elements/articlesSite";
+@import "./elements/careApp";
+@import "./elements/dashboard";
+@import "./elements/editProfile";
