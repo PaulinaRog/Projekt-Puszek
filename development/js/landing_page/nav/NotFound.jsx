@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import HomeRoutLogo from "./homeRoutLogo";
+import HomeRoutLogo from "./HomeRoutLogo";
 
 export default function NotFound() {
   return (
