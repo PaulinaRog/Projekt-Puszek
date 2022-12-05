@@ -1,14 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HomeRoutLogo from "../landing_page/nav/HomeRoutLogo";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
+import supabase from "../contexts/supabaseClient";
 
-function CareAppView() {
-  return <main className="care-app"></main>;
-}
-
-export default function CareApp() {
+function CareAppView({ isLogged }) {
   const { pathname } = useLocation();
-
   return (
     <>
       <div className="care-app-nav-bg">
@@ -17,20 +13,78 @@ export default function CareApp() {
           <NavLink to="sitters" className="care-app-navlink care-nav">
             OPIEKUNOWIE
           </NavLink>
-          {/* profil opiekuna na kliku */}
+          {pathname.includes("sitterpf") && (
+            <h3
+              style={{
+                fontSize: 20,
+                paddingLeft: 50,
+                borderLeft: "5px solid yellow",
+              }}
+              className="care-app-navlink care-nav"
+            >
+              PROFIL
+            </h3>
+          )}
           <NavLink to="pets" className="care-app-navlink care-nav">
             OGŁOSZENIA
           </NavLink>
         </nav>
-        {/* profil pupila na kliku */}
-        <NavLink to="/signup" className="care-app-signup care-nav">
-          LOGOWANIE
-        </NavLink>
+        {pathname.includes("petpf") && (
+          <h3
+            style={{
+              fontSize: 20,
+              paddingLeft: 50,
+              borderLeft: "5px solid yellow",
+            }}
+            className="care-app-navlink care-nav"
+          >
+            PROFIL
+          </h3>
+        )}
+
+        {isLogged ? (
+          <NavLink to="/dashboard" className="care-app-signup care-nav">
+            PULPIT
+          </NavLink>
+        ) : (
+          <NavLink to="/signup" className="care-app-signup care-nav">
+            LOGOWANIE
+          </NavLink>
+        )}
       </div>
       <Outlet />
-      {!pathname.includes("sitters") && !pathname.includes("pets") ? (
-        <CareAppView />
-      ) : null}
+    </>
+  );
+}
+
+export default function CareApp() {
+  const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    const isUserLogged = async () => {
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.getUser();
+
+      if (error) {
+        console.log(error);
+      }
+      if (user) {
+        setIsLogged(true);
+        console.log(user);
+      }
+    };
+
+    isUserLogged();
+  }, []);
+
+  const { pathname } = useLocation();
+
+  return (
+    <>
+      <CareAppView isLogged={isLogged} />
+      {pathname === "/care" ? <main className="care-app"></main> : null}
     </>
   );
 }

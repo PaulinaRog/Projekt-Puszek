@@ -14,10 +14,15 @@
     padding: 1em 1em;
     font-weight: 500;
     font-size: 23px;
+    cursor: pointer;
 
     &:hover {
       color: $yellow;
       border-left: 5px solid $yellow;
+    }
+    &:active {
+      color: black;
+      border-left: 5px solid black;
     }
 
     &-profile {
@@ -32,6 +37,28 @@
         color: $yellow;
         border-left: 5px solid $yellow;
       }
+      &:active {
+        color: black;
+        border-left: 5px solid black;
+      }
+    }
+  }
+  &-bg {
+    background-image: url(../assets/bulldog-sleeping-opacity50.jpg);
+    @include background-settings(85vw, 100vh);
+    float: right;
+  }
+
+  &-logout {
+    cursor: pointer;
+    border-left: 5px solid transparent;
+    &:hover {
+      color: $yellow;
+      border-left: 5px solid $yellow;
+    }
+    &:active {
+      color: black;
+      border-left: 5px solid black;
     }
   }
 }

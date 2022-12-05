@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import LogoAndTitle from "./LogoAndTitle";
 import Care from "./Care";
 import NavButtons from "./nav/NavButtons";

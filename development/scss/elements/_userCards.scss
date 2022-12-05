@@ -1,0 +1,48 @@
+.pets-cards-container {
+  display: flex;
+  gap: 3em;
+  padding: 0 5em 5em 5em;
+  margin-top: 5em;
+  width: 800px;
+  height: 500px;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+}
+
+.pet-usercard {
+  width: 180px;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  background-color: $white-semi-bg;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1em;
+  box-shadow: $shadow-inputs;
+  gap: 1em;
+  position: relative;
+  padding: 1em;
+
+  &:hover {
+    box-shadow: 5px 5px 7px $grey;
+  }
+
+  &-photo {
+    width: 160px;
+    height: 200px;
+    border-radius: 1em;
+    outline: 2px solid $yellow;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  &-name {
+    color: $grey;
+    font-size: 25px;
+    font-weight: 600;
+  }
+
+  &-character {
+    color: $grey;
+  }
+}

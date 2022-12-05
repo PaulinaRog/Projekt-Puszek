@@ -1,11 +1,11 @@
-import { SupabaseStorageClient } from "@supabase/storage-js";
+import { StorageClient } from "@supabase/storage-js";
 
-const STORAGE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SERVICE_KEY = import.meta.env.VITE_SUPABASE_SERVICE_KEY;
+const VITE_STORAGE_URL = import.meta.env.VITE_SUPABASE_URL;
+const VITE_SERVICE_KEY = import.meta.env.VITE_SUPABASE_SERVICE_KEY;
 
-const storageClient = new SupabaseStorageClient(STORAGE_URL, {
-  apikey: SERVICE_KEY,
-  Authorization: `Bearer ${SERVICE_KEY}`,
+const storageClient = new StorageClient(VITE_STORAGE_URL, {
+  apikey: VITE_SERVICE_KEY,
+  Authorization: `Bearer ${VITE_SERVICE_KEY}`,
 });
 
 export default storageClient;

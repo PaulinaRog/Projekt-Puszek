@@ -1,56 +1,68 @@
 import React, { useState } from "react";
 import SectionHeader from "./SectionHeader";
 import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
+import supabase from "../contexts/supabaseClient";
 
-function ArticleCards({ title, img, text }) {
+function ArticleCards({ articleData: { title, short_desc, id } }) {
   const [styles, setStyle] = useState({
     display: "none",
   });
 
   return (
-    <div
-      className="article-card"
-      onMouseOver={() => setStyle({ display: "block" })}
-      onMouseLeave={() => setStyle({ display: "none" })}
-    >
-      <img className="article-card-img" src={img} />
-      <h3 className="article-card-title">{title}</h3>
-      <p className="article-card-paragraph">{text} </p>
-      <button className="article-card-btn" style={styles}>
-        CZYTAJ
-      </button>
-    </div>
+    <>
+      <div className="article-card">
+        <img
+          className="article-card-img"
+          src={`https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/articles/photos/${id}`}
+        />
+        <h3 className="article-card-title">{title}</h3>
+        <p className="article-card-paragraph">
+          {short_desc.substring(0, 200) + " ..."}{" "}
+        </p>
+      </div>
+    </>
   );
 }
 
 export default function Articles() {
+  const [articleData, setArticleData] = useState(null);
+
+  useEffect(() => {
+    const getArticles = async () => {
+      const { data, error } = await supabase
+        .from("articles")
+        .select("id, title, short_desc, category");
+
+      if (error) {
+        console.log(error);
+      }
+      if (data) {
+        console.log(data);
+        setArticleData(data);
+      }
+    };
+    getArticles();
+  }, []);
+
   return (
     <>
-      <section className="articles">
-        <div className="articles-background-element"></div>
-        <SectionHeader title="ARTYKUŁY" />
-        <article className="articles-cards-container">
-          <ArticleCards
-            img="../development/assets/bulldog-on-a-chair.jpg"
-            title="LOREM IPSUM DOLOR SIT"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-          />
-          <ArticleCards
-            img="../development/assets/main-coon.jpg"
-            title="LOREM IPSUM DOLOR SIT"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-          />
-          <ArticleCards
-            img="../development/assets/tricolor-cat.jpg"
-            title="LOREM IPSUM DOLOR SIT"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-          />
-        </article>
-
-        <NavLink to="articles">
-          <button className="articles-button">PRZEJDZ DO ARTYKUŁÓW</button>
-        </NavLink>
-      </section>
+      {articleData && (
+        <>
+          <section className="articles">
+            <div className="articles-background-element"></div>
+            <SectionHeader title="ARTYKUŁY" />
+            <article className="articles-cards-container">
+              <ArticleCards articleData={articleData[3]} />
+              <ArticleCards articleData={articleData[2]} />
+              <ArticleCards articleData={articleData[1]} />
+            </article>
+            <NavLink to="articles">
+              <button className="articles-button">PRZEJDZ DO ARTYKUŁÓW</button>
+            </NavLink>
+          </section>
+        </>
+      )}
     </>
   );
 }

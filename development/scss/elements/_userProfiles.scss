@@ -1,0 +1,16 @@
+.petpf-bg {
+  background-image: url(../assets/dog-upsidedown-opacity50.jpg);
+  @include background-settings(85vw, 100vh);
+  float: right;
+
+  .petpf-card {
+    margin: 5em 7em 5em 10em;
+    background: $white-semi-bg;
+    padding: 2em;
+    color: $grey;
+    overflow-y: scroll;
+    height: 500px;
+    border-radius: 1em;
+    box-shadow: $shadow-inputs;
+  }
+}

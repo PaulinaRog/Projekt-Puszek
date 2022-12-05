@@ -9,11 +9,7 @@ function Signin() {
   const password = useRef();
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    console.log(email.current.value);
-    console.log(password.current.value);
-
+  const handleLogin = async () => {
     try {
       const {
         data: { user },
@@ -27,12 +23,12 @@ function Signin() {
         setText("Logowanie nie powiodło się!");
       }
       if (user) {
-        localStorage.setItem("userData", JSON.stringify(user));
         navigate("/dashboard");
       }
     } catch (error) {
       console.log(error.error_description);
       console.log(error.message);
+      setText("Logowanie nie powiodło się!");
     }
   };
 
@@ -63,14 +59,23 @@ function Signin() {
         ></input>
         <button
           className="sign-form-button"
-          onClick={handleLogin}
+          onClick={(e) => {
+            e.preventDefault();
+            handleLogin();
+          }}
           type="submit"
         >
           ZALOGUJ
         </button>
-        <p>{text}</p>
-        <p>Zapomniałeś hasła?</p>
-        <a href="">Kliknij tutaj</a>
+        <p className="sign-form-err">{text}</p>
+        <p className="sign-form-passwd">Zapomniałeś hasła?</p>
+        <a className="sign-form-passwd-link" href="">
+          Kliknij tutaj
+          <i
+            style={{ fontSize: 15, padding: 5 }}
+            className="fa-solid fa-unlock"
+          ></i>
+        </a>
       </form>
     </>
   );
@@ -83,9 +88,7 @@ function Signup() {
   const passwordConfirmRef = useRef();
   const navigate = useNavigate();
 
-  const handleSignUp = async (e) => {
-    e.preventDefault();
-
+  const handleSignUp = async () => {
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       setText("Podane hasła różnią się od siebie!");
     } else {
@@ -100,9 +103,13 @@ function Signup() {
 
         if (error) {
           setText("Rejestracja nieudana!");
+          console.log(error);
+          console.log(emailRef.current.value);
+          console.log(passwordRef.current.value);
         }
         if (user) {
-          navigate("dashboard/profile/edit");
+          navigate("/setprofile");
+          console.log(user);
         }
       } catch (error) {
         console.log(error.error_description);
@@ -147,11 +154,14 @@ function Signup() {
         <button
           className="sign-form-button"
           type="submit"
-          onClick={handleSignUp}
+          onClick={(e) => {
+            e.preventDefault();
+            handleSignUp();
+          }}
         >
           ZAREJESTRUJ
         </button>
-        <p>{text}</p>
+        <p className="sign-form-err">{text}</p>
       </form>
     </>
   );
@@ -176,7 +186,9 @@ export default function SigninSignup() {
           style={{ display: loginFormVisible ? "none" : "block" }}
         >
           <i className="fa-solid fa-user-check"></i>
-          <span style={{ marginLeft: "-15px" }}>LOGOWANIE</span>
+          <span className="sign-form-choice" style={{ marginLeft: "-15px" }}>
+            LOGOWANIE
+          </span>
         </div>
         {loginFormVisible ? <Signin /> : null}
       </section>
@@ -189,14 +201,29 @@ export default function SigninSignup() {
           style={{ display: loginFormVisible ? "block" : "none" }}
         >
           <i className="fa-solid fa-user-plus"></i>
-          <span style={{ marginLeft: "-17px" }}>REJESTRACJA</span>
+          <span className="sign-form-choice" style={{ marginLeft: "-17px" }}>
+            REJESTRACJA
+          </span>
         </div>
         {loginFormVisible ? null : <Signup />}
       </section>
-      <NavLink to="/">
-        <p>WRÓĆ DO STRONY GŁÓWNEJ</p>
-      </NavLink>
-      <NavLink to="/dashboard">DASHBOARD</NavLink>
+      <div className="signup-navlinks">
+        <NavLink to="/" className="signup-navlink">
+          <button className="signup-navlink-button">
+            <i style={{ fontSize: 25 }} className="fa-solid fa-angles-left"></i>
+            WRÓĆ DO STRONY GŁÓWNEJ
+          </button>
+        </NavLink>
+        <NavLink to="/dashboard" className="signup-navlink">
+          <button className="signup-navlink-button">
+            PULPIT UŻYTKOWNIKA
+            <i
+              style={{ fontSize: 25 }}
+              className="fa-solid fa-angles-right"
+            ></i>
+          </button>
+        </NavLink>
+      </div>
     </div>
   );
 }

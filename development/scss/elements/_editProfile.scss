@@ -1,4 +1,110 @@
 .profile-form {
   background-image: url(../assets/cat-paw-opacity50.jpg);
   @include background-settings(100vw, 100vh);
+
+  &-bg {
+    background-color: $white-semi-bg;
+    color: $grey;
+    width: 1000px;
+    height: 60vh;
+    float: right;
+    overflow-y: scroll;
+    margin-right: 3em;
+    padding: 3em;
+    display: grid;
+    border-radius: 20px;
+  }
+
+  &-sidebar {
+    padding: 1em 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+  &-button {
+    @include yellow-button(0.5em 1.5em);
+    width: 150px;
+    &-pickone {
+      display: flex;
+      flex-direction: column;
+      width: 350px;
+      height: 400px;
+      border: 1.5px solid $yellow;
+      background-color: $white-semi-bg;
+      color: $grey;
+      font-weight: 600;
+      border-radius: 20px;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        color: $yellow;
+        background-color: $semi-transparent-black;
+      }
+    }
+  }
+
+  &-buttons-container {
+    display: flex;
+    gap: 2em;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+  }
+
+  .fa-hand-holding-heart,
+  .fa-paw {
+    font-size: 4em;
+    padding-bottom: 20px;
+  }
+  .pf-text {
+    @include input(300px, 2em);
+    border: none;
+    padding: 0.5em;
+    box-shadow: $shadow-inputs;
+    margin-bottom: 2em;
+  }
+  .pf-textarea {
+    height: 4em;
+    padding: 0.5em;
+    width: 800px;
+    border-radius: 0.5em;
+    font-size: 16px;
+    font-family: $main-font;
+    border: none;
+    box-shadow: $shadow-inputs;
+    margin-bottom: 2em;
+    overflow: hidden;
+    &:focus {
+      outline: 3px solid $yellow;
+      outline-offset: -3px;
+    }
+  }
+  .pf-label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 18px;
+  }
+  .pf-title {
+    margin-bottom: 1.5em;
+    font-size: 23px;
+    font-weight: 600;
+  }
+  .pf-select {
+    @include input(320px, 2em);
+    border: none;
+    box-shadow: $shadow-inputs;
+    margin-bottom: 2em;
+    height: 50px;
+  }
+  .pf-option {
+    padding: 1em;
+  }
+  .pf-button {
+    width: 200px;
+  }
+  .buttons-container {
+    display: flex;
+    gap: 10px;
+  }
 }

@@ -29,7 +29,7 @@
 
 .article-card {
   width: 18em;
-  height: 29em;
+  height: 31em;
   color: rgb(0, 0, 0);
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 40px;
@@ -39,21 +39,22 @@
   gap: 30px;
   display: flex;
   padding-top: 25px;
-
-  &:hover {
-    outline: 3px solid $yellow;
-    outline-offset: -3px;
-  }
+  position: relative;
+  outline: 3px solid $yellow;
+  outline-offset: -3px;
 
   &-img {
     width: 14em;
-    height: 10em;
+    height: 17em;
     border-radius: 40px;
+    object-fit: cover;
+    object-position: center center;
   }
 
   &-title {
     font-size: 1.2em;
     font-weight: 500;
+    width: 280px;
   }
   &-paragraph {
     width: 15em;
@@ -61,5 +62,9 @@
 
   &-btn {
     @include black-button(1em 2em);
+    position: absolute;
+    bottom: 30px;
+    text-decoration: none;
+    left: 5em;
   }
 }

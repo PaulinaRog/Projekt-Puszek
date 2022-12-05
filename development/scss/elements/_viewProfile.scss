@@ -1,0 +1,81 @@
+.view-profile {
+  background-image: url(../assets/cat-and-a-book-cut-opacity50.jpg);
+  @include background-settings(85vw, 100vh);
+  float: right;
+
+  &-card {
+    margin: 5em 7em 5em 10em;
+    background: $white-semi-bg;
+    padding: 2em;
+    color: $grey;
+    overflow-y: scroll;
+    height: 70vh;
+    border-radius: 1em;
+    box-shadow: $shadow-inputs;
+    display: block;
+  }
+
+  &-pick {
+    margin: 0 auto;
+    display: flex;
+    gap: 2em;
+    padding: 10em;
+
+    &-button {
+      width: 300px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 2em;
+  }
+  h2 {
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 22px;
+  }
+  .fa-pen-to-square {
+    font-size: 25px;
+    color: rgb(168, 168, 168);
+    margin-bottom: 1.5em;
+    &:hover {
+      color: rgb(0, 0, 0);
+    }
+  }
+  .fa-download {
+    font-size: 25px;
+    color: rgb(168, 168, 168);
+    padding-left: 0.5em;
+    &:hover {
+      color: rgb(0, 0, 0);
+    }
+  }
+  button {
+    @include yellow-button(0.5em 1.5em);
+    margin-right: 1em;
+  }
+  textarea {
+    @include input(60%, 200px);
+    box-shadow: $shadow-inputs;
+    margin-bottom: 1.5em;
+  }
+}
+
+.view-usercard-photo {
+  width: 300px;
+  height: 450px;
+  border-radius: 1em;
+  outline: 2px solid $yellow;
+  object-fit: cover;
+  object-position: center center;
+  float: right;
+}

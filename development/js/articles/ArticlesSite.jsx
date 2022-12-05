@@ -4,14 +4,14 @@ import supabase from "../contexts/supabaseClient";
 import ArticleCard from "./ArticleCard";
 import ReadArticle from "./SingleArticle";
 
-const cats = [
+export const cats = [
   "../development/assets/british-cat.jpg",
   "../development/assets/cat-and-a-book.jpg",
   "../development/assets/ginger-cat.jpg",
   "../development/assets/kitten.jpg",
 ];
 
-const dogs = [
+export const dogs = [
   "../development/assets/bullie-in-flowers.jpg",
   "../development/assets/dog-peekaboo.jpg",
   "../development/assets/doggie-in-winter.jpg",
@@ -35,6 +35,7 @@ export default function ArticlesSite() {
 
       if (data) {
         setArticlesData(data);
+        console.log(data);
       }
     };
     getArticles();
