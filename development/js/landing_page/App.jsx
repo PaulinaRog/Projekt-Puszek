@@ -20,6 +20,7 @@ import PetPf from "../CareApp/PetPf";
 import SitPf from "../CareApp/SitPf";
 import ProfilePhoto from "../dashboard/profile/ProfilePhoto";
 import DeleteProfile from "../dashboard/profile/DeleteProfile";
+import SingleMessage from "../dashboard/SingleMessage";
 
 export default function App() {
   return (
@@ -40,13 +41,15 @@ export default function App() {
               <Route path="adoptions" element={<Adoptions />} />
             </Route>
 
-            <Route path="/articles" element={<ArticlesSite />}>
-              <Route path=":artid" element={<ArticlesSite />} />
-            </Route>
+            <Route path="/articles" element={<ArticlesSite />} />
             <Route path="/contact" element={<CareApp />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />}>
-              <Route path="messages" element={<Messages />} />
+              <Route path="messages" element={<Messages />}>
+                <Route path="msg">
+                  <Route path=":id" element={<SingleMessage />} />
+                </Route>
+              </Route>
               <Route path="viewprofile" element={<ViewProfile />} />
               <Route path="pfp" element={<ProfilePhoto />} />
               <Route path="deletepf" element={<DeleteProfile />} />

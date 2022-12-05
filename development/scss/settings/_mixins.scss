@@ -61,6 +61,8 @@
   border-radius: 0.5em;
   font-size: 16px;
   font-family: $main-font;
+  border: none;
+  box-shadow: $shadow-inputs;
   &:focus {
     outline: 3px solid $yellow;
     outline-offset: -3px;

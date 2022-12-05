@@ -81,19 +81,22 @@ export default function PetPf() {
         <>
           <div className="petpf-bg">
             <div className="petpf-card">
-              <h1>{userData.petName}</h1>
-              <h2>{userData.city}</h2>
               <img src={src && src} className="view-usercard-photo" />
-              <h2>CHARAKTER:</h2>
-              <p>{userData.character}</p>
-              <h2>INNE ZWIERZĘTA:</h2>
-              <span>{userData.otherPets}</span>
-              <p>{userData.otherPetsDesc}</p>
-              <h2>JAKIEGO OPIEKUNA SZUKAM:</h2>
-              <p>{userData.perfectSitter}</p>
-              <h2>SZCZEGÓLNA OPIEKA:</h2>
-              <span>{userData.specialCare}</span>
-              <p>{userData.specialCareDesc}</p>
+              <div className="profile-data-container">
+                <h1>{userData.petName}</h1>
+                <h2>{userData.city}</h2>
+
+                <h2>CHARAKTER:</h2>
+                <p>{userData.character}</p>
+                <h2>INNE ZWIERZĘTA:</h2>
+                <span>{userData.otherPets}</span>
+                <p>{userData.otherPetsDesc}</p>
+                <h2>JAKIEGO OPIEKUNA SZUKAM:</h2>
+                <p>{userData.perfectSitter}</p>
+                <h2>SZCZEGÓLNA OPIEKA:</h2>
+                <span>{userData.specialCare}</span>
+                <p>{userData.specialCareDesc}</p>
+              </div>
               {isLogged && isLogged ? (
                 <SendMessage loggedInfo={loggedInfo} userData={userData} />
               ) : null}

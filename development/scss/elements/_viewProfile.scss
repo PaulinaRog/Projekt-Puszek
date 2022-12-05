@@ -13,6 +13,7 @@
     border-radius: 1em;
     box-shadow: $shadow-inputs;
     display: block;
+    position: relative;
   }
 
   &-pick {
@@ -78,4 +79,7 @@
   object-fit: cover;
   object-position: center center;
   float: right;
+  position: absolute;
+  right: 5%;
+  top: 2em;
 }

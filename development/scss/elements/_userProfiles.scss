@@ -12,5 +12,29 @@
     height: 500px;
     border-radius: 1em;
     box-shadow: $shadow-inputs;
+    position: relative;
+  }
+}
+.profile-data-container {
+  width: 55%;
+  display: grid;
+}
+
+.profile-message-container {
+  display: grid;
+  .profile-headline {
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 22px;
+    margin-top: 1em;
+  }
+  .profile-textarea {
+    @include input(30vw, 100px);
+  }
+  .profile-send-message {
+    @include yellow-button(0.5em 1em);
+    width: 150px;
+    margin-top: 0.5em;
   }
 }
