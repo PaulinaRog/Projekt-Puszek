@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import supabase from "../contexts/supabaseClient";
 
 export default function SendMessage({ loggedInfo, userData }) {
@@ -6,13 +6,72 @@ export default function SendMessage({ loggedInfo, userData }) {
   const [text, setText] = useState("");
   const [err, setErr] = useState("");
 
+  const [ownerName, setOwnerName] = useState(null);
+  const [sitterName, setSitterName] = useState(null);
+
+  useEffect(() => {
+    const checkProfile = async () => {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("ownerOrSitter")
+        .eq("id", loggedInfo.id)
+        .single();
+
+      if (error) {
+        console.log(error);
+      }
+      if (data) {
+        console.log(data);
+        data.ownerOrSitter === "owner" ? setOwner("owner") : null;
+        data.ownerOrSitter === "sitter" ? setSitter("sitter") : null;
+      }
+    };
+    checkProfile();
+
+    const viewOwner = async () => {
+      const { data, error } = await supabase
+        .from("owner_form")
+        .select("name")
+        .eq("uuid", loggedInfo.id)
+        .single();
+
+      if (error) {
+        console.log(error);
+      }
+      if (data) {
+        setOwnerName(data.name);
+        console.log(data);
+      }
+    };
+    viewOwner();
+
+    const viewSitter = async () => {
+      const { data, error } = await supabase
+        .from("sitter_form")
+        .select("name")
+        .eq("uuid", loggedInfo.id)
+        .single();
+
+      if (error) {
+        console.log(error);
+      }
+      if (data) {
+        setSitterName(data.name);
+        console.log(data);
+      }
+    };
+    viewSitter();
+  }, []);
+
   const sendMessage = async () => {
     const { error } = await supabase.from("messages").insert([
       {
         senderid: loggedInfo.id,
         receiverid: userData.uuid,
         message: textRef.current[0].value,
-        sendat: today,
+        sentat: today,
+        senderName: ownerName ? ownerName : sitterName,
+        receiverName: userData.name,
       },
     ]);
     if (error) {
@@ -38,7 +97,7 @@ export default function SendMessage({ loggedInfo, userData }) {
         "Wystąpił błąd po stronie serwera. Wiadomość nie została wysłana. Prosimy spróbować później."
       );
     } else if (loggedInfo.id === userData.uuid) {
-      setErr("Próbujesz wysłać wiadomość do siebie?");
+      setErr("Błąd! Nie można wysyłać wiadomości do siebie.");
     } else {
       sendMessage();
       setErr(null);

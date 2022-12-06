@@ -79,18 +79,6 @@ export default function Dashboard() {
             >
               PROFIL
             </h3>
-            {pathname.includes("msg") && (
-              <h3
-                style={{
-                  fontSize: 20,
-                  paddingLeft: 50,
-                  borderLeft: "5px solid yellow",
-                }}
-                className="care-app-navlink care-nav"
-              >
-                PROFIL
-              </h3>
-            )}
 
             <NavLink
               to="viewprofile"

@@ -1,18 +1,28 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink, useLocation, useNavigate } from "react-router-dom";
 import supabase from "../contexts/supabaseClient";
 import SingleMessage from "./SingleMessage";
+import ReadMessage from "./ReadMessage";
 
 export default function Messages({ id }) {
   const [msgDetails, setMsgDetails] = useState(null);
+  const { pathname } = useLocation();
+  const [sentDetails, setSentDetails] = useState(null);
+  const [sent, setSent] = useState({
+    display: "none",
+  });
+  const [received, setReceived] = useState({
+    display: "block",
+  });
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const getMessages = async () => {
+    const getMyMessages = async () => {
       const { data, error } = await supabase
         .from("messages")
-        .select("id, senderid, receiverid, sendat, message")
+        .select("id, sentat, senderName")
         .eq("receiverid", id);
 
       if (error) {
@@ -23,21 +33,89 @@ export default function Messages({ id }) {
         setMsgDetails(data);
       }
     };
-    getMessages();
+    getMyMessages();
+    const getMessagesSent = async () => {
+      const { data, error } = await supabase
+        .from("messages")
+        .select("id, sentat, senderName")
+        .eq("senderid", id);
+
+      if (error) {
+        console.log(error);
+      }
+      if (data) {
+        console.log(data);
+        setSentDetails(data);
+      }
+    };
+    getMessagesSent();
   }, []);
+
+  const handleClick = () => {
+    setSent({
+      display: "none",
+    });
+    setReceived({
+      display: "block",
+    });
+    if (pathname.includes("msg")) {
+      navigate("messages");
+    }
+  };
+  const handleClickSec = () => {
+    setReceived({
+      display: "none",
+    });
+    setSent({
+      display: "block",
+    });
+    if (pathname.includes("msg")) {
+      navigate("messages");
+    }
+  };
 
   return (
     <>
       <div className="messages-bg">
         <main className="messages">
-          <h1>Lorem ipsum</h1>
-          {/* map */}
-          <NavLink style={{ textDecoration: "none" }} to={`messages/msg/${id}`}>
-            {msgDetails &&
+          <button onClick={handleClick}>ODEBRANE</button>
+          <button onClick={handleClickSec}>WYSŁANE</button>
+          <div style={received}>
+            {!pathname.includes("msg") ? (
+              msgDetails &&
               msgDetails.map((messages) => {
-                return <SingleMessage key={messages.id} messages={messages} />;
-              })}
-          </NavLink>
+                return (
+                  <NavLink
+                    key={messages.id}
+                    style={{ textDecoration: "none" }}
+                    to={`messages/msg/${messages.id}`}
+                  >
+                    <SingleMessage messages={messages} />
+                  </NavLink>
+                );
+              })
+            ) : (
+              <ReadMessage />
+            )}
+          </div>
+          <div style={sent}>
+            {!pathname.includes("msg") ? (
+              sentDetails &&
+              sentDetails.map((messages) => {
+                return (
+                  <NavLink
+                    key={messages.id}
+                    style={{ textDecoration: "none" }}
+                    to={`messages/msg/${messages.id}`}
+                  >
+                    <SingleMessage messages={messages} />
+                  </NavLink>
+                );
+              })
+            ) : (
+              <ReadMessage />
+            )}
+          </div>
         </main>
       </div>
     </>
