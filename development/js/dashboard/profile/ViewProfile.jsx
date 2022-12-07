@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import supabase from "../../contexts/supabaseClient";
 import ViewPetProfile from "./ViewPetProfile";
 import ViewSitterProfile from "./ViewSitterProfile";
+import { useLocation } from "react-router-dom";
 
 export default function ViewProfile({ id }) {
   const [owner, setOwner] = useState(null);
   const [sitter, setSitter] = useState(null);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const checkProfile = async () => {

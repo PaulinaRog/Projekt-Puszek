@@ -1,0 +1,49 @@
+.pfp {
+  background-image: url(../assets/frenchie-opacity50.jpg);
+  @include background-settings(80vw, 100vh);
+  float: right;
+  &-card {
+    margin: 3em 7em 0 7em;
+    background: $white-semi-bg;
+    padding: 2em;
+    color: $grey;
+    height: 75vh;
+    border-radius: 1em;
+    box-shadow: $shadow-inputs;
+    display: block;
+    position: relative;
+  }
+  &-button {
+    width: 300px;
+    @include yellow-button(0.5em 1em);
+  }
+  &-img {
+    width: 300px;
+    height: 450px;
+    border-radius: 1em;
+    outline: 2px solid $yellow;
+    object-fit: cover;
+    object-position: center center;
+  }
+  &-current {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  &-image {
+    width: 300px;
+    height: 450px;
+    border-radius: 1em;
+    outline: 2px solid $yellow;
+    object-fit: cover;
+    object-position: center center;
+  }
+  &-flex {
+    display: flex;
+    gap: 20%;
+  }
+  &-header {
+    font-weight: 600;
+    font-size: 25px;
+  }
+}

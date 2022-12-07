@@ -5,6 +5,7 @@ import HomeRoutLogo from "../landing_page/nav/HomeRoutLogo";
 import { NavLink } from "react-router-dom";
 import ViewProfile from "./profile/ViewProfile";
 import Messages from "./Messages";
+import ProfilePhoto from "./profile/ProfilePhoto";
 
 export default function Dashboard() {
   const [profileLinks, setProfileLinks] = useState({
@@ -121,6 +122,7 @@ export default function Dashboard() {
           ) : null}
           {pathname.includes("view") ? <ViewProfile id={userInfo.id} /> : null}
           {pathname.includes("messages") && <Messages id={userInfo.id} />}
+          {pathname.includes("pfp") && <ProfilePhoto />}
         </>
       )}
     </>

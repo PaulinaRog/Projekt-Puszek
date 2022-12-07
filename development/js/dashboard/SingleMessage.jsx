@@ -1,7 +1,4 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import supabase from "../contexts/supabaseClient";
 
 export default function SingleMessage({ messages }) {
   const { senderid, message, sentat, senderName, receiverName, id } = messages;
