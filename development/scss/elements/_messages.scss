@@ -4,14 +4,7 @@
   float: right;
 
   .messages {
-    margin: 5em 7em 5em 10em;
-    background: $white-semi-bg;
-    padding: 2em;
-    color: $grey;
-    overflow-y: scroll;
-    height: 500px;
-    border-radius: 1em;
-    box-shadow: $shadow-inputs;
+    @include app-card(scroll);
 
     &-card {
       margin: 1em;
@@ -22,16 +15,86 @@
       box-shadow: $shadow-inputs;
 
       &:hover {
-        background-color: $semi-transparent-yelow;
+        background-color: $grey-light-transparent;
         box-shadow: $shadow-small-elems;
       }
       &:active {
-        background-color: $semi-transparent-black;
+        background-color: $grey-dark-transparent;
         color: white;
+        box-shadow: $shadow-inset;
+      }
+      &:visited {
+        color: $grey-mid;
+      }
+    }
+    &-link {
+      text-decoration: none;
+      color: black;
+
+      &:visited {
+        color: $grey-mid;
+      }
+    }
+    &-button {
+      @include button-app(200px);
+    }
+    &-header {
+      font-weight: 600;
+      margin-bottom: 0.5em;
+    }
+    &-timestamp {
+      font-size: 16px;
+    }
+    &-message {
+      margin: 1em;
+      padding: 1em;
+      min-height: 50px;
+      border-radius: 1em;
+      background-color: $white-semi-bg;
+      box-shadow: $shadow-inputs;
+      box-sizing: border-box;
+      width: 70%;
+    }
+    &-reply {
+      margin: 1em;
+      padding: 1em;
+      min-height: 50px;
+      border-radius: 1em;
+      background-color: $grey-light-transparent;
+      box-shadow: $shadow-inputs;
+      box-sizing: border-box;
+      width: 70%;
+      float: right;
+
+      &-box {
+        position: absolute;
+        bottom: 2em;
+      }
+      &-input {
+        @include input(40vw, 70px);
+      }
+      &-button {
+        @include button-app(150px);
+        margin-left: 1em;
       }
     }
   }
 }
-.messages-from {
-  color: $grey;
+
+.notification-card {
+  margin: 1em;
+  padding: 1em;
+  height: 50px;
+  border-radius: 1em;
+  background-color: $white-semi-bg;
+  box-shadow: $shadow-inputs;
+
+  &:hover {
+    background-color: $semi-transparent-yelow;
+    box-shadow: $shadow-small-elems;
+  }
+  &:active {
+    background-color: $semi-transparent-black;
+    color: white;
+  }
 }

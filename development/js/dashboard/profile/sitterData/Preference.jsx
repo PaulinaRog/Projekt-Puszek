@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useRef } from "react";
 import supabase from "../../../contexts/supabaseClient";
 
-export default function OtherPets({ otherPets, id }) {
+export default function Preference({ preference, id }) {
   const [clicked, setClicked] = useState(false);
   const [newData, setNewData] = useState(null);
   const [value, setValue] = useState(null);
@@ -21,19 +21,17 @@ export default function OtherPets({ otherPets, id }) {
     } else {
       const saveChanges = async () => {
         const { data, error } = await supabase
-          .from("owner_form")
-          .update({ otherPets: value })
+          .from("sitter_form")
+          .update({ preference: value })
           .eq("uuid", id)
-          .select("otherPets");
+          .select("preference");
 
         if (error) {
           console.log(error);
         }
         if (data) {
-          setNewData(data[0].otherPets);
-          console.log(data);
+          setNewData(data[0].preference);
           setClicked(false);
-          console.log(newData);
           setText(null);
         }
       };
@@ -43,29 +41,38 @@ export default function OtherPets({ otherPets, id }) {
 
   return (
     <>
-      {otherPets && (
+      {preference && (
         <>
           {!clicked ? (
-            <p>{!newData ? otherPets : newData}</p>
+            <p>{!newData ? preference : newData}</p>
           ) : (
             <>
               <button
-                value="TAK"
+                value="PSEM"
                 onClick={(e) => {
                   e.preventDefault();
                   setValue(e.target.value);
                 }}
               >
-                TAK
+                PSEM
               </button>
               <button
-                value="NIE"
+                value="KOTEM"
                 onClick={(e) => {
                   e.preventDefault();
                   setValue(e.target.value);
                 }}
               >
-                NIE
+                KOTEM
+              </button>
+              <button
+                value="OBOJĘTNE"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setValue(e.target.value);
+                }}
+              >
+                OBOJĘTNE
               </button>
               <i className="fa-solid fa-download" onClick={handleSave}></i>
             </>
@@ -73,7 +80,7 @@ export default function OtherPets({ otherPets, id }) {
           <i className="fa-solid fa-pen-to-square" onClick={handleClick}></i>
         </>
       )}
-      {text && <p>{text}</p>}
+      {text ? <p>{text}</p> : null}
     </>
   );
 }

@@ -68,3 +68,34 @@
     outline-offset: -3px;
   }
 }
+
+@mixin button-app($width) {
+  padding: 0.5em 1em;
+  width: $width;
+  background-color: $yellow-mid;
+  border: none;
+  border-radius: 10px;
+  margin-right: 2em;
+  box-shadow: $shadow-inputs;
+  margin-bottom: 2em;
+  &:hover {
+    box-shadow: $shadow-small-elems;
+    background-color: $yellow;
+  }
+  &:active {
+    background-color: $yellow-dark;
+    box-shadow: $shadow-inset;
+  }
+}
+@mixin app-card($overflow) {
+  overflow-y: $overflow;
+  margin: 4em 7em 4em 9em;
+  background: $white-semi-bg;
+  padding: 2em;
+  color: $grey;
+  height: 75vh;
+  border-radius: 1em;
+  box-shadow: $shadow-inputs;
+  display: block;
+  position: relative;
+}

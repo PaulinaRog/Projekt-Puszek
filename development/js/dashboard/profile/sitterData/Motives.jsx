@@ -2,38 +2,50 @@ import React from "react";
 import { useState, useRef } from "react";
 import supabase from "../../../contexts/supabaseClient";
 
-export default function OtherPets({ otherPets, id }) {
+export default function Motives({ motives, id }) {
   const [clicked, setClicked] = useState(false);
   const [newData, setNewData] = useState(null);
-  const [value, setValue] = useState(null);
+  const inputRef = useRef();
   const [text, setText] = useState(null);
 
   const handleClick = (e) => {
     e.preventDefault();
     setClicked(true);
+    const getData = async () => {
+      const { data, error } = await supabase
+        .from("sitter_form")
+        .select("motives")
+        .eq("uuid", id)
+        .single();
+      if (error) {
+        console.log(error);
+      }
+      if (data) {
+        inputRef.current.value = data.motives;
+      }
+    };
+    getData();
   };
 
   const handleSave = (e) => {
     e.preventDefault();
-
-    if (value === null) {
-      setText("Wybierz jedną z opcji!");
+    if (inputRef.current.value === "") {
+      setText("Pole nie może być puste!");
     } else {
       const saveChanges = async () => {
         const { data, error } = await supabase
-          .from("owner_form")
-          .update({ otherPets: value })
+          .from("sitter_form")
+          .update({ motives: inputRef.current.value })
           .eq("uuid", id)
-          .select("otherPets");
+          .select("motives");
 
         if (error) {
           console.log(error);
+          setText("Nie udało się zapisać zmian");
         }
         if (data) {
-          setNewData(data[0].otherPets);
-          console.log(data);
+          setNewData(data[0].motives);
           setClicked(false);
-          console.log(newData);
           setText(null);
         }
       };
@@ -43,37 +55,20 @@ export default function OtherPets({ otherPets, id }) {
 
   return (
     <>
-      {otherPets && (
+      {motives && (
         <>
           {!clicked ? (
-            <p>{!newData ? otherPets : newData}</p>
+            <p>{!newData ? motives : newData}</p>
           ) : (
             <>
-              <button
-                value="TAK"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setValue(e.target.value);
-                }}
-              >
-                TAK
-              </button>
-              <button
-                value="NIE"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setValue(e.target.value);
-                }}
-              >
-                NIE
-              </button>
+              <textarea ref={inputRef} onChange={(e) => e.targetValue} />{" "}
               <i className="fa-solid fa-download" onClick={handleSave}></i>
             </>
           )}
           <i className="fa-solid fa-pen-to-square" onClick={handleClick}></i>
         </>
       )}
-      {text && <p>{text}</p>}
+      {text ? <p className="text-err">{text}</p> : null}
     </>
   );
 }

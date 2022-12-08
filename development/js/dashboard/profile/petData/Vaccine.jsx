@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import supabase from "../../../contexts/supabaseClient";
 
-export default function PetCharacter({ vaccine, id }) {
+export default function Vaccine({ vaccine, id }) {
   const [clicked, setClicked] = useState(false);
   const [newData, setNewData] = useState(null);
   const [value, setValue] = useState(null);

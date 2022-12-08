@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Navigate, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import supabase from "../contexts/supabaseClient";
 import SingleMessage from "./SingleMessage";
 import ReadMessage from "./ReadMessage";
+import SingleSendMessage from "./SingleSendMessage";
+import ReadSentMessage from "./ReadSentMessage";
 
 export default function Messages({ id }) {
   const [msgDetails, setMsgDetails] = useState(null);
@@ -17,38 +19,61 @@ export default function Messages({ id }) {
     display: "block",
   });
   const navigate = useNavigate();
+  const [err, setErr] = useState();
 
   useEffect(() => {
     const getMyMessages = async () => {
       const { data, error } = await supabase
         .from("messages")
         .select("id, sentat, senderName")
-        .eq("receiverid", id);
+        .eq("receiverid", id)
+        .order("id", { ascending: false });
 
       if (error) {
         console.log(error);
+        setErr("Nie udało się załadować wiadomości");
       }
       if (data) {
-        console.log(data);
         setMsgDetails(data);
       }
     };
     getMyMessages();
+
     const getMessagesSent = async () => {
       const { data, error } = await supabase
         .from("messages")
-        .select("id, sentat, senderName")
-        .eq("senderid", id);
+        .select("id, sentat, receiverName")
+        .eq("senderid", id)
+        .order("id", { ascending: false });
 
       if (error) {
         console.log(error);
+        setErr("Nie udało się załadować wiadomości");
       }
       if (data) {
-        console.log(data);
         setSentDetails(data);
       }
     };
     getMessagesSent();
+
+    const listenToMessages = () => {
+      supabase
+        .channel("messages")
+        .on(
+          "postgres_changes",
+          {
+            event: "INSERT",
+            schema: "*",
+            table: "messages",
+            filter: `receiverid=eq.${id}`,
+          },
+          (payload) => {
+            console.log("Change received!", payload);
+          }
+        )
+        .subscribe();
+    };
+    listenToMessages();
   }, []);
 
   const handleClick = () => {
@@ -78,16 +103,25 @@ export default function Messages({ id }) {
     <>
       <div className="messages-bg">
         <main className="messages">
-          <button onClick={handleClick}>ODEBRANE</button>
-          <button onClick={handleClickSec}>WYSŁANE</button>
+          <button className="messages-button" onClick={handleClick}>
+            ODEBRANE
+          </button>
+          <button className="messages-button" onClick={handleClickSec}>
+            WYSŁANE
+          </button>
           <div style={received}>
+            {err ? (
+              <p className="text-err">
+                {err} <i className="fa-solid fa-xmark"></i>
+              </p>
+            ) : null}
             {!pathname.includes("msg") ? (
               msgDetails &&
               msgDetails.map((messages) => {
                 return (
                   <NavLink
+                    className="messages-link"
                     key={messages.id}
-                    style={{ textDecoration: "none" }}
                     to={`messages/msg/${messages.id}`}
                   >
                     <SingleMessage messages={messages} />
@@ -99,21 +133,26 @@ export default function Messages({ id }) {
             )}
           </div>
           <div style={sent}>
+            {err ? (
+              <p className="text-err">
+                {err} <i className="fa-solid fa-xmark"></i>
+              </p>
+            ) : null}
             {!pathname.includes("msg") ? (
               sentDetails &&
               sentDetails.map((messages) => {
                 return (
                   <NavLink
                     key={messages.id}
-                    style={{ textDecoration: "none" }}
+                    className="messages-link"
                     to={`messages/msg/${messages.id}`}
                   >
-                    <SingleMessage messages={messages} />
+                    <SingleSendMessage messages={messages} />
                   </NavLink>
                 );
               })
             ) : (
-              <ReadMessage />
+              <ReadSentMessage />
             )}
           </div>
         </main>
@@ -121,6 +160,3 @@ export default function Messages({ id }) {
     </>
   );
 }
-
-// enable realtime
-// w jednym oknie ściąganie wszystkich wiadomości od danego uuid i do danego uuid, sortowanie po timestampie

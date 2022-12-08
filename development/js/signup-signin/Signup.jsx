@@ -26,8 +26,7 @@ function Signin() {
         navigate("/dashboard");
       }
     } catch (error) {
-      console.log(error.error_description);
-      console.log(error.message);
+      console.log(error);
       setText("Logowanie nie powiodło się!");
     }
   };
@@ -103,17 +102,13 @@ function Signup() {
 
         if (error) {
           setText("Rejestracja nieudana!");
-          console.log(error);
-          console.log(emailRef.current.value);
-          console.log(passwordRef.current.value);
         }
         if (user) {
           navigate("/setprofile");
           console.log(user);
         }
       } catch (error) {
-        console.log(error.error_description);
-        console.log(error.message);
+        console.log(error);
       }
     }
   };

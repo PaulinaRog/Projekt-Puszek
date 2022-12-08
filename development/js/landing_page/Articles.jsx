@@ -5,10 +5,6 @@ import { useEffect } from "react";
 import supabase from "../contexts/supabaseClient";
 
 function ArticleCards({ articleData: { title, short_desc, id } }) {
-  const [styles, setStyle] = useState({
-    display: "none",
-  });
-
   return (
     <>
       <div className="article-card">
@@ -38,7 +34,6 @@ export default function Articles() {
         console.log(error);
       }
       if (data) {
-        console.log(data);
         setArticleData(data);
       }
     };

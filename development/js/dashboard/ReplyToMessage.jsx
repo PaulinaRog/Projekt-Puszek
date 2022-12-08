@@ -8,6 +8,7 @@ export default function ReplyToMessage({
   const textRef = useRef();
   const [msg, setMsg] = useState();
   const [text, setText] = useState();
+  const [err, setErr] = useState();
 
   const reply = async () => {
     const { data, error } = await supabase
@@ -27,10 +28,10 @@ export default function ReplyToMessage({
 
     if (error) {
       console.log(error);
+      setErr("Nie udało się wysłać wiadomości");
     }
     if (data) {
       setMsg(data);
-      console.log(data);
       setText("Odpowiedź wysłana!");
     }
   };
@@ -39,22 +40,46 @@ export default function ReplyToMessage({
 
   const handleClick = (e) => {
     e.preventDefault();
-    reply();
+    if (
+      textRef.current.value === null ||
+      textRef.current.value < 0 ||
+      textRef.current.value === ""
+    ) {
+      setErr("Nie możesz wysłać pustej wiadomości!");
+    } else {
+      setErr(null);
+      reply();
+    }
   };
 
   return (
     <>
       {msg && (
-        <div>
+        <div className="messages-reply">
           <p>{msg[0].message}</p>
         </div>
       )}
 
-      <div>
-        <h1>Odpowiedz {senderName}</h1>
-        <textarea ref={textRef} />
-        <button onClick={handleClick}>WYŚLIJ</button>
-        {text ? <p>{text}</p> : null}
+      <div className="messages-reply-box">
+        <h1 style={{ fontWeight: 500, marginBottom: 10 }}>Napisz odpowiedź:</h1>
+        <textarea
+          className="messages-reply-input"
+          ref={textRef}
+          placeholder="Twoja wiadomość"
+        />
+        <button className="messages-reply-button" onClick={handleClick}>
+          WYŚLIJ
+        </button>
+        {text ? (
+          <p className="text-ok">
+            {text} <i className="fa-solid fa-paw"></i>
+          </p>
+        ) : null}
+        {err ? (
+          <p className="text-err">
+            {err} <i className="fa-solid fa-xmark"></i>
+          </p>
+        ) : null}
       </div>
     </>
   );

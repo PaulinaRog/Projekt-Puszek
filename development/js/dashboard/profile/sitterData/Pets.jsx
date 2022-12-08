@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useRef } from "react";
 import supabase from "../../../contexts/supabaseClient";
 
-export default function OtherPets({ otherPets, id }) {
+export default function Pets({ pets, id }) {
   const [clicked, setClicked] = useState(false);
   const [newData, setNewData] = useState(null);
   const [value, setValue] = useState(null);
@@ -21,19 +21,17 @@ export default function OtherPets({ otherPets, id }) {
     } else {
       const saveChanges = async () => {
         const { data, error } = await supabase
-          .from("owner_form")
-          .update({ otherPets: value })
+          .from("sitter_form")
+          .update({ pets: value })
           .eq("uuid", id)
-          .select("otherPets");
+          .select("pets");
 
         if (error) {
           console.log(error);
         }
         if (data) {
-          setNewData(data[0].otherPets);
-          console.log(data);
+          setNewData(data[0].pets);
           setClicked(false);
-          console.log(newData);
           setText(null);
         }
       };
@@ -43,10 +41,10 @@ export default function OtherPets({ otherPets, id }) {
 
   return (
     <>
-      {otherPets && (
+      {pets && (
         <>
           {!clicked ? (
-            <p>{!newData ? otherPets : newData}</p>
+            <p>{!newData ? pets : newData}</p>
           ) : (
             <>
               <button
@@ -73,7 +71,7 @@ export default function OtherPets({ otherPets, id }) {
           <i className="fa-solid fa-pen-to-square" onClick={handleClick}></i>
         </>
       )}
-      {text && <p>{text}</p>}
+      {text ? <p>{text}</p> : null}
     </>
   );
 }

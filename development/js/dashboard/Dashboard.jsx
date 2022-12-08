@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import ViewProfile from "./profile/ViewProfile";
 import Messages from "./Messages";
 import ProfilePhoto from "./profile/ProfilePhoto";
+import Notify from "./Notify";
 
 export default function Dashboard() {
   const [profileLinks, setProfileLinks] = useState({
@@ -15,6 +16,7 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [userInfo, setUserInfo] = useState(null);
+  const [notify, setNotify] = useState(null);
 
   useEffect(() => {
     const isUserLogged = async () => {
@@ -36,7 +38,29 @@ export default function Dashboard() {
     };
 
     isUserLogged();
-  }, []);
+
+    if (userInfo) {
+      const listenToMessages = () => {
+        supabase
+          .channel("messages")
+          .on(
+            "postgres_changes",
+            {
+              event: "INSERT",
+              schema: "*",
+              table: "messages",
+              filter: `receiverid=eq.${userInfo.id}`,
+            },
+            (payload) => {
+              console.log("Change received!", payload);
+              setNotify(payload);
+            }
+          )
+          .subscribe();
+      };
+      listenToMessages();
+    }
+  }, [isLogged]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -55,74 +79,92 @@ export default function Dashboard() {
     logOut();
   };
 
+  const updateState = (val) => {
+    setNotify(val);
+  };
+
   return (
     <>
-      {isLogged && (
+      {userInfo && (
         <>
-          <div className="dashboard">
-            <HomeRoutLogo />
+          {isLogged && (
+            <>
+              <div className="dashboard">
+                <HomeRoutLogo />
 
-            <NavLink to="" className="dashboard-navlink">
-              POWIADOMIENIA
-            </NavLink>
+                <NavLink to="" className="dashboard-navlink">
+                  POWIADOMIENIA
+                </NavLink>
 
-            <NavLink to="messages" className="dashboard-navlink">
-              WIADOMOŚCI
-            </NavLink>
+                <NavLink to="messages" className="dashboard-navlink">
+                  WIADOMOŚCI
+                </NavLink>
 
-            <NavLink to="/care" className="care-app-navlink care-nav">
-              PRZEGLĄDAJ
-            </NavLink>
+                <NavLink to="/care" className="care-app-navlink care-nav">
+                  PRZEGLĄDAJ
+                </NavLink>
 
-            <h3
-              className="dashboard-navlink"
-              onClick={() => setProfileLinks({ display: "block" })}
-            >
-              PROFIL
-            </h3>
+                <h3
+                  className="dashboard-navlink"
+                  onClick={() => setProfileLinks({ display: "block" })}
+                >
+                  PROFIL
+                </h3>
 
-            <NavLink
-              to="viewprofile"
-              style={profileLinks}
-              className="dashboard-navlink-profile"
-            >
-              WYŚWIETL PROFIL
-            </NavLink>
-            <NavLink
-              to="pfp"
-              style={profileLinks}
-              className="dashboard-navlink-profile"
-            >
-              ZDJĘCIE PROFILOWE
-            </NavLink>
-            <NavLink
-              to="deletepf"
-              style={profileLinks}
-              className="dashboard-navlink-profile"
-            >
-              USUŃ PROFIL
-            </NavLink>
+                <NavLink
+                  to="viewprofile"
+                  style={profileLinks}
+                  className="dashboard-navlink-profile"
+                >
+                  WYŚWIETL PROFIL
+                </NavLink>
+                <NavLink
+                  to="pfp"
+                  style={profileLinks}
+                  className="dashboard-navlink-profile"
+                >
+                  ZDJĘCIE PROFILOWE
+                </NavLink>
+                <NavLink
+                  to="deletepf"
+                  style={profileLinks}
+                  className="dashboard-navlink-profile"
+                >
+                  USUŃ PROFIL
+                </NavLink>
 
-            <span
-              className="dashboard-logout"
-              style={{
-                position: "absolute",
-                bottom: 0,
-                padding: "1em",
-                fontWeight: 600,
-                fontSize: 23,
-              }}
-              onClick={handleClick}
-            >
-              WYLOGUJ
-            </span>
-          </div>
-          {pathname === "/dashboard" ? (
-            <main className="dashboard-bg"></main>
-          ) : null}
-          {pathname.includes("view") ? <ViewProfile id={userInfo.id} /> : null}
-          {pathname.includes("messages") && <Messages id={userInfo.id} />}
-          {pathname.includes("pfp") && <ProfilePhoto />}
+                <span
+                  className="dashboard-logout"
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    padding: "1em",
+                    fontWeight: 600,
+                    fontSize: 23,
+                  }}
+                  onClick={handleClick}
+                >
+                  WYLOGUJ
+                </span>
+              </div>
+              {pathname === "/dashboard" ? (
+                <main className="dashboard-bg">
+                  <div className="pfp-card">
+                    {notify ? (
+                      <Notify onRead={updateState} notify={notify} />
+                    ) : (
+                      <p>Nie masz nowych powiadomień</p>
+                    )}
+                  </div>
+                </main>
+              ) : null}
+              {pathname.includes("view") ? (
+                <ViewProfile id={userInfo.id} />
+              ) : null}
+              {pathname.includes("messages") && <Messages id={userInfo.id} />}
+              {pathname.includes("pfp") && <ProfilePhoto />}
+            </>
+          )}
         </>
       )}
     </>

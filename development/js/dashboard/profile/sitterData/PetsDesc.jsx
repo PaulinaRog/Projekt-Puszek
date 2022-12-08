@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useRef } from "react";
 import supabase from "../../../contexts/supabaseClient";
 
-export default function OtherPetsDesc({ otherPetsDesc, id }) {
+export default function PetsDesc({ petsDesc, id }) {
   const [clicked, setClicked] = useState(false);
   const [newData, setNewData] = useState(null);
   const inputRef = useRef();
@@ -13,15 +13,15 @@ export default function OtherPetsDesc({ otherPetsDesc, id }) {
     setClicked(true);
     const getData = async () => {
       const { data, error } = await supabase
-        .from("owner_form")
-        .select("otherPetsDesc")
+        .from("sitter_form")
+        .select("petsDesc")
         .eq("uuid", id)
         .single();
       if (error) {
         console.log(error);
       }
       if (data) {
-        inputRef.current.value = data.otherPetsDesc;
+        inputRef.current.value = data.petsDesc;
       }
     };
     getData();
@@ -35,19 +35,17 @@ export default function OtherPetsDesc({ otherPetsDesc, id }) {
     } else {
       const saveChanges = async () => {
         const { data, error } = await supabase
-          .from("owner_form")
-          .update({ otherPetsDesc: inputRef.current.value })
+          .from("sitter_form")
+          .update({ petsDesc: inputRef.current.value })
           .eq("uuid", id)
-          .select("otherPetsDesc");
+          .select("petsDesc");
 
         if (error) {
           console.log(error);
         }
         if (data) {
-          setNewData(data[0].otherPetsDesc);
-          console.log(data);
+          setNewData(data[0].petsDesc);
           setClicked(false);
-          console.log(newData);
           setText(null);
         }
       };
@@ -57,10 +55,10 @@ export default function OtherPetsDesc({ otherPetsDesc, id }) {
 
   return (
     <>
-      {otherPetsDesc && (
+      {petsDesc && (
         <>
           {!clicked ? (
-            <p>{!newData ? otherPetsDesc : newData}</p>
+            <p>{!newData ? petsDesc : newData}</p>
           ) : (
             <>
               <textarea ref={inputRef} onChange={(e) => e.targetValue} />{" "}
@@ -70,7 +68,7 @@ export default function OtherPetsDesc({ otherPetsDesc, id }) {
           <i className="fa-solid fa-pen-to-square" onClick={handleClick}></i>
         </>
       )}
-      {text && <p>{text}</p>}
+      {text ? <p>{text}</p> : null}
     </>
   );
 }

@@ -4,15 +4,7 @@
   float: right;
 
   .petpf-card {
-    margin: 5em 7em 5em 10em;
-    background: $white-semi-bg;
-    padding: 2em;
-    color: $grey;
-    overflow-y: scroll;
-    height: 500px;
-    border-radius: 1em;
-    box-shadow: $shadow-inputs;
-    position: relative;
+    @include app-card(scroll);
   }
 }
 .profile-data-container {

@@ -1,6 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import supabase from "../../contexts/supabaseClient";
+import Description from "./sitterData/Description";
+import Experience from "./sitterData/Experience";
+import Motives from "./sitterData/Motives";
+import Pets from "./sitterData/Pets";
+import PetsDesc from "./sitterData/PetsDesc";
+import Vaccine from "./sitterData/Vaccine";
+import Preference from "./sitterData/Preference";
 
 export default function ViewSitterProfile({ id }) {
   const [userData, setUserData] = useState(null);
@@ -65,31 +72,28 @@ export default function ViewSitterProfile({ id }) {
         <div className="view-profile">
           <div className="view-profile-card">
             <img src={src && src} className="view-usercard-photo" />
-            <div className="profile-data-container">
+            <div className="profile-data">
               <h1>{userData.name}</h1>
               <span>{userData.surname}</span>
               <span>Wiek: {year - userData.birth}</span>
               <span>{userData.city}</span>
               <h3>OPIS:</h3>
-              <p>{userData.description}</p>
+              <Description description={userData.description} id={id} />
               <h3>DOŚWIADCZENIE:</h3>
-              <p>{userData.experience}</p>
+              <Experience experience={userData.experience} id={id} />
               <h3>DLACZEGO CHCĘ ZOSTAĆ OPIEKUNEM:</h3>
-              <p>{userData.motives}</p>
+              <Motives motives={userData.motives} id={id} />
               <h3>CZY POSIADAM ZWIERZAKI:</h3>
-              <span>{userData.pets}</span>
-              <span>{userData.pets === "TAK" ? userData.petsDesc : null}</span>
-              {userData.pets === "TAK" ? (
-                <>
-                  <h3>
-                    CZY SĄ SZCZEPIONE I PRZEBADANE POD KĄTEM NAJCHĘSTSZYCH
-                    CHORÓB:
-                  </h3>
-                  <span>{userData.vaccine}</span>
-                </>
-              ) : null}
+              <Pets pets={userData.pets} id={id} />
+              <PetsDesc petsDesc={userData.petsDesc} id={id} />
+
+              <h3>
+                CZY SĄ SZCZEPIONE I PRZEBADANE POD KĄTEM NAJCHĘSTSZYCH CHORÓB:
+              </h3>
+              <Vaccine vaccine={userData.vaccine} id={id} />
+
               <h3>NAJCHĘTNIEJ ZAJMĘ SIĘ:</h3>
-              <p>{userData.preference}</p>
+              <Preference preference={userData.preference} id={id} />
             </div>
           </div>
         </div>

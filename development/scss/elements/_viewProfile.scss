@@ -12,7 +12,6 @@
     height: 70vh;
     border-radius: 1em;
     box-shadow: $shadow-inputs;
-    display: block;
     position: relative;
   }
 
@@ -82,4 +81,7 @@
   position: absolute;
   right: 5%;
   top: 2em;
+}
+.profile-data {
+  width: 500px;
 }

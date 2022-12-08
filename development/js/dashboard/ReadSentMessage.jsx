@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import supabase from "../contexts/supabaseClient";
 import { useState } from "react";
-import ReplyToMessage from "./ReplyToMessage";
 
 export default function ReadMessage() {
   const { id } = useParams();
@@ -51,15 +50,15 @@ export default function ReadMessage() {
     <>
       {message && (
         <>
-          <h1 className="messages-header">Wiadomość od {message.senderName}</h1>
+          <h1 className="messages-header">
+            Wiadomość do {message.receiverName}
+          </h1>
           <p className="messages-timestamp">
             Wysłana: {message.sentat.substring(0, 10)} o godzinie{" "}
             {message.sentat.substring(11, 16)}
           </p>
 
           <p className="messages-message">{message.message}</p>
-
-          <ReplyToMessage message={message} />
         </>
       )}
       {err ? (

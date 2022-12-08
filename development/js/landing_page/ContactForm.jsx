@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import SectionHeader from "./SectionHeader";
 import emailjs from "emailjs-com";
 
-function MailTo() {
+export function MailTo() {
   const [formData, setFormData] = useState({
     name: "",
     mail: "",
@@ -88,7 +88,9 @@ function MailTo() {
           value={formData.name}
           id="name"
         />
-        <p>{nameErr && "Imię musi być dłuższe niż 2 znaki!"}</p>
+        <p className="text-err">
+          {nameErr && "Imię musi być dłuższe niż 2 znaki!"}
+        </p>
         <br />
         <label className="contact-form-label">E-mail</label>
         <input
@@ -100,7 +102,7 @@ function MailTo() {
           value={formData.mail}
           id="mail"
         />
-        <p>{mailErr && "Błędny format maila!"}</p>
+        <p className="text-err">{mailErr && "Błędny format maila!"}</p>
         <br />
         <label className="contact-form-label">Wiadomość</label>
         <textarea
@@ -112,7 +114,7 @@ function MailTo() {
           value={formData.message}
           id="message"
         />
-        <p>{messageErr && "Wiadomość za krótka!"}</p>
+        <p className="text-err">{messageErr && "Wiadomość za krótka!"}</p>
         <br />
         <div className="checkbox">
           <input
@@ -125,7 +127,9 @@ function MailTo() {
             <span>Akceptuję politykę prywatności</span>
           </label>
         </div>
-        <p>{checkboxErr && "Zaakceptuj politykę prywatności!"}</p>
+        <p className="text-err">
+          {checkboxErr && "Zaakceptuj politykę prywatności!"}
+        </p>
         <br />
         <button className="contact-form-button" type="submit">
           WYŚLIJ
