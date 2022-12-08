@@ -4,13 +4,14 @@ import supabase from "../../contexts/supabaseClient";
 import CurrentPhoto from "./CurrentPhoto";
 import SavePhoto from "./SavePhoto";
 
-export default function ProfilePhoto() {
+export default function ProfilePhoto({}) {
   const inputRef = useRef();
   const [image, setImage] = useState();
   const [userInfo, setUserInfo] = useState(null);
   const [owner, setOwner] = useState(null);
   const [sitter, setSitter] = useState(null);
   const [forUpdate, setForUpdate] = useState(null);
+  const [photoChange, setPhotoChange] = useState(false);
 
   useEffect(() => {
     const isUserLogged = async () => {
@@ -52,6 +53,10 @@ export default function ProfilePhoto() {
     checkProfile();
   }
 
+  const onPhotoChange = (value) => {
+    setPhotoChange(value);
+  };
+
   const triggerFileSelectPopup = (e) => {
     e.preventDefault();
     inputRef.current.click();
@@ -87,7 +92,7 @@ export default function ProfilePhoto() {
               <img />
               <div className="pfp-flex">
                 <main className="pfp-current">
-                  <CurrentPhoto userInfo={userInfo} />
+                  <CurrentPhoto userInfo={userInfo} photoChange={photoChange} />
                   <button
                     className="pfp-button"
                     onClick={triggerFileSelectPopup}
@@ -103,6 +108,7 @@ export default function ProfilePhoto() {
                         image={image}
                         forUpdate={forUpdate}
                         id={userInfo.id}
+                        setChange={onPhotoChange}
                       />
                     ) : (
                       <SavePhoto
@@ -110,6 +116,7 @@ export default function ProfilePhoto() {
                         image={image}
                         forUpdate={forUpdate}
                         id={userInfo.id}
+                        setChange={onPhotoChange}
                       />
                     ))}
                 </div>

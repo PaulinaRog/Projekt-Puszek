@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import supabase from "../../contexts/supabaseClient";
 
-export default function CurrentPhoto({ userInfo: { id } }) {
+export default function CurrentPhoto({ userInfo: { id }, photoChange }) {
   const [src, setSrc] = useState(null);
   const [src2, setSrc2] = useState(null);
 
@@ -36,7 +36,7 @@ export default function CurrentPhoto({ userInfo: { id } }) {
       }
     };
     url();
-  }, []);
+  }, [photoChange]);
 
   return (
     <>
