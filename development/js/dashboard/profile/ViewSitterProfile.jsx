@@ -71,12 +71,26 @@ export default function ViewSitterProfile({ id }) {
       {userData && (
         <div className="view-profile">
           <div className="view-profile-card">
-            <img src={src && src} className="view-usercard-photo" />
-            <div className="profile-data">
-              <h1>{userData.name}</h1>
-              <span>{userData.surname}</span>
-              <span>Wiek: {year - userData.birth}</span>
-              <span>{userData.city}</span>
+            <div className="profile-data-container">
+              <div className="view-profile-basic-data-and-photo">
+                <img src={src && src} className="view-usercard-photo" />
+                <div className="view-profile-basic-data">
+                  <h1>
+                    {userData.name} {userData.surname}
+                  </h1>
+                  <span>Wiek: {year - userData.birth}</span>
+                  <span
+                    style={{
+                      textTransform: "uppercase",
+                      fontWeight: 600,
+                      fontSize: 25,
+                    }}
+                  >
+                    {userData.city}
+                  </span>
+                </div>
+              </div>
+              <div className="view-profile-decor"></div>
               <h3>OPIS:</h3>
               <Description description={userData.description} id={id} />
               <h3>DOŚWIADCZENIE:</h3>

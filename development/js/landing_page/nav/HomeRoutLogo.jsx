@@ -15,7 +15,13 @@ export default function HomeRoutLogo() {
         src="../../development/assets/puszek_logo_vertical.png"
         alt="logo-home page link"
         style={
-          !(pathname === "/" || pathname.includes("articles")) ? style : null
+          !(
+            pathname === "/" ||
+            pathname.includes("articles") ||
+            pathname.includes("contact")
+          )
+            ? style
+            : null
         }
       />
     </NavLink>

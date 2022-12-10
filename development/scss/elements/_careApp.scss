@@ -47,3 +47,11 @@
     border-left: 5px solid $yellow;
   }
 }
+.adoptions-bg {
+  background-image: url(../assets/dog-peekaboo-opacity50.jpg);
+  @include background-settings(80vw, 100vh);
+  float: right;
+}
+.adoptions-card {
+  @include app-card(none);
+}

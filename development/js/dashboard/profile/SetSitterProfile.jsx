@@ -1,12 +1,25 @@
 import React, { useRef, useState, useEffect } from "react";
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import supabase from "../../contexts/supabaseClient";
 import { cities } from "../../cities/cities";
+import SetSitterPhoto from "./SetSitterPhoto";
 
-export default function SetSitterProfile() {
+export default function SetSitterProfile({}) {
   const [isLogged, setIsLogged] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [err, setErr] = useState(null);
   const navigate = useNavigate();
+  const formRef = useRef();
+  const [preferenceClicked, setPreferenceClicked] = useState("");
+  const [petsClicked, setPetsClicked] = useState("");
+  const [vaccineClicked, setVaccineClicked] = useState("");
+  const [text, setText] = useState("");
+  const [city, setCity] = useState(null);
+
+  const clickedStyle = {
+    backgroundColor: "#a4a42ab2",
+    boxShadow: "inset 3px 3px 5px rgba(0, 0, 0, 0.627)",
+  };
 
   useEffect(() => {
     const isUserLogged = async () => {
@@ -24,20 +37,10 @@ export default function SetSitterProfile() {
 
       setIsLogged(true);
       setUserId(user.id);
-      console.log(user.id);
     };
 
     isUserLogged();
   }, []);
-
-  const formRef = useRef();
-  console.log(formRef);
-  const [preferenceClicked, setPreferenceClicked] = useState("");
-  const [petsClicked, setPetsClicked] = useState("");
-  const [vaccineClicked, setVaccineClicked] = useState("");
-  const [text, setText] = useState("");
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [city, setCity] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -89,7 +92,7 @@ export default function SetSitterProfile() {
       );
     } else {
       const uploadData = async () => {
-        const { data, error } = await supabase.from("sitter_form").insert([
+        const { error } = await supabase.from("sitter_form").insert([
           {
             uuid: formData.uuid,
             name: formData.name,
@@ -108,7 +111,7 @@ export default function SetSitterProfile() {
 
         if (error) {
           console.log(error);
-          setText("Uzupełnij wszystkie pola oznaczone gwiazdką!");
+          setErr("Uzupełnij wszystkie pola!");
         }
 
         setText(
@@ -122,22 +125,6 @@ export default function SetSitterProfile() {
 
       uploadData();
     }
-  };
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    const sendPhoto = async () => {
-      const { data, error } = await supabase.storage
-        .from("avatars")
-        .upload(`sitterpf/${userId}`, selectedFile);
-      if (error) {
-        console.log(error);
-      }
-      if (data) {
-        console.log("wysłano");
-      }
-    };
-    sendPhoto();
   };
 
   return (
@@ -192,6 +179,7 @@ export default function SetSitterProfile() {
               <button
                 className="pf-button"
                 value="PSEM"
+                style={preferenceClicked === "PSEM" ? clickedStyle : null}
                 onClick={(e) => {
                   e.preventDefault();
                   setPreferenceClicked(e.target.value);
@@ -201,6 +189,7 @@ export default function SetSitterProfile() {
               </button>
               <button
                 className="pf-button"
+                style={preferenceClicked === "KOTEM" ? clickedStyle : null}
                 value="KOTEM"
                 onClick={(e) => {
                   e.preventDefault();
@@ -211,6 +200,7 @@ export default function SetSitterProfile() {
               </button>
               <button
                 className="pf-button"
+                style={preferenceClicked === "OBOJĘTNE" ? clickedStyle : null}
                 value="OBOJĘTNE"
                 onClick={(e) => {
                   e.preventDefault();
@@ -225,6 +215,7 @@ export default function SetSitterProfile() {
             <div className="buttons-container">
               <button
                 className="pf-button"
+                style={petsClicked === "TAK" ? clickedStyle : null}
                 value="TAK"
                 onClick={(e) => {
                   e.preventDefault();
@@ -235,6 +226,7 @@ export default function SetSitterProfile() {
               </button>
               <button
                 className="pf-button"
+                style={petsClicked === "NIE" ? clickedStyle : null}
                 value="NIE"
                 onClick={(e) => {
                   e.preventDefault();
@@ -253,6 +245,7 @@ export default function SetSitterProfile() {
             <div className="buttons-container">
               <button
                 className="pf-button"
+                style={vaccineClicked === "TAK" ? clickedStyle : null}
                 value="TAK"
                 onClick={(e) => {
                   e.preventDefault();
@@ -263,6 +256,7 @@ export default function SetSitterProfile() {
               </button>
               <button
                 className="pf-button"
+                style={vaccineClicked === "NIE" ? clickedStyle : null}
                 value="NIE"
                 onClick={(e) => {
                   e.preventDefault();
@@ -277,26 +271,16 @@ export default function SetSitterProfile() {
             </label>
             <textarea className="pf-textarea" type="text" />
 
-            <label className="pf-label">Prześlij zdjęcie profilowe:</label>
-            <input
-              type="file"
-              id="avatar"
-              name={selectedFile}
-              style={{ width: 400, height: 30 }}
-              onChange={(e) => setSelectedFile(e.target.files[0])}
-            />
-            <button onClick={handleClick}>PRZEŚLIJ PLIK</button>
-
-            <input type="checkbox" />
-            <label>Akceptuję politykę prywatności i regulamin</label>
-
-            <input type="checkbox" />
-            <label>Wyrażam zgodę na przetwarzanie danych</label>
-
-            <button type="submit" onClick={handleSubmit}>
+            <SetSitterPhoto userId={userId} />
+            <button
+              className="pf-submit-btn"
+              type="submit"
+              onClick={handleSubmit}
+            >
               ZAPISZ
             </button>
-            <p>{text}</p>
+            {text ? <p className="text-ok">{text}</p> : null}
+            {err ? <p className="text-err">{err}</p> : null}
           </form>
         </div>
       )}

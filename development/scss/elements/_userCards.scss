@@ -1,10 +1,9 @@
 .pets-cards-container {
   display: flex;
   gap: 3em;
-  padding: 0 5em 5em 5em;
-  margin-top: 5em;
-  width: 800px;
-  height: 500px;
+  margin: 5em;
+  width: 65vw;
+  height: 80vh;
   flex-wrap: wrap;
   overflow-y: scroll;
 }
@@ -19,9 +18,10 @@
   align-items: center;
   border-radius: 1em;
   box-shadow: $shadow-inputs;
-  gap: 1em;
+  gap: 0.5em;
   position: relative;
   padding: 1em;
+  color: $grey;
 
   &:hover {
     box-shadow: 5px 5px 7px $grey;
@@ -29,7 +29,7 @@
 
   &-photo {
     width: 160px;
-    height: 200px;
+    height: 165px;
     border-radius: 1em;
     outline: 2px solid $yellow;
     object-fit: cover;

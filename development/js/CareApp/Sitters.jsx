@@ -36,6 +36,7 @@ export default function Sitters() {
                   uuid={pf.uuid}
                   description={pf.description}
                   age={pf.birth}
+                  city={pf.city}
                 />
               );
             })}

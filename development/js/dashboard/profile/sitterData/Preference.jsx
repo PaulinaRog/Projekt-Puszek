@@ -7,6 +7,10 @@ export default function Preference({ preference, id }) {
   const [newData, setNewData] = useState(null);
   const [value, setValue] = useState(null);
   const [text, setText] = useState(null);
+  const clickedStyle = {
+    backgroundColor: "#a4a42ab2",
+    boxShadow: "inset 3px 3px 5px rgba(0, 0, 0, 0.627)",
+  };
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -49,6 +53,7 @@ export default function Preference({ preference, id }) {
             <>
               <button
                 value="PSEM"
+                style={value === "PSEM" ? clickedStyle : null}
                 onClick={(e) => {
                   e.preventDefault();
                   setValue(e.target.value);
@@ -58,6 +63,7 @@ export default function Preference({ preference, id }) {
               </button>
               <button
                 value="KOTEM"
+                style={value === "KOTEM" ? clickedStyle : null}
                 onClick={(e) => {
                   e.preventDefault();
                   setValue(e.target.value);
@@ -80,7 +86,7 @@ export default function Preference({ preference, id }) {
           <i className="fa-solid fa-pen-to-square" onClick={handleClick}></i>
         </>
       )}
-      {text ? <p>{text}</p> : null}
+      {text ? <p className="text-err">{text}</p> : null}
     </>
   );
 }

@@ -9,7 +9,7 @@ import NotFound from "./nav/NotFound";
 import ArticlesSite from "../articles/ArticlesSite";
 import Sitters from "../CareApp/Sitters";
 import Pets from "../CareApp/Pets";
-import Adoptions from "../CareApp/Adoptions";
+import Adoptions from "../adoptions/Adoptions";
 import Dashboard from "../dashboard/Dashboard";
 import ViewProfile from "../dashboard/profile/ViewProfile";
 import Messages from "../dashboard/Messages";
@@ -21,6 +21,7 @@ import SitPf from "../CareApp/SitPf";
 import ProfilePhoto from "../dashboard/profile/ProfilePhoto";
 import DeleteProfile from "../dashboard/profile/DeleteProfile";
 import SingleMessage from "../dashboard/SingleMessage";
+import Contact from "../contact/Contact";
 
 export default function App() {
   return (
@@ -42,7 +43,7 @@ export default function App() {
             </Route>
 
             <Route path="/articles" element={<ArticlesSite />} />
-            <Route path="/contact" element={<CareApp />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/dashboard" element={<Dashboard />}>
               <Route path="messages" element={<Messages />}>

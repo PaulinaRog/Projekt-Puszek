@@ -79,21 +79,36 @@ export default function PetPf() {
     <>
       {userData && (
         <>
-          <div className="petpf-bg">
-            <div className="petpf-card">
-              <img src={src && src} className="view-usercard-photo" />
+          <div className="view-profile">
+            <div className="view-profile-card">
               <div className="profile-data-container">
-                <h1>{userData.petName}</h1>
-                <h2>{userData.city}</h2>
-
-                <h2>CHARAKTER:</h2>
+                <div className="view-profile-basic-data-and-photo">
+                  <img src={src && src} className="view-usercard-photo" />
+                  <div className="view-profile-basic-data">
+                    <h1>{userData.petName}</h1>
+                    {userData.type === "KOT" ? (
+                      <i className="fa-solid fa-cat"></i>
+                    ) : null}
+                    <span
+                      style={{
+                        textTransform: "uppercase",
+                        fontWeight: 600,
+                        fontSize: 25,
+                      }}
+                    >
+                      {userData.city}
+                    </span>
+                  </div>
+                </div>
+                <div className="view-profile-decor"></div>
+                <h3>CHARAKTER:</h3>
                 <p>{userData.character}</p>
-                <h2>INNE ZWIERZĘTA:</h2>
+                <h3>INNE ZWIERZĘTA:</h3>
                 <span>{userData.otherPets}</span>
                 <p>{userData.otherPetsDesc}</p>
-                <h2>JAKIEGO OPIEKUNA SZUKAM:</h2>
+                <h3>JAKIEGO OPIEKUNA SZUKAM:</h3>
                 <p>{userData.perfectSitter}</p>
-                <h2>SZCZEGÓLNA OPIEKA:</h2>
+                <h3>SZCZEGÓLNA OPIEKA:</h3>
                 <span>{userData.specialCare}</span>
                 <p>{userData.specialCareDesc}</p>
               </div>

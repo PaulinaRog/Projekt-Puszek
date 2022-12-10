@@ -12,6 +12,7 @@
   color: white;
   font-weight: 500;
   border-radius: 20px;
+  box-shadow: $shadow-small-elems;
 
   @include big-screen {
     padding: 30px 90px;
@@ -24,17 +25,30 @@
 
   &:hover {
     color: $yellow;
+    box-shadow: 5px 5px 10px black;
+  }
+  &:active {
+    background-color: $grey-dark-transparent;
+    box-shadow: $shadow-inset-black-buttons;
   }
 }
 
 @mixin yellow-button($padding) {
   color: black;
-  background-color: $yellow;
+  background-color: $yellow-mid;
   font-weight: 600;
   border-radius: 10px;
   box-shadow: $shadow-small-elems;
   padding: $padding;
   border: none;
+  &:hover {
+    background-color: $yellow;
+    box-shadow: $shadow-small-elems;
+  }
+  &:active {
+    background-color: $yellow-dark;
+    box-shadow: $shadow-inset;
+  }
 }
 
 @mixin big-screen {

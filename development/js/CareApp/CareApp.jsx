@@ -48,7 +48,7 @@ function CareAppView({ isLogged }) {
           </NavLink>
         ) : (
           <NavLink to="/signup" className="care-app-signup care-nav">
-            LOGOWANIE
+            <i className="fa-solid fa-arrow-right-to-bracket"></i> LOGOWANIE
           </NavLink>
         )}
       </div>

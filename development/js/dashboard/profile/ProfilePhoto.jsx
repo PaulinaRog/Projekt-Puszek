@@ -45,7 +45,6 @@ export default function ProfilePhoto({}) {
         console.log(error);
       }
       if (data) {
-        console.log(data);
         data.ownerOrSitter === "owner" ? setOwner("pet") : null;
         data.ownerOrSitter === "sitter" ? setSitter("sitter") : null;
       }
@@ -61,7 +60,6 @@ export default function ProfilePhoto({}) {
     e.preventDefault();
     inputRef.current.click();
   };
-  console.log(inputRef);
 
   const onSelectFile = (e) => {
     if (e.target.files && e.target.files.length > 0) {

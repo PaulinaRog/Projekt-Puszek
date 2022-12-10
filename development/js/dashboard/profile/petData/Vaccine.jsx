@@ -7,6 +7,10 @@ export default function Vaccine({ vaccine, id }) {
   const [newData, setNewData] = useState(null);
   const [value, setValue] = useState(null);
   const [text, setText] = useState(null);
+  const clickedStyle = {
+    backgroundColor: "#a4a42ab2",
+    boxShadow: "inset 3px 3px 5px rgba(0, 0, 0, 0.627)",
+  };
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -50,6 +54,7 @@ export default function Vaccine({ vaccine, id }) {
             <>
               <button
                 value="TAK"
+                style={value === "TAK" ? clickedStyle : null}
                 onClick={(e) => {
                   e.preventDefault();
                   setValue(e.target.value);
@@ -59,6 +64,7 @@ export default function Vaccine({ vaccine, id }) {
               </button>
               <button
                 value="NIE"
+                style={value === "NIE" ? clickedStyle : null}
                 onClick={(e) => {
                   e.preventDefault();
                   setValue(e.target.value);
@@ -72,7 +78,7 @@ export default function Vaccine({ vaccine, id }) {
           <i className="fa-solid fa-pen-to-square" onClick={handleClick}></i>
         </>
       )}
-      {text && <p>{text}</p>}
+      {text ? <p className="text-err">{text}</p> : null}
     </>
   );
 }

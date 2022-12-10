@@ -3,7 +3,7 @@ import supabase from "../contexts/supabaseClient";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-export default function PetCard({ petName, uuid, character }) {
+export default function PetCard({ petName, uuid, character, city }) {
   const [src, setSrc] = useState(null);
   const navigate = useNavigate();
 
@@ -85,6 +85,7 @@ export default function PetCard({ petName, uuid, character }) {
       >
         <img src={src && src} className="pet-usercard-photo" style={hideImg} />
         <h1 className="pet-usercard-name">{petName}</h1>
+        <p style={hideImg}>{city}</p>
         <p className="pet-usercard-character" style={showInfo}>
           {character.substring(0, 120) + "..."}
         </p>

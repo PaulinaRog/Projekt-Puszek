@@ -38,21 +38,29 @@
     padding-right: 155px;
     padding-top: 10px;
     text-decoration: none;
+    &:hover {
+      color: $yellow-mid;
+    }
+    &:active {
+      color: $yellow;
+    }
   }
-  &-menu {
+  &-madeby {
     flex-direction: column;
     justify-content: flex-end;
-    padding-top: 20px;
+    padding-top: 6em;
     align-items: flex-end;
     padding-right: 327px;
-    font-size: 1.2em;
+    font-size: 1em;
     display: flex;
-  }
-  &-menu-link {
-    flex-direction: column;
-    align-items: flex-end;
-    padding-right: 326px;
-    padding-top: 10px;
-    display: flex;
+    &-name {
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-top: 5px;
+      align-items: flex-end;
+      padding-right: 327px;
+      font-size: 1em;
+      display: flex;
+    }
   }
 }

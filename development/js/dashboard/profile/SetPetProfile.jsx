@@ -2,10 +2,26 @@ import React, { useState, useRef, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import supabase from "../../contexts/supabaseClient";
 import { cities } from "../../cities/cities";
+import SetPetPhoto from "./SetPetPhoto";
 
-export default function SetPetProfile() {
+export default function SetPetProfile({}) {
   const [isLogged, setIsLogged] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [err, setErr] = useState(null);
+  const [typeClicked, setTypeClicked] = useState("");
+  // const [size, setSize] = useState("");
+  const [vaccineClicked, setVaccineClicked] = useState("");
+  const [specCareClicked, setSpecCareClicked] = useState("");
+  const [otherPetsClicked, setOtherPetsClicked] = useState("");
+  const [text, setText] = useState("");
+  const [city, setCity] = useState(null);
+  const formRef = useRef();
+
+  const clickedStyle = {
+    backgroundColor: "#a4a42ab2",
+    boxShadow: "inset 3px 3px 5px rgba(0, 0, 0, 0.627)",
+  };
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,22 +40,10 @@ export default function SetPetProfile() {
 
       setIsLogged(true);
       setUserId(user.id);
-      console.log(user.id);
     };
 
     isUserLogged();
   }, []);
-
-  const [typeClicked, setTypeClicked] = useState("");
-  const [size, setSize] = useState("");
-  const [vaccineClicked, setVaccineClicked] = useState("");
-  const [specCareClicked, setSpecCareClicked] = useState("");
-  const [otherPetsClicked, setOtherPetsClicked] = useState("");
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [text, setText] = useState("");
-  const [city, setCity] = useState(null);
-  const formRef = useRef();
-  console.log(formRef);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,7 +55,7 @@ export default function SetPetProfile() {
       city: city,
       petName: formRef.current[4].value,
       type: typeClicked ? typeClicked : null,
-      size: size,
+      // size: size,
       character: formRef.current[8].value,
       perfectSitter: formRef.current[9].value,
       specialCare: specCareClicked ? specCareClicked : null,
@@ -60,7 +64,6 @@ export default function SetPetProfile() {
       otherPets: otherPetsClicked ? otherPetsClicked : null,
       otherPetsDesc: formRef.current[17].value,
     };
-    console.log(formData);
 
     const {
       name,
@@ -69,7 +72,7 @@ export default function SetPetProfile() {
       town,
       petName,
       type,
-      size,
+      // size,
       character,
       perfectSitter,
       specialCare,
@@ -94,7 +97,7 @@ export default function SetPetProfile() {
       vaccine === null ||
       otherPetsDesc === null
     ) {
-      setText(
+      setErr(
         "Uzupełnij wszystkie pola formularza! Pamiętaj, że imię oraz nazwisko muszą być dłuższe niż 2 litery!"
       );
     } else {
@@ -108,7 +111,7 @@ export default function SetPetProfile() {
             city: formData.city,
             petName: formData.petName,
             type: formData.type,
-            size: formData.size,
+            // size: formData.size,
             character: formData.character,
             perfectSitter: formData.perfectSitter,
             specialCare: formData.specialCare,
@@ -121,7 +124,7 @@ export default function SetPetProfile() {
 
         if (error) {
           console.log(error);
-          setText("Uzupełnij wszystkie pola oznaczone gwiazdką!");
+          setErr("Uzupełnij wszystkie pola!");
         }
 
         setText(
@@ -134,21 +137,6 @@ export default function SetPetProfile() {
       };
       uploadData();
     }
-  };
-  const handleClick = (e) => {
-    e.preventDefault();
-    const sendPhoto = async () => {
-      const { data, error } = await supabase.storage
-        .from("avatars")
-        .upload(`petpf/${userId}`, selectedFile);
-      if (error) {
-        console.log(error);
-      }
-      if (data) {
-        console.log("wysłano");
-      }
-    };
-    sendPhoto();
   };
 
   return (
@@ -193,8 +181,8 @@ export default function SetPetProfile() {
                 </div>
               </div>
               <div style={{ display: "flex", gap: "8em" }}>
-                <div style={{ display: "grid" }}>
-                  <label className="pf-label">Imię pupila</label>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <label className="pf-label">Imię pupila *</label>
                   <input type="text" className="pf-text" />
                 </div>
                 <div>
@@ -202,6 +190,7 @@ export default function SetPetProfile() {
                   <div className="buttons-container">
                     <button
                       className="pf-button"
+                      style={typeClicked === "PIES" ? clickedStyle : null}
                       value="PIES"
                       onClick={(e) => {
                         e.preventDefault();
@@ -213,6 +202,7 @@ export default function SetPetProfile() {
                     <button
                       className="pf-button"
                       value="KOT"
+                      style={typeClicked === "KOT" ? clickedStyle : null}
                       onClick={(e) => {
                         e.preventDefault();
                         setTypeClicked(e.target.value);
@@ -221,29 +211,31 @@ export default function SetPetProfile() {
                       KOT
                     </button>
                   </div>
-                  <label className="pf-label">Rozmiar:</label>
-                  <select
-                    className="pf-select"
-                    value={size}
-                    onChange={(e) => {
-                      e.preventDefault();
-                      setSize(e.target.value);
-                    }}
-                  >
-                    <option className="pf-option">Wybierz...</option>
-                    <option className="pf-option" value="Mały">
-                      Mały
-                    </option>
-                    <option className="pf-option" value="Średni">
-                      Średni
-                    </option>
-                    <option className="pf-option" value="Duży">
-                      Duży
-                    </option>
-                    <option className="pf-option" value="Bardzo duży">
-                      Bardzo duży
-                    </option>
-                  </select>
+                  {/* <label className="pf-label">Rozmiar:</label> */}
+                  {/* <div>
+                    <select
+                      className="pf-select"
+                      value={size}
+                      onChange={(e) => {
+                        e.preventDefault();
+                        setSize(e.target.value);
+                      }}
+                    >
+                      <option className="pf-option">Wybierz...</option>
+                      <option className="pf-option" value="Mały">
+                        Mały
+                      </option>
+                      <option className="pf-option" value="Średni">
+                        Średni
+                      </option>
+                      <option className="pf-option" value="Duży">
+                        Duży
+                      </option>
+                      <option className="pf-option" value="Bardzo duży">
+                        Bardzo duży
+                      </option>
+                    </select>
+                  </div> */}
                 </div>
               </div>
               <label className="pf-label">Charakter pupila:</label>
@@ -260,6 +252,7 @@ export default function SetPetProfile() {
                 <button
                   className="pf-button"
                   value="TAK"
+                  style={vaccineClicked === "TAK" ? clickedStyle : null}
                   onClick={(e) => {
                     e.preventDefault();
                     setVaccineClicked(e.target.value);
@@ -269,6 +262,7 @@ export default function SetPetProfile() {
                 </button>
                 <button
                   className="pf-button"
+                  style={vaccineClicked === "NIE" ? clickedStyle : null}
                   value="NIE"
                   onClick={(e) => {
                     e.preventDefault();
@@ -282,6 +276,7 @@ export default function SetPetProfile() {
               <div className="buttons-container">
                 <button
                   className="pf-button"
+                  style={specCareClicked === "TAK" ? clickedStyle : null}
                   value="TAK"
                   onClick={(e) => {
                     e.preventDefault();
@@ -292,6 +287,7 @@ export default function SetPetProfile() {
                 </button>
                 <button
                   className="pf-button"
+                  style={specCareClicked === "NIE" ? clickedStyle : null}
                   value="NIE"
                   onClick={(e) => {
                     e.preventDefault();
@@ -309,6 +305,7 @@ export default function SetPetProfile() {
                 <button
                   className="pf-button"
                   value="TAK"
+                  style={otherPetsClicked === "TAK" ? clickedStyle : null}
                   onClick={(e) => {
                     e.preventDefault();
                     setOtherPetsClicked(e.target.value);
@@ -319,6 +316,7 @@ export default function SetPetProfile() {
                 <button
                   className="pf-button"
                   value="NIE"
+                  style={otherPetsClicked === "NIe" ? clickedStyle : null}
                   onClick={(e) => {
                     e.preventDefault();
                     setOtherPetsClicked(e.target.value);
@@ -328,27 +326,16 @@ export default function SetPetProfile() {
                 </button>
               </div>
               <textarea className="pf-textarea" type="text" />
-
-              <label className="pf-label">Prześlij zdjęcie profilowe:</label>
-              <input
-                type="file"
-                id="avatar"
-                name={selectedFile}
-                style={{ width: 400, height: 30 }}
-                onChange={(e) => setSelectedFile(e.target.files[0])}
-              />
-              <button onClick={handleClick}>PRZEŚLIJ PLIK</button>
-
-              <input type="checkbox" />
-              <label>Akceptuję politykę prywatności i regulamin</label>
-
-              <input type="checkbox" />
-              <label>Wyrażam zgodę na przetwarzanie danych</label>
-
-              <button type="submit" onClick={handleSubmit}>
+              <SetPetPhoto userId={userId} />
+              <button
+                className="pf-submit-btn"
+                type="submit"
+                onClick={handleSubmit}
+              >
                 ZAPISZ
               </button>
-              <p>{text}</p>
+              {text ? <p className="text-ok">{text}</p> : null}
+              {err ? <p className="text-err">{err}</p> : null}
             </form>
           </div>
         </>

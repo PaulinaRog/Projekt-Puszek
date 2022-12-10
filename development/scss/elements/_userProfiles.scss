@@ -2,18 +2,9 @@
   background-image: url(../assets/dog-upsidedown-opacity50.jpg);
   @include background-settings(85vw, 100vh);
   float: right;
-
-  .petpf-card {
-    @include app-card(scroll);
-  }
-}
-.profile-data-container {
-  width: 55%;
-  display: grid;
 }
 
 .profile-message-container {
-  display: grid;
   .profile-headline {
     text-transform: uppercase;
     margin-bottom: 5px;
@@ -27,6 +18,22 @@
   .profile-send-message {
     @include yellow-button(0.5em 1em);
     width: 150px;
-    margin-top: 0.5em;
+    margin-left: 1em;
+  }
+}
+.profile-data-container {
+  h3 {
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 0.5em;
+    margin-top: 1em;
+  }
+  h2 {
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 22px;
   }
 }

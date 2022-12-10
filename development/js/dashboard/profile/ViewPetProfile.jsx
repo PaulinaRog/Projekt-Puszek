@@ -66,16 +66,22 @@ export default function ViewPetProfile({ id }) {
       {userData && (
         <div className="view-profile">
           <div className="view-profile-card">
-            <img src={src && src} className="view-usercard-photo" />
             <div className="profile-data-container">
-              <h1>{userData.petName}</h1>
-              {userData.type === "KOT" ? (
-                <i className="fa-solid fa-cat"></i>
-              ) : null}
-              {userData.type === "PIES" ? (
-                <i className="fa-solid fa-dog"></i>
-              ) : null}
-              <h2>{userData.city}</h2>
+              <div className="view-profile-basic-data-and-photo">
+                <img src={src && src} className="view-usercard-photo" />
+
+                <div className="view-profile-basic-data">
+                  <h1>{userData.petName}</h1>
+                  {userData.type === "KOT" ? (
+                    <i className="fa-solid fa-cat"></i>
+                  ) : null}
+                  {userData.type === "PIES" ? (
+                    <i className="fa-solid fa-dog"></i>
+                  ) : null}
+                  <h2>{userData.city}</h2>
+                </div>
+              </div>
+              <div className="view-profile-decor"></div>
               <h2>CHARAKTER:</h2>
               <PetCharacter character={userData.character} id={id} />
               <br />

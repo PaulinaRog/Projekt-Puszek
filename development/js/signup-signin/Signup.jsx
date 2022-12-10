@@ -105,7 +105,6 @@ function Signup() {
         }
         if (user) {
           navigate("/setprofile");
-          console.log(user);
         }
       } catch (error) {
         console.log(error);
@@ -180,10 +179,12 @@ export default function SigninSignup() {
           onClick={handleClick}
           style={{ display: loginFormVisible ? "none" : "block" }}
         >
-          <i className="fa-solid fa-user-check"></i>
-          <span className="sign-form-choice" style={{ marginLeft: "-15px" }}>
-            LOGOWANIE
-          </span>
+          <div className="sign-box">
+            <i className="fa-solid fa-user-check"></i>
+            <span className="sign-form-choice" style={{ marginLeft: "-15px" }}>
+              LOGOWANIE
+            </span>
+          </div>
         </div>
         {loginFormVisible ? <Signin /> : null}
       </section>
@@ -195,10 +196,12 @@ export default function SigninSignup() {
           onClick={handleClick}
           style={{ display: loginFormVisible ? "block" : "none" }}
         >
-          <i className="fa-solid fa-user-plus"></i>
-          <span className="sign-form-choice" style={{ marginLeft: "-17px" }}>
-            REJESTRACJA
-          </span>
+          <div className="sign-box">
+            <i className="fa-solid fa-user-plus"></i>
+            <span className="sign-form-choice" style={{ marginLeft: "-17px" }}>
+              REJESTRACJA
+            </span>
+          </div>
         </div>
         {loginFormVisible ? null : <Signup />}
       </section>
@@ -211,9 +214,9 @@ export default function SigninSignup() {
         </NavLink>
         <NavLink to="/dashboard" className="signup-navlink">
           <button className="signup-navlink-button">
-            PULPIT UŻYTKOWNIKA
+            PANEL UŻYTKOWNIKA
             <i
-              style={{ fontSize: 25 }}
+              style={{ fontSize: 25, marginLeft: 20 }}
               className="fa-solid fa-angles-right"
             ></i>
           </button>

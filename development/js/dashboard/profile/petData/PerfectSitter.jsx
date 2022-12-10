@@ -70,7 +70,7 @@ export default function PetCharacter({ perfectSitter, id }) {
           <i className="fa-solid fa-pen-to-square" onClick={handleClick}></i>
         </>
       )}
-      {text && <p>{text}</p>}
+      {text ? <p className="text-err">{text}</p> : null}
     </>
   );
 }

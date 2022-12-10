@@ -117,12 +117,7 @@ export function MailTo() {
         <p className="text-err">{messageErr && "Wiadomość za krótka!"}</p>
         <br />
         <div className="checkbox">
-          <input
-            id="input-1"
-            type="checkbox"
-            value={check}
-            onChange={checkboxChange}
-          />
+          <input id="input-1" type="checkbox" />
           <label htmlFor="input-1">
             <span>Akceptuję politykę prywatności</span>
           </label>

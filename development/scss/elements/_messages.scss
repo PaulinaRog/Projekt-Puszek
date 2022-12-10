@@ -36,7 +36,18 @@
       }
     }
     &-button {
-      @include button-app(200px);
+      background-color: $grey-mid-transparent;
+      padding: 0.5em 1em;
+      border: none;
+      margin-bottom: 0;
+      border-radius: 20px 20px 0 0;
+      margin-right: 5px;
+    }
+    &-card-switch {
+      background-color: $white-semi-bg;
+      margin-top: 0;
+      padding: 1em;
+      border-radius: 0 20px 20px 20px;
     }
     &-header {
       font-weight: 600;

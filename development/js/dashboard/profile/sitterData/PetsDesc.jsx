@@ -68,7 +68,7 @@ export default function PetsDesc({ petsDesc, id }) {
           <i className="fa-solid fa-pen-to-square" onClick={handleClick}></i>
         </>
       )}
-      {text ? <p>{text}</p> : null}
+      {text ? <p className="text-err">{text}</p> : null}
     </>
   );
 }

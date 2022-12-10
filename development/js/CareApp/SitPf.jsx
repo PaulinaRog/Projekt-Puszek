@@ -82,15 +82,28 @@ export default function PetPf() {
     <>
       {userData && (
         <>
-          <div className="petpf-bg">
-            <div className="petpf-card">
-              <img src={src && src} className="view-usercard-photo" />
+          <div className="view-profile">
+            <div className="view-profile-card">
               <div className="profile-data-container">
-                <h1>{userData.name}</h1>
-                <span>{userData.surname}</span>
-                <span>Wiek: {year - userData.birth}</span>
-                <span>{userData.city}</span>
-
+                <div className="view-profile-basic-data-and-photo">
+                  <img src={src && src} className="view-usercard-photo" />
+                  <div className="view-profile-basic-data">
+                    <h1>
+                      {userData.name} {userData.surname}
+                    </h1>
+                    <span>Wiek: {year - userData.birth}</span>
+                    <span
+                      style={{
+                        textTransform: "uppercase",
+                        fontWeight: 600,
+                        fontSize: 25,
+                      }}
+                    >
+                      {userData.city}
+                    </span>
+                  </div>
+                </div>
+                <div className="view-profile-decor"></div>
                 <h3>OPIS:</h3>
                 <p>{userData.description}</p>
                 <h3>DOŚWIADCZENIE:</h3>
@@ -99,13 +112,12 @@ export default function PetPf() {
                 <p>{userData.motives}</p>
                 <h3>CZY POSIADAM ZWIERZAKI:</h3>
                 <span>{userData.pets}</span>
-                <span>
-                  {userData.pets === "TAK" ? userData.petsDesc : null}
-                </span>
+                <br />
+                <p>{userData.pets === "TAK" ? userData.petsDesc : null}</p>
                 {userData.pets === "TAK" ? (
                   <>
                     <h3>
-                      CZY SĄ SZCZEPIONE I PRZEBADANE POD KĄTEM NAJCHĘSTSZYCH
+                      CZY SĄ SZCZEPIONE I PRZEBADANE POD KĄTEM NAJCZĘSTSZYCH
                       CHORÓB:
                     </h3>
                     <span>{userData.vaccine}</span>

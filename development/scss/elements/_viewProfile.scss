@@ -32,10 +32,9 @@
   }
 
   h1 {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 2em;
   }
   h2 {
     text-transform: uppercase;
@@ -68,6 +67,24 @@
     box-shadow: $shadow-inputs;
     margin-bottom: 1.5em;
   }
+  &-basic-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30vw;
+    gap: 1em;
+    &-and-photo {
+      display: flex;
+      height: 500px;
+    }
+  }
+  &-decor {
+    height: 3px;
+    width: 55vw;
+    background-color: $yellow;
+    margin-bottom: 2em;
+  }
 }
 
 .view-usercard-photo {
@@ -79,9 +96,12 @@
   object-position: center center;
   float: right;
   position: absolute;
-  right: 5%;
+  right: 10%;
   top: 2em;
 }
 .profile-data {
   width: 500px;
+}
+.set-pfp-button {
+  @include button-app(250px);
 }

@@ -59,12 +59,4 @@
   &-paragraph {
     width: 15em;
   }
-
-  &-btn {
-    @include black-button(1em 2em);
-    position: absolute;
-    bottom: 30px;
-    text-decoration: none;
-    left: 5em;
-  }
 }

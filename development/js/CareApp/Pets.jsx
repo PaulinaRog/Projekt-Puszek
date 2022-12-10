@@ -10,7 +10,7 @@ export default function Pets() {
     const getProfiles = async () => {
       const { data, error } = await supabase
         .from("owner_form")
-        .select("uuid, petName, character");
+        .select("uuid, petName, character, city");
 
       if (error) {
         console.log(error);
@@ -35,6 +35,7 @@ export default function Pets() {
                   petName={pf.petName}
                   uuid={pf.uuid}
                   character={pf.character}
+                  city={pf.city}
                 />
               );
             })}

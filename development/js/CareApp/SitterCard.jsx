@@ -3,7 +3,7 @@ import supabase from "../contexts/supabaseClient";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function SitterCard({ name, uuid, description, age }) {
+export default function SitterCard({ name, uuid, description, age, city }) {
   const [src, setSrc] = useState(null);
   const navigate = useNavigate();
   useEffect(() => {
@@ -90,7 +90,8 @@ export default function SitterCard({ name, uuid, description, age }) {
         <p className="pet-usercard-character" style={showInfo}>
           {description.substring(0, 120) + "..."}
         </p>
-        <p>{year - age}</p>
+        <p style={hideImg}>{city}</p>
+        <p style={hideImg}>{year - age}</p>
         <i
           className="fa-solid fa-eye"
           style={style}

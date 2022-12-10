@@ -20,6 +20,12 @@ export default function Messages({ id }) {
   });
   const navigate = useNavigate();
   const [err, setErr] = useState();
+  const [receivedClicked, setReceivedClicked] = useState(true);
+  const [sentClicked, setSentClicked] = useState(false);
+
+  const clickedStyle = {
+    backgroundColor: "rgba(255, 255, 255, 0.568)",
+  };
 
   useEffect(() => {
     const getMyMessages = async () => {
@@ -83,6 +89,9 @@ export default function Messages({ id }) {
     setReceived({
       display: "block",
     });
+    setReceivedClicked(true);
+    setSentClicked(false);
+
     if (pathname.includes("msg")) {
       navigate("messages");
     }
@@ -94,6 +103,9 @@ export default function Messages({ id }) {
     setSent({
       display: "block",
     });
+    setReceivedClicked(false);
+    setSentClicked(true);
+
     if (pathname.includes("msg")) {
       navigate("messages");
     }
@@ -103,57 +115,69 @@ export default function Messages({ id }) {
     <>
       <div className="messages-bg">
         <main className="messages">
-          <button className="messages-button" onClick={handleClick}>
+          <button
+            className="messages-button"
+            value="received"
+            style={receivedClicked === true ? clickedStyle : null}
+            onClick={handleClick}
+          >
             ODEBRANE
           </button>
-          <button className="messages-button" onClick={handleClickSec}>
+          <button
+            className="messages-button"
+            value="send"
+            style={sentClicked === true ? clickedStyle : null}
+            onClick={handleClickSec}
+          >
             WYSŁANE
           </button>
-          <div style={received}>
-            {err ? (
-              <p className="text-err">
-                {err} <i className="fa-solid fa-xmark"></i>
-              </p>
-            ) : null}
-            {!pathname.includes("msg") ? (
-              msgDetails &&
-              msgDetails.map((messages) => {
-                return (
-                  <NavLink
-                    className="messages-link"
-                    key={messages.id}
-                    to={`messages/msg/${messages.id}`}
-                  >
-                    <SingleMessage messages={messages} />
-                  </NavLink>
-                );
-              })
-            ) : (
-              <ReadMessage />
-            )}
-          </div>
-          <div style={sent}>
-            {err ? (
-              <p className="text-err">
-                {err} <i className="fa-solid fa-xmark"></i>
-              </p>
-            ) : null}
-            {!pathname.includes("msg") ? (
-              sentDetails &&
-              sentDetails.map((messages) => {
-                return (
-                  <NavLink
-                    key={messages.id}
-                    className="messages-link"
-                    to={`messages/msg/${messages.id}`}
-                  >
-                    <SingleSendMessage messages={messages} />
-                  </NavLink>
-                );
-              })
-            ) : (
-              <ReadSentMessage />
-            )}
+          <div className="messages-card-switch">
+            <div style={received}>
+              {err ? (
+                <p className="text-err">
+                  {err} <i className="fa-solid fa-xmark"></i>
+                </p>
+              ) : null}
+              {!pathname.includes("msg") ? (
+                msgDetails &&
+                msgDetails.map((messages) => {
+                  return (
+                    <NavLink
+                      className="messages-link"
+                      key={messages.id}
+                      to={`messages/msg/${messages.id}`}
+                    >
+                      <SingleMessage messages={messages} />
+                    </NavLink>
+                  );
+                })
+              ) : (
+                <ReadMessage />
+              )}
+            </div>
+            <div style={sent}>
+              {err ? (
+                <p className="text-err">
+                  {err} <i className="fa-solid fa-xmark"></i>
+                </p>
+              ) : null}
+              {!pathname.includes("msg") ? (
+                sentDetails &&
+                sentDetails.map((messages) => {
+                  return (
+                    <NavLink
+                      key={messages.id}
+                      className="messages-link"
+                      to={`messages/msg/${messages.id}`}
+                    >
+                      <SingleSendMessage messages={messages} />
+                    </NavLink>
+                  );
+                })
+              ) : (
+                <ReadSentMessage />
+              )}
+            </div>
           </div>
         </main>
       </div>

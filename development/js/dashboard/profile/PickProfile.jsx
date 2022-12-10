@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, NavLink, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import supabase from "../../contexts/supabaseClient";
 
 export default function PickProfile() {
@@ -22,7 +22,6 @@ export default function PickProfile() {
       }
 
       setIsLogged(true);
-      console.log(user);
       setUser(user.id);
     };
 
@@ -66,11 +65,6 @@ export default function PickProfile() {
       {isLogged && (
         <>
           <div className="profile-form">
-            <aside className="profile-form-sidebar">
-              <NavLink to="/dashboard">
-                <button className="profile-form-button">COFNIJ</button>
-              </NavLink>
-            </aside>
             <main className="profile-form-buttons-container">
               <button
                 className="profile-form-button-pickone"

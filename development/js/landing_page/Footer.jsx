@@ -15,6 +15,7 @@ export default function Footer() {
             />
           </div>
           <NavLink
+            className="footer-link"
             to="/documents/privacypolicy"
             style={{ textDecoration: "none", color: "white" }}
           >
@@ -23,17 +24,14 @@ export default function Footer() {
             </span>
           </NavLink>
           <NavLink
+            className="footer-link"
             to="/documents/regulations"
-            style={{ textDecoration: "none", color: "white" }}
+            style={{ textDecoration: "none", color: "white", visited: "grey" }}
           >
             <span className="footer-links">Regulamin</span>
           </NavLink>
-          <h5 className="footer-menu">MENU</h5>
-          {footerLinksList.map((link, idx) => (
-            <span className="footer-menu-link" key={idx}>
-              {link}
-            </span>
-          ))}
+          <h5 className="footer-madeby">MADE BY</h5>
+          <span className="footer-madeby-name">Paulina Róg</span>
           <div className="footer-decorative-elem2"></div>
         </section>
       </div>

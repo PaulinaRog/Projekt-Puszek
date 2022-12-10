@@ -1,0 +1,100 @@
+.contact-bg {
+  background-image: url(../assets/akita.jpg);
+  @include background-settings(100%, 1500px);
+  background-position: center center;
+  position: relative;
+}
+.contact-partners {
+  background-color: $white-semi-bg;
+  position: absolute;
+  bottom: 0;
+  height: 25%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  &-single {
+    background-color: $white-semi-bg;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+    padding: 2em;
+    box-shadow: $shadow-inputs;
+    border-radius: 1em;
+    width: 160px;
+    height: 180px;
+    justify-content: center;
+    align-items: center;
+    &:hover {
+      box-shadow: $shadow-small-elems;
+    }
+    &:active {
+      background-color: $grey-light-transparent;
+    }
+  }
+  &-name {
+    font-size: 25px;
+    font-weight: 600;
+    color: $grey;
+    text-align: center;
+  }
+}
+.checkbox {
+  margin-bottom: 0.5em;
+  width: 200px;
+  input {
+    position: absolute;
+    visibility: hidden;
+    ~ label {
+      position: relative;
+      display: inline-block;
+      width: 4vw;
+      height: 2vw;
+      background: $yellow;
+      border-radius: 2.5vw;
+      border: 0.25vw inset rgba(0, 0, 0, 0.5);
+      box-shadow: inset 0 0 0.125vw 0.125vw rgba(0, 0, 0, 0.55);
+      cursor: pointer;
+      transition: background 0.25s ease-out;
+      &:after {
+        position: absolute;
+        content: "";
+        top: 5%;
+        left: 5%;
+        height: 90%;
+        width: 45%;
+        background: rgba(255, 225, 225, 1);
+        border-radius: 50%;
+        box-shadow: 2px 0 3px 3px rgba(0, 0, 0, 0.25),
+          inset 0 0 0.72vw 0.5vw rgba(55, 55, 55, 0.25);
+        transition: left 0.25s linear, background 0.25s linear,
+          box-shadow 0.25s linear;
+      }
+      span {
+        position: relative;
+        left: 100%;
+        line-height: 2vw;
+        margin-left: 1em;
+        width: 200px;
+        white-space: nowrap;
+      }
+    }
+    &:checked {
+      ~ label {
+        background: rgb(0, 255, 100);
+        &:after {
+          position: absolute;
+          background: rgba(255, 255, 255, 1);
+          content: "";
+          top: 5%;
+          left: 50%;
+          border-radius: 50%;
+          box-shadow: -2px 0 3px 3px rgba(0, 0, 0, 0.25),
+            inset 0 0 0.72vw 0.2vw rgba(0, 0, 0, 0.25);
+        }
+      }
+    }
+  }
+}

@@ -100,7 +100,7 @@ export default function Dashboard() {
                   WIADOMOŚCI
                 </NavLink>
 
-                <NavLink to="/care" className="care-app-navlink care-nav">
+                <NavLink to="/care" className="dashboard-navlink">
                   PRZEGLĄDAJ
                 </NavLink>
 
@@ -144,6 +144,7 @@ export default function Dashboard() {
                   }}
                   onClick={handleClick}
                 >
+                  <i className="fa-solid fa-arrow-right-from-bracket"></i>{" "}
                   WYLOGUJ
                 </span>
               </div>

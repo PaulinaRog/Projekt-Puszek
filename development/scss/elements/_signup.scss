@@ -6,16 +6,6 @@
   align-items: center;
   padding-left: 15%;
 
-  .fa-solid {
-    font-size: 2.5em;
-    padding-left: 20px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    &:hover {
-      color: $yellow;
-    }
-  }
-
   .sign-form {
     background-color: $white-semi-bg;
     border-radius: 20px 0 0 20px;
@@ -72,7 +62,7 @@
     text-decoration: none;
     &-button {
       padding: 0.7em 1em;
-      background-color: $white-semi-bg;
+      background-color: $semi-transparent-black;
       width: 400px;
       border: none;
       display: flex;
@@ -80,13 +70,14 @@
       border-radius: 10px;
       box-shadow: $shadow-inputs;
       color: white;
+      outline: 1px solid $yellow;
       &:hover {
-        background-color: $semi-transparent-yelow;
-        outline: 1px solid $yellow;
-        box-shadow: $shadow-small-elems;
+        color: $yellow;
+        box-shadow: 5px 5px 10px black;
       }
       &:active {
-        background-color: $semi-transparent-black;
+        background-color: $grey-light-transparent;
+        box-shadow: $shadow-inset-black-buttons;
       }
     }
   }
@@ -97,5 +88,16 @@
     gap: 40px;
     flex-direction: column;
     bottom: 19vh;
+  }
+}
+.sign-box {
+  cursor: pointer;
+  .fa-solid {
+    font-size: 2.5em;
+    padding-left: 20px;
+    margin-bottom: 10px;
+  }
+  &:hover {
+    color: $yellow;
   }
 }
