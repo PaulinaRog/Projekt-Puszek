@@ -1,0 +1,35 @@
+{
+  "name": "projekt_koncowy",
+  "version": "1.0.0",
+  "description": "Puszek - final project",
+  "source": "development/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaulinaRog/projekt_koncowy.git"
+  },
+  "keywords": [],
+  "author": "Paulina Róg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PaulinaRog/projekt_koncowy/issues"
+  },
+  "homepage": "https://github.com/PaulinaRog/projekt_koncowy#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.6.0",
+    "buffer": "^5.7.1",
+    "parcel": "^2.7.0",
+    "process": "^0.11.10"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.1.0",
+    "emailjs-com": "^3.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0"
+  }
+}
