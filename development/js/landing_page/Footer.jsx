@@ -10,7 +10,7 @@ export default function Footer() {
         <section>
           <div className="footer-decorative-elem1">
             <img
-              src="../development/assets/puszek_logo.png"
+              src="https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/logos/puszek_logo.png"
               className="footer-logo"
             />
           </div>

@@ -6,7 +6,7 @@ export default function LogoAndTitle() {
       <div className="header_logo-background">
         <img
           className="header_logo-background-logo"
-          src="../development/assets/puszek_logo.png"
+          src="https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/logos/puszek_logo.png"
           alt="logo"
         />
       </div>

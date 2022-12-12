@@ -18,7 +18,7 @@ export default function Contact() {
             <div className="contact-partners-single">
               <h3 className="contact-partners-name">FUNDACJA KASTOR</h3>
               <img
-                src="/development/assets/kastor.png"
+                src="https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/logos/kastor.png"
                 style={{ width: 100, height: "auto" }}
               />
             </div>
@@ -27,7 +27,7 @@ export default function Contact() {
             <div className="contact-partners-single">
               <h3 className="contact-partners-name">DOGTORANT</h3>
               <img
-                src="/development/assets/dogtorant.png"
+                src="https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/logos/dogtorant.png"
                 style={{ width: 100, height: "auto" }}
               />
             </div>

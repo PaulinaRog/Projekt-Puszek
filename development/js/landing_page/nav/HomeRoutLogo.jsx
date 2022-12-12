@@ -12,7 +12,7 @@ export default function HomeRoutLogo() {
     <NavLink to="/">
       <img
         className="header_logo"
-        src="../../development/assets/puszek_logo_vertical.png"
+        src="https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/logos/puszek_logo_vertical.png"
         alt="logo home page link"
         style={
           !(

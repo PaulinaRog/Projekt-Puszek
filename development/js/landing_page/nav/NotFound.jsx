@@ -1,5 +1,5 @@
 import React from "react";
-import HomeRoutLogo from "./homeRoutLogo";
+import HomeRoutLogo from "./HomeRoutLogo";
 
 export default function NotFound() {
   return (
