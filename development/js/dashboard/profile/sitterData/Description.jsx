@@ -47,7 +47,6 @@ export default function Description({ description, id }) {
           setNewData(data[0].description);
           setClicked(false);
           setText(null);
-          console.log(data);
         }
       };
       saveChanges();

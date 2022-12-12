@@ -7,19 +7,6 @@ export default function SitterCard({ name, uuid, description, age, city }) {
   const [src, setSrc] = useState(null);
   const navigate = useNavigate();
   useEffect(() => {
-    const getPhoto = async () => {
-      const { data, error } = await supabase.storage
-        .from("avatars")
-        .download(`sitterpf/${uuid}`);
-      if (error) {
-        console.log(error);
-      }
-      if (data) {
-        console.log(data);
-      }
-    };
-    getPhoto();
-
     const urls = async () => {
       const { data, error } = await supabase.storage
         .from("avatars")
@@ -29,7 +16,6 @@ export default function SitterCard({ name, uuid, description, age, city }) {
         console.log(error);
       }
       if (data) {
-        console.log(data[0].signedUrl);
         setSrc(data[0].signedUrl);
       }
     };
@@ -61,19 +47,20 @@ export default function SitterCard({ name, uuid, description, age, city }) {
   const today = new Date();
   const year = today.getFullYear();
 
-  const fetchProfile = async () => {
-    const { data, error } = await supabase
-      .from("sitter_form")
-      .select("*")
-      .eq("uuid", uuid)
-      .single();
-    if (error) {
-      console.log(error);
-    }
-    if (data) {
-      console.log(data);
-    }
-  };
+  // FOR TEST
+  // const fetchProfile = async () => {
+  //   const { data, error } = await supabase
+  //     .from("sitter_form")
+  //     .select("*")
+  //     .eq("uuid", uuid)
+  //     .single();
+  //   if (error) {
+  //     console.log(error);
+  //   }
+  //   if (data) {
+  //     console.log(data);
+  //   }
+  // };
 
   return (
     <>
@@ -81,7 +68,7 @@ export default function SitterCard({ name, uuid, description, age, city }) {
         className="pet-usercard"
         onClick={(e) => {
           e.preventDefault();
-          fetchProfile();
+          // fetchProfile();
           navigate(`/care/sitterpf/${uuid}`);
         }}
       >

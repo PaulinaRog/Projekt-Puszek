@@ -16,7 +16,6 @@ export default function Pets() {
         console.log(error);
       }
       if (data) {
-        console.log(data);
         setProfiles(data);
       }
     };
@@ -26,6 +25,7 @@ export default function Pets() {
   return (
     <div>
       <main className="care-app-pets">
+        <h1 className="care-app-header">SZUKAJĄ OPIEKUNÓW:</h1>
         <div className="pets-cards-container">
           {profiles &&
             profiles.map((pf, idx) => {

@@ -7,6 +7,7 @@ import ViewProfile from "./profile/ViewProfile";
 import Messages from "./Messages";
 import ProfilePhoto from "./profile/ProfilePhoto";
 import Notify from "./Notify";
+import DeleteProfile from "./profile/DeleteProfile";
 
 export default function Dashboard() {
   const [profileLinks, setProfileLinks] = useState({
@@ -72,7 +73,6 @@ export default function Dashboard() {
         console.log(error);
       }
       setIsLogged(false);
-      console.log("wylogowano");
       window.location.reload(false);
       navigate("/signup");
     };
@@ -93,14 +93,20 @@ export default function Dashboard() {
                 <HomeRoutLogo />
 
                 <NavLink to="" className="dashboard-navlink">
-                  POWIADOMIENIA
+                  POWIADOMIENIA{" "}
+                  {notify ? (
+                    <i
+                      style={{ color: "#ffff00" }}
+                      className="fa-solid fa-message"
+                    ></i>
+                  ) : null}
                 </NavLink>
 
                 <NavLink to="messages" className="dashboard-navlink">
                   WIADOMOŚCI
                 </NavLink>
 
-                <NavLink to="/care" className="dashboard-navlink">
+                <NavLink to="/care/sitters" className="dashboard-navlink">
                   PRZEGLĄDAJ
                 </NavLink>
 
@@ -150,7 +156,7 @@ export default function Dashboard() {
               </div>
               {pathname === "/dashboard" ? (
                 <main className="dashboard-bg">
-                  <div className="pfp-card">
+                  <div className="view-profile-card">
                     {notify ? (
                       <Notify onRead={updateState} notify={notify} />
                     ) : (
@@ -164,6 +170,9 @@ export default function Dashboard() {
               ) : null}
               {pathname.includes("messages") && <Messages id={userInfo.id} />}
               {pathname.includes("pfp") && <ProfilePhoto />}
+              {pathname.includes("deletepf") && (
+                <DeleteProfile id={userInfo.id} />
+              )}
             </>
           )}
         </>

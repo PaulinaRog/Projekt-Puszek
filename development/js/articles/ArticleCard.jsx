@@ -6,7 +6,6 @@ export default function ArticleCard({ article, src, onDataChange }) {
   const [styles, setStyle] = useState({
     display: "none",
   });
-  const [photo, setPhoto] = useState(null);
 
   const [articleData, setArticleData] = useState(null);
 

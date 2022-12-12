@@ -22,7 +22,6 @@ export default function PetPf() {
         console.log(error);
       }
       if (data) {
-        console.log(data);
         setUserData(data);
       }
     };
@@ -34,10 +33,6 @@ export default function PetPf() {
         .download(`petpf/${id}`);
       if (error) {
         console.log(error);
-      }
-      if (data) {
-        console.log(data);
-        setSrc(data);
       }
     };
     sitterPhoto();
@@ -51,7 +46,6 @@ export default function PetPf() {
         console.log(error);
       }
       if (data) {
-        console.log(data[0].signedUrl);
         setSrc(data[0].signedUrl);
       }
     };

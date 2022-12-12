@@ -4,20 +4,6 @@ import supabase from "../contexts/supabaseClient";
 import ArticleCard from "./ArticleCard";
 import ReadArticle from "./SingleArticle";
 
-export const cats = [
-  "../development/assets/british-cat.jpg",
-  "../development/assets/cat-and-a-book.jpg",
-  "../development/assets/ginger-cat.jpg",
-  "../development/assets/kitten.jpg",
-];
-
-export const dogs = [
-  "../development/assets/bullie-in-flowers.jpg",
-  "../development/assets/dog-peekaboo.jpg",
-  "../development/assets/doggie-in-winter.jpg",
-  "../development/assets/frenchie-smiling.jpg",
-];
-
 export default function ArticlesSite() {
   const [articlesData, setArticlesData] = useState(null);
   const [dataFromArticle, setDataFromArticle] = useState(null);
@@ -35,14 +21,10 @@ export default function ArticlesSite() {
 
       if (data) {
         setArticlesData(data);
-        console.log(data);
       }
     };
     getArticles();
   }, []);
-
-  let i = 0;
-  let j = 0;
 
   const getData = (values) => {
     setDataFromArticle(values);
@@ -61,7 +43,7 @@ export default function ArticlesSite() {
                 <ArticleCard
                   key={article.id}
                   article={article}
-                  src={article.category === "PSY" ? dogs[i++] : cats[j++]}
+                  src={`https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/articles/photos/${article.id}`}
                   onDataChange={getData}
                 />
               );

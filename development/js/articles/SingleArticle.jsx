@@ -4,6 +4,11 @@ import Likes from "./Likes";
 
 export default function ReadArticle({ sendData }) {
   const { title, article, author, likes, id } = sendData;
+
+  function createMarkup() {
+    return { __html: article };
+  }
+
   return (
     <>
       <article className="single-article">
@@ -13,8 +18,11 @@ export default function ReadArticle({ sendData }) {
           <h3 className="single-article-author">Autor: {author}</h3>
         </aside>
         <main className="single-article-main-content">
-          <p className="single-article-text">{article}</p>
-          {sendData && <Likes likes={likes} id={id} />}
+          <div
+            className="single-article-text"
+            dangerouslySetInnerHTML={createMarkup()}
+          ></div>
+          {/* {sendData && <Likes likes={likes} id={id} />} */}
         </main>
       </article>
     </>

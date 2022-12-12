@@ -7,7 +7,6 @@ import { useLocation } from "react-router-dom";
 export default function ViewProfile({ id }) {
   const [owner, setOwner] = useState(null);
   const [sitter, setSitter] = useState(null);
-  const { pathname } = useLocation();
 
   useEffect(() => {
     const checkProfile = async () => {
@@ -21,7 +20,6 @@ export default function ViewProfile({ id }) {
         console.log(error);
       }
       if (data) {
-        console.log(data);
         data.ownerOrSitter === "owner" ? setOwner("owner") : null;
         data.ownerOrSitter === "sitter" ? setSitter("sitter") : null;
       }

@@ -8,19 +8,6 @@ export default function PetCard({ petName, uuid, character, city }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getPhoto = async () => {
-      const { data, error } = await supabase.storage
-        .from("avatars")
-        .download(`petpf/${uuid}`);
-      if (error) {
-        console.log(error);
-      }
-      if (data) {
-        console.log(data);
-      }
-    };
-    getPhoto();
-
     const urls = async () => {
       const { data, error } = await supabase.storage
         .from("avatars")
@@ -30,7 +17,6 @@ export default function PetCard({ petName, uuid, character, city }) {
         console.log(error);
       }
       if (data) {
-        console.log(data[0].signedUrl);
         setSrc(data[0].signedUrl);
       }
     };
@@ -59,19 +45,20 @@ export default function PetCard({ petName, uuid, character, city }) {
     setShowInfo({ display: "none" });
   };
 
-  const fetchProfile = async () => {
-    const { data, error } = await supabase
-      .from("owner_form")
-      .select("*")
-      .eq("uuid", uuid)
-      .single();
-    if (error) {
-      console.log(error);
-    }
-    if (data) {
-      console.log(data);
-    }
-  };
+  // FOR TEST
+  // const fetchProfile = async () => {
+  //   const { data, error } = await supabase
+  //     .from("owner_form")
+  //     .select("*")
+  //     .eq("uuid", uuid)
+  //     .single();
+  //   if (error) {
+  //     console.log(error);
+  //   }
+  //   if (data) {
+  //     console.log(data);
+  //   }
+  // };
 
   return (
     <>
@@ -79,7 +66,7 @@ export default function PetCard({ petName, uuid, character, city }) {
         className="pet-usercard"
         onClick={(e) => {
           e.preventDefault();
-          fetchProfile();
+          // fetchProfile();
           navigate(`/care/petpf/${uuid}`);
         }}
       >

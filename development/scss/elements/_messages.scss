@@ -75,7 +75,7 @@
       box-shadow: $shadow-inputs;
       box-sizing: border-box;
       width: 70%;
-      float: right;
+      margin-left: 25%;
 
       &-box {
         position: absolute;
@@ -101,11 +101,15 @@
   box-shadow: $shadow-inputs;
 
   &:hover {
-    background-color: $semi-transparent-yelow;
+    background-color: $grey-light-transparent;
     box-shadow: $shadow-small-elems;
   }
   &:active {
-    background-color: $semi-transparent-black;
+    background-color: $grey-dark-transparent;
     color: white;
+    box-shadow: $shadow-inset;
+  }
+  &:visited {
+    color: $grey-mid;
   }
 }

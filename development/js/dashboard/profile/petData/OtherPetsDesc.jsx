@@ -45,9 +45,7 @@ export default function OtherPetsDesc({ otherPetsDesc, id }) {
         }
         if (data) {
           setNewData(data[0].otherPetsDesc);
-          console.log(data);
           setClicked(false);
-          console.log(newData);
           setText(null);
         }
       };

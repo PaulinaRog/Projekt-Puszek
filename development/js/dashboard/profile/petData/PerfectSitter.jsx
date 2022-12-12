@@ -45,9 +45,7 @@ export default function PetCharacter({ perfectSitter, id }) {
         }
         if (data) {
           setNewData(data[0].perfectSitter);
-          console.log(data);
           setClicked(false);
-          console.log(newData);
           setText(null);
         }
       };

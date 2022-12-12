@@ -33,7 +33,7 @@ function Signin() {
 
   return (
     <>
-      <form className="signin-form">
+      <form className="signin-form" style={{ animation: "appear ease-out 2s" }}>
         <h1
           className="sign-form-title"
           style={{ color: "#ffff00", fontWeight: 600, fontSize: "1.3em" }}
@@ -67,14 +67,14 @@ function Signin() {
           ZALOGUJ
         </button>
         <p className="sign-form-err">{text}</p>
-        <p className="sign-form-passwd">Zapomniałeś hasła?</p>
+        {/* <p className="sign-form-passwd">Zapomniałeś hasła?</p>
         <a className="sign-form-passwd-link" href="">
           Kliknij tutaj
           <i
             style={{ fontSize: 15, padding: 5 }}
             className="fa-solid fa-unlock"
           ></i>
-        </a>
+        </a> */}
       </form>
     </>
   );
@@ -114,7 +114,7 @@ function Signup() {
 
   return (
     <>
-      <form className="signup-form">
+      <form className="signup-form" style={{ animation: "appear ease-out 2s" }}>
         <h1
           className="sign-form-title"
           style={{ color: "#ffff00", fontWeight: 600, fontSize: "1.3em" }}
@@ -173,11 +173,18 @@ export default function SigninSignup() {
     <div className="signin">
       <section
         className="sign-form"
-        style={{ width: loginFormVisible ? "300px" : "100px" }}
+        style={{
+          width: loginFormVisible ? "300px" : "100px",
+          animation: loginFormVisible
+            ? "switch linear 0.4s"
+            : "switch-left linear 0.4s",
+        }}
       >
         <div
           onClick={handleClick}
-          style={{ display: loginFormVisible ? "none" : "block" }}
+          style={{
+            display: loginFormVisible ? "none" : "block",
+          }}
         >
           <div className="sign-box">
             <i className="fa-solid fa-user-check"></i>
@@ -190,11 +197,18 @@ export default function SigninSignup() {
       </section>
       <section
         className="signup"
-        style={{ width: loginFormVisible ? "100px" : "300px" }}
+        style={{
+          width: loginFormVisible ? "100px" : "300px",
+          animation: !loginFormVisible
+            ? "switch linear 0.4s"
+            : "switch-left linear 0.4s",
+        }}
       >
         <div
           onClick={handleClick}
-          style={{ display: loginFormVisible ? "block" : "none" }}
+          style={{
+            display: loginFormVisible ? "block" : "none",
+          }}
         >
           <div className="sign-box">
             <i className="fa-solid fa-user-plus"></i>

@@ -20,9 +20,7 @@ export default function SavePhoto({
       console.log(error);
     }
     if (data) {
-      console.log(data);
       setDeleted(true);
-      console.log("skasowano");
     }
   };
 
@@ -38,7 +36,6 @@ export default function SavePhoto({
         console.log(error);
       }
       if (data) {
-        console.log("wysłano");
         setSent(true);
         setChange(true);
       }

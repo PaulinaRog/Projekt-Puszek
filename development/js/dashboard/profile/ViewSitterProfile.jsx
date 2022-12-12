@@ -8,10 +8,12 @@ import Pets from "./sitterData/Pets";
 import PetsDesc from "./sitterData/PetsDesc";
 import Vaccine from "./sitterData/Vaccine";
 import Preference from "./sitterData/Preference";
+import { useNavigate } from "react-router-dom";
 
 export default function ViewSitterProfile({ id }) {
   const [userData, setUserData] = useState(null);
   const [src, setSrc] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const viewSitter = async () => {
@@ -26,7 +28,6 @@ export default function ViewSitterProfile({ id }) {
       }
       if (data) {
         setUserData(data);
-        console.log(data);
       }
     };
     viewSitter();
@@ -39,7 +40,6 @@ export default function ViewSitterProfile({ id }) {
         console.log(error);
       }
       if (data) {
-        console.log(data);
         setSrc(data);
       }
     };
@@ -54,7 +54,6 @@ export default function ViewSitterProfile({ id }) {
         console.log(error);
       }
       if (data) {
-        console.log(data[0].signedUrl);
         setSrc(data[0].signedUrl);
       }
     };
@@ -68,9 +67,9 @@ export default function ViewSitterProfile({ id }) {
 
   return (
     <>
-      {userData && (
-        <div className="view-profile">
-          <div className="view-profile-card">
+      <div className="view-profile">
+        <div className="view-profile-card">
+          {userData && (
             <div className="profile-data-container">
               <div className="view-profile-basic-data-and-photo">
                 <img src={src && src} className="view-usercard-photo" />
@@ -109,9 +108,28 @@ export default function ViewSitterProfile({ id }) {
               <h3>NAJCHĘTNIEJ ZAJMĘ SIĘ:</h3>
               <Preference preference={userData.preference} id={id} />
             </div>
-          </div>
+          )}
+          {!userData ? (
+            <div>
+              <p style={{ marginBottom: 20 }}>Nie znaleziono profilu</p>
+              <p>
+                Jeśli masz profil, poczekaj na jego załadowanie. Jeśli nie -
+              </p>
+              <p style={{ marginBottom: 20 }}>
+                kliknij tutaj, żeby przejść do uzupełniania danych:
+              </p>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/setprofile");
+                }}
+              >
+                UZUPEŁNIJ PROFIL
+              </button>
+            </div>
+          ) : null}
         </div>
-      )}
+      </div>
     </>
   );
 }

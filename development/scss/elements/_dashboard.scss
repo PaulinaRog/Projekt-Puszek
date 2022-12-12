@@ -16,13 +16,22 @@
     font-size: 23px;
     cursor: pointer;
 
+    &:visited {
+      color: $grey-visited;
+    }
+
     &:hover {
       color: $yellow;
       border-left: 5px solid $yellow;
     }
+    &:focus {
+      color: white;
+      border-left: 5px solid $yellow;
+    }
+
     &:active {
-      color: black;
-      border-left: 5px solid black;
+      color: $yellow-dark;
+      border-left: 5px solid $yellow-dark;
     }
 
     &-profile {
@@ -33,13 +42,22 @@
       border-left: 5px solid transparent;
       padding: 1em 2em;
 
+      &:visited {
+        color: $grey-visited;
+      }
+
       &:hover {
         color: $yellow;
         border-left: 5px solid $yellow;
       }
+      &:focus {
+        color: white;
+        border-left: 5px solid $yellow;
+      }
+
       &:active {
-        color: black;
-        border-left: 5px solid black;
+        color: $yellow-dark;
+        border-left: 5px solid $yellow-dark;
       }
     }
   }
@@ -52,13 +70,22 @@
   &-logout {
     cursor: pointer;
     border-left: 5px solid transparent;
+    &:visited {
+      color: $grey-visited;
+    }
+
     &:hover {
       color: $yellow;
       border-left: 5px solid $yellow;
     }
+    &:focus {
+      color: white;
+      border-left: 5px solid $yellow;
+    }
+
     &:active {
-      color: black;
-      border-left: 5px solid black;
+      color: $yellow-dark;
+      border-left: 5px solid $yellow-dark;
     }
   }
 }

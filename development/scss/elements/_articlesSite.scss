@@ -1,6 +1,6 @@
 .articles-background {
   background-image: url(../assets/black-cat-black-everything.jpg);
-  @include background-settings(100%, 2000px);
+  @include background-settings(100%, 2500px);
 }
 .articles-nav-buttons-bg {
   background-color: $white-semi-bg;
@@ -107,5 +107,12 @@
       justify-content: space-between;
       padding-top: 2em;
     }
+  }
+  strong {
+    font-weight: 600;
+  }
+  li {
+    list-style: circle;
+    margin-left: 1.5em;
   }
 }

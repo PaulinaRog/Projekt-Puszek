@@ -7,7 +7,6 @@ import { useState } from "react";
 export default function ReadMessage() {
   const { id } = useParams();
   const [message, setMessage] = useState(null);
-  //   const [replies, setReplies] = useState(null);
   const [err, setErr] = useState();
 
   useEffect(() => {
@@ -28,22 +27,6 @@ export default function ReadMessage() {
       }
     };
     getMessages();
-
-    // const getReplies = async () => {
-    //   const { data, error } = await supabase
-    //     .from("messages")
-    //     .select("*")
-    //     .eq("replyTo", id);
-
-    //   if (error) {
-    //     console.log(error);
-    //   }
-    //   if (data) {
-    //     console.log(data);
-    //     setReplies(data);
-    //   }
-    // };
-    // getReplies();
   }, []);
 
   return (

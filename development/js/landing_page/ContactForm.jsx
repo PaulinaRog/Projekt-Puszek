@@ -25,11 +25,6 @@ export function MailTo() {
     setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const checkboxChange = (e) => {
-    e.preventDefault();
-    setCheck(!check);
-  };
-
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -117,7 +112,14 @@ export function MailTo() {
         <p className="text-err">{messageErr && "Wiadomość za krótka!"}</p>
         <br />
         <div className="checkbox">
-          <input id="input-1" type="checkbox" />
+          <input
+            id="input-1"
+            type="checkbox"
+            value={check}
+            onClick={(e) => {
+              setCheck(!check);
+            }}
+          />
           <label htmlFor="input-1">
             <span>Akceptuję politykę prywatności</span>
           </label>

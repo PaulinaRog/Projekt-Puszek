@@ -1,0 +1,37 @@
+.delete {
+  background-image: url(../assets/bullie-paint-opacity50.jpg);
+  @include background-settings(85vw, 100vh);
+  float: right;
+  &-card {
+    @include app-card(none);
+  }
+  &-header {
+    font-size: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 2em;
+  }
+  &-button {
+    @include button-app(250px);
+    &-small {
+      @include button-app(150px);
+    }
+  }
+  &-err-text {
+    width: 500px;
+    margin-bottom: 2em;
+  }
+  &-warning-box {
+    background-color: $white-semi-bg;
+    width: 50vw;
+    height: 43vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 7%;
+    margin-top: 5%;
+    border-radius: 1em;
+    box-shadow: $shadow-inputs;
+  }
+}

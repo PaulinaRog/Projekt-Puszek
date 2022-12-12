@@ -10,54 +10,27 @@ export default function SendMessage({ loggedInfo, userData }) {
   const [sitterName, setSitterName] = useState(null);
 
   useEffect(() => {
-    const checkProfile = async () => {
-      const { data, error } = await supabase
-        .from("profiles")
-        .select("ownerOrSitter")
-        .eq("id", loggedInfo.id)
-        .single();
-
-      if (error) {
-        console.log(error);
-      }
-      if (data) {
-        console.log(data);
-        data.ownerOrSitter === "owner" ? setOwner("owner") : null;
-        data.ownerOrSitter === "sitter" ? setSitter("sitter") : null;
-      }
-    };
-    checkProfile();
-
     const viewOwner = async () => {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from("owner_form")
         .select("name")
         .eq("uuid", loggedInfo.id)
         .single();
-
-      if (error) {
-        console.log(error);
-      }
       if (data) {
         setOwnerName(data.name);
-        console.log(data);
       }
     };
     viewOwner();
 
     const viewSitter = async () => {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from("sitter_form")
         .select("name")
         .eq("uuid", loggedInfo.id)
         .single();
 
-      if (error) {
-        console.log(error);
-      }
       if (data) {
         setSitterName(data.name);
-        console.log(data);
       }
     };
     viewSitter();
@@ -85,7 +58,6 @@ export default function SendMessage({ loggedInfo, userData }) {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(textRef.current[0].value);
     if (textRef.current[0].value === "") {
       setErr("Nie można wysłać pustej wiadomości!");
     } else if (

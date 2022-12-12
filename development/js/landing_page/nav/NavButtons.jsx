@@ -12,7 +12,7 @@ export default function NavButtons() {
       <div className="header">
         <HomeRoutLogo />
         <NavLink
-          to="/care"
+          to="/care/sitters"
           style={({ isActive }) => (isActive ? activeStyle : undefined)}
         >
           <button className="header_nav_button">

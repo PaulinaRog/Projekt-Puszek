@@ -44,9 +44,7 @@ export default function PetCharacter({ character, id }) {
         }
         if (data) {
           setNewData(data[0].character);
-          console.log(data);
           setClicked(false);
-          console.log(newData);
           setText(null);
         }
       };

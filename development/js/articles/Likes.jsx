@@ -5,6 +5,11 @@ import supabase from "../contexts/supabaseClient";
 export default function Likes({ id }) {
   const [isClicked, setIsClicked] = useState(false);
   const [likesValue, setLikesValue] = useState(null);
+  const [newLikesValue, setNewlikesValue] = useState(null);
+  const clickedStyle = {
+    backgroundColor: "#a4a42ab2",
+    boxShadow: "inset 3px 3px 5px rgba(0, 0, 0, 0.627)",
+  };
 
   useEffect(() => {
     const getLikes = async () => {
@@ -35,20 +40,16 @@ export default function Likes({ id }) {
     }
     if (data) {
       console.log(data);
+      setNewlikesValue(data[0].likes);
     }
   };
 
-  const clickedStyle = {
-    backgroundColor: "rgba(0, 0, 0, 0.7)",
-    boxShadow: "-3px -3px 5px rgba(0, 0, 0, 0.611)",
-    color: "#ffff00",
-  };
   return (
     <>
       <div className="single-article-likes-box">
         <span className="single-article-likes">
           <i className="fa-solid fa-paw"></i>
-          {likesValue && likesValue}
+          {newLikesValue ? likesValue : likesValue}
         </span>
         <button
           className="single-article-button"

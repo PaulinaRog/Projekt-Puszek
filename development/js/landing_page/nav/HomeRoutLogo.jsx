@@ -13,7 +13,7 @@ export default function HomeRoutLogo() {
       <img
         className="header_logo"
         src="../../development/assets/puszek_logo_vertical.png"
-        alt="logo-home page link"
+        alt="logo home page link"
         style={
           !(
             pathname === "/" ||

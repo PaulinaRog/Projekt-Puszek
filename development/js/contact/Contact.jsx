@@ -2,7 +2,6 @@ import React from "react";
 import NavButtons from "../landing_page/nav/NavButtons";
 import { MailTo } from "../landing_page/ContactForm";
 import SectionHeader from "../landing_page/SectionHeader";
-import { Link } from "react-router-dom";
 
 export default function Contact() {
   return (

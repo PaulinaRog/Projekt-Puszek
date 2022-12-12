@@ -48,9 +48,9 @@ export default function Articles() {
             <div className="articles-background-element"></div>
             <SectionHeader title="ARTYKUŁY" />
             <article className="articles-cards-container">
-              <ArticleCards articleData={articleData[3]} />
-              <ArticleCards articleData={articleData[2]} />
-              <ArticleCards articleData={articleData[1]} />
+              <ArticleCards articleData={articleData[8]} />
+              <ArticleCards articleData={articleData[7]} />
+              <ArticleCards articleData={articleData[6]} />
             </article>
             <NavLink to="articles">
               <button className="articles-button">PRZEJDZ DO ARTYKUŁÓW</button>

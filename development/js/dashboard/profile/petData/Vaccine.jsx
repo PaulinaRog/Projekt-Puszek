@@ -34,9 +34,7 @@ export default function Vaccine({ vaccine, id }) {
         }
         if (data) {
           setNewData(data[0].vaccine);
-          console.log(data);
           setClicked(false);
-          console.log(newData);
           setText(null);
         }
       };

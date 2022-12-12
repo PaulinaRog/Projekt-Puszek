@@ -22,6 +22,8 @@ export default function SetPetProfile({}) {
     boxShadow: "inset 3px 3px 5px rgba(0, 0, 0, 0.627)",
   };
 
+  console.log(formRef);
+
   const navigate = useNavigate();
 
   useEffect(() => {

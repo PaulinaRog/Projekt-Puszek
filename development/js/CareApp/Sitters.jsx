@@ -16,7 +16,6 @@ export default function Sitters() {
         console.log(error);
       }
       if (data) {
-        console.log(data);
         setProfiles(data);
       }
     };
@@ -26,6 +25,7 @@ export default function Sitters() {
   return (
     <div>
       <main className="care-app-sitters">
+        <h1 className="care-app-header">PODEJMĄ SIĘ OPIEKI:</h1>
         <div className="pets-cards-container">
           {profiles &&
             profiles.map((pf, idx) => {

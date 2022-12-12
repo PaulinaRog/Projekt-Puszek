@@ -72,7 +72,6 @@ export default function CareApp() {
       }
       if (user) {
         setIsLogged(true);
-        console.log(user);
       }
     };
 
@@ -84,7 +83,11 @@ export default function CareApp() {
   return (
     <>
       <CareAppView isLogged={isLogged} />
-      {pathname === "/care" ? <main className="care-app"></main> : null}
+      {pathname === "/care" ? (
+        <main className="care-app">
+          <div className="care-card"></div>
+        </main>
+      ) : null}
     </>
   );
 }

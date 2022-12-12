@@ -8,11 +8,13 @@ import OtherPetsDesc from "./petData/OtherPetsDesc";
 import OtherPets from "./petData/OtherPets";
 import SpecialCare from "./petData/SpecialCare";
 import Vaccine from "./petData/Vaccine";
+import { useNavigate } from "react-router-dom";
 
 export default function ViewPetProfile({ id }) {
   const [userData, setUserData] = useState(null);
   const [src, setSrc] = useState(null);
   const [photo, setPhoto] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const viewOwner = async () => {
@@ -26,7 +28,6 @@ export default function ViewPetProfile({ id }) {
         console.log(error);
       }
       if (data) {
-        console.log(data);
         setUserData(data);
       }
     };
@@ -39,7 +40,6 @@ export default function ViewPetProfile({ id }) {
         console.log(error);
       }
       if (data) {
-        console.log(data);
         setPhoto(data);
       }
     };
@@ -54,7 +54,6 @@ export default function ViewPetProfile({ id }) {
         console.log(error);
       }
       if (data) {
-        console.log(data[0].signedUrl);
         setSrc(data[0].signedUrl);
       }
     };
@@ -63,9 +62,9 @@ export default function ViewPetProfile({ id }) {
 
   return (
     <>
-      {userData && (
-        <div className="view-profile">
-          <div className="view-profile-card">
+      <div className="view-profile">
+        <div className="view-profile-card">
+          {userData && (
             <div className="profile-data-container">
               <div className="view-profile-basic-data-and-photo">
                 <img src={src && src} className="view-usercard-photo" />
@@ -103,9 +102,28 @@ export default function ViewPetProfile({ id }) {
               <h2>CZY MA SZCZEPIENIA I BADANIA W ZAKRESIE POWAŻNYCH CHORÓB:</h2>
               <Vaccine vaccine={userData.vaccine} id={id} />
             </div>
-          </div>
+          )}
+          {!userData ? (
+            <div>
+              <p style={{ marginBottom: 20 }}>Nie znaleziono profilu</p>
+              <p>
+                Jeśli masz profil, poczekaj na jego załadowanie. Jeśli nie -
+              </p>
+              <p style={{ marginBottom: 20 }}>
+                Kliknij tutaj, żeby przejść do uzupełniania danych:
+              </p>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/setprofile");
+                }}
+              >
+                PROFIL
+              </button>
+            </div>
+          ) : null}
         </div>
-      )}
+      </div>
     </>
   );
 }

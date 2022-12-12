@@ -35,9 +35,7 @@ export default function OtherPets({ otherPets, id }) {
         }
         if (data) {
           setNewData(data[0].otherPets);
-          console.log(data);
           setClicked(false);
-          console.log(newData);
           setText(null);
         }
       };

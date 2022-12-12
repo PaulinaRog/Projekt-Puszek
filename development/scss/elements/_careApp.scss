@@ -32,6 +32,18 @@
     @include background-settings(80vw, 100vh);
     float: right;
   }
+  &-header {
+    font-size: 25px;
+    background-color: $grey-light-transparent;
+    box-sizing: border-box;
+    padding: 0.5em;
+    color: $grey;
+    font-weight: 600;
+    width: 400px;
+    text-align: center;
+    border-radius: 0 15px 15px 0;
+    margin-top: 1em;
+  }
 }
 
 .care-nav {
@@ -41,10 +53,22 @@
   padding: 1em 1em;
   font-weight: 500;
   font-size: 23px;
+  &:visited {
+    color: $grey-visited;
+  }
 
   &:hover {
     color: $yellow;
     border-left: 5px solid $yellow;
+  }
+  &:focus {
+    color: white;
+    border-left: 5px solid $yellow;
+  }
+
+  &:active {
+    color: $yellow-dark;
+    border-left: 5px solid $yellow-dark;
   }
 }
 .adoptions-bg {
@@ -54,4 +78,15 @@
 }
 .adoptions-card {
   @include app-card(none);
+}
+.care-card {
+  margin: 10em 10em 4em 10em;
+  background: $white-semi-bg;
+  padding: 2em;
+  color: $grey;
+  height: 40vh;
+  border-radius: 1em;
+  box-shadow: $shadow-inputs;
+  display: block;
+  position: relative;
 }

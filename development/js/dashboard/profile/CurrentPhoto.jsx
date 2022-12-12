@@ -16,7 +16,6 @@ export default function CurrentPhoto({ userInfo: { id }, photoChange }) {
         console.log(error);
       }
       if (data) {
-        console.log(data[0].signedUrl);
         setSrc(data[0].signedUrl);
       }
     };
@@ -31,7 +30,6 @@ export default function CurrentPhoto({ userInfo: { id }, photoChange }) {
         console.log(error);
       }
       if (data) {
-        console.log(data[0].signedUrl);
         setSrc2(data[0].signedUrl);
       }
     };
