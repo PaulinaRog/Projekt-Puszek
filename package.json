@@ -1,8 +1,9 @@
 {
   "name": "projekt_koncowy",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+
+  "version": "1.0.0",
+  "description": "Puszek - final project",
+  "source": "index.html",
   "scripts": {
     "start": "vite",
     "dev": "vite",
