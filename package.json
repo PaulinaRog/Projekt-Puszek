@@ -2,7 +2,7 @@
   "name": "projekt_koncowy",
   "version": "1.0.0",
   "description": "Puszek - final project",
-  "source": "development/index.html",
+  "source": "index.html",
   "scripts": {
     "start": "parcel",
     "build": "parcel build"
