@@ -73,7 +73,7 @@ npm install --save react-router-dom
 
 #### CreateClient(param1, param2)
 
-```http
+```javascript
 import { createClient } from '@supabase/supabase-js'
 
 const supabaseUrl = 'import.meta.env.VITE_SUPABASE_URL'
