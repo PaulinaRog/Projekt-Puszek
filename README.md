@@ -371,6 +371,118 @@ const handleClick = (e) => {
 
 ```
 ------
+## *Profile Photo*
+
+#### Możliwość zmiany zdjęcia profilowego dzięki *supabase storage*
+![App Screenshot](https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/screenshots/pfphotochange.png)
+
+#### fragment kodu - **set pet photo**
+
+```javascript
+export default function SavePhoto({
+  image,
+  id,
+  profile,
+  forUpdate,
+  setChange,
+}) {
+  const [deleted, setDeleted] = useState(false);
+  const [sent, setSent] = useState(false);
+
+  const deletePhoto = async () => {
+    const { data, error } = await supabase.storage
+      .from("avatars")
+      .remove(`${profile}pf/${id}`);
+    if (error) {
+      console.log(error);
+    }
+    if (data) {
+      setDeleted(true);
+    }
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    deletePhoto();
+
+    const sendPhoto = async () => {
+      const { data, error } = await supabase.storage
+        .from("avatars")
+        .upload(`${profile}pf/${id}`, forUpdate);
+      if (error) {
+        console.log(error);
+      }
+      if (data) {
+        setSent(true);
+        setChange(true);
+      }
+    };
+    sendPhoto();
+  };
+
+  return (
+    <>
+      {!sent ? (
+        <>
+          <img src={image} className="pfp-image" />
+          <button className="pfp-button" onClick={handleClick}>
+            ZAPISZ
+          </button>
+        </>
+      ) : null}
+    </>
+  );
+}
+
+```
+
+---
+## *Delete profile*
+
+#### Możliwość usunięcia aktualnego profilu użytkownika.
+![App Screenshot](https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/screenshots/deletepf.png)
+
+#### fragment kodu - **delete profile**
+
+```javascript
+ useEffect(() => {
+    const checkProfile = async () => {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("ownerOrSitter")
+        .eq("id", id)
+        .single();
+
+      if (error) {
+        console.log(error);
+      }
+      if (data) {
+        data.ownerOrSitter === "owner" ? setOwner("pet") : null;
+        data.ownerOrSitter === "sitter" ? setSitter("sitter") : null;
+      }
+    };
+    checkProfile();
+  }, []);
+
+  // USUNIĘCIE ZDJĘCIA
+
+  const deletePhoto = async () => {
+    const { data, error } = await supabase.storage
+      .from("avatars")
+      .remove(`${owner ? owner : sitter}pf/${id}`);
+    if (error) {
+      console.log(error);
+      setUserPhoto("Wystąpił błąd");
+    }
+    if (data) {
+      setUserPhoto("Skasowano zdjęcie");
+    }
+  };
+
+```
+---
+
+
 ## Color Reference
 
 | Color             | Hex                                                                |
