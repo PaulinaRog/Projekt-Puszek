@@ -6,8 +6,7 @@ założeniem portalu jest pomoc, nie zarobek.
 
 Projekt kierowany jest do miłośników zwierząt.
 Celem projektu jest rozwiązanie problemu opieki nad zwierzętami
-kiedy właściciel wyjeżdża bądź jest chory i nie ma jak się zaopiekować pupilem.
-Oraz ułatwienie poszukiwania domów tymczasowych i stałych dla zwierząt bezdomnych.
+kiedy właściciel wyjeżdża bądź jest chory i nie ma jak się zaopiekować pupilem, oraz ułatwienie poszukiwania domów tymczasowych i stałych dla zwierząt bezdomnych.
 
 Projekt końcowy kursu JavaScript Developer od CodersLab.
 
