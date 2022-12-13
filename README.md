@@ -8,7 +8,7 @@ Projekt kierowany jest do miłośników zwierząt.
 Celem projektu jest rozwiązanie problemu opieki nad zwierzętami
 kiedy właściciel wyjeżdża bądź jest chory i nie ma jak się zaopiekować pupilem, oraz ułatwienie poszukiwania domów tymczasowych i stałych dla zwierząt bezdomnych.
 
-Projekt końcowy kursu JavaScript Developer od CodersLab.
+**Projekt końcowy kursu JavaScript Developer od CodersLab.**
 
 Aplikacja stale rozwijana o nowe funkcjonalności.
 W najbliższym czasie pojawią się profile fundacji oraz schronisk i ich podopiecznych.
