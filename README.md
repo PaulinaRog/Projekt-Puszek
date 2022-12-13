@@ -1,20 +1,12 @@
+# PROJEKT PUSZEK
 
-# PUSZEK
-Puszek jest alternatywą dla hoteli dla zwierząt. 
-W przeciwieństwie do reszty konkurencji na rynku, 
-założeniem portalu jest pomoc, nie zarobek.
+Puszek jest alternatywą dla hoteli dla zwierząt. W przeciwieństwie do reszty konkurencji na rynku, założeniem portalu jest pomoc, nie zarobek.
 
-Projekt kierowany jest do miłośników zwierząt.
-Celem projektu jest rozwiązanie problemu opieki nad zwierzętami
-kiedy właściciel wyjeżdża bądź jest chory i nie ma jak się zaopiekować pupilem, oraz ułatwienie poszukiwania domów tymczasowych i stałych dla zwierząt bezdomnych.
+Projekt kierowany jest do miłośników zwierząt. Celem projektu jest rozwiązanie problemu opieki nad zwierzętami kiedy właściciel wyjeżdża bądź jest chory i nie ma jak się zaopiekować pupilem, oraz ułatwienie poszukiwania domów tymczasowych i stałych dla zwierząt bezdomnych.
 
-**Projekt końcowy kursu JavaScript Developer od CodersLab.**
+**Projekt końcowy kursu JavaScript Developer od CodersLab**
 
-Aplikacja stale rozwijana o nowe funkcjonalności.
-W najbliższym czasie pojawią się profile fundacji oraz schronisk i ich podopiecznych.
-
-
-
+Aplikacja stale rozwijana o nowe funkcjonalności. W najbliższym czasie pojawią się profile fundacji oraz schronisk i ich podopiecznych.
 ## Instalki
 
 #### *Projekt zbudowany w oparciu o vite.*
@@ -383,13 +375,27 @@ const handleClick = (e) => {
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| Details, decor elems | ![#ffff00](https://via.placeholder.com/10/ffff00?text=+) #ffff00 |
-| Navigation, fonts | ![#5f5f5f](https://via.placeholder.com/10/5f5f5f?text=+) #5f5f5f |
+| Details, decor elems | #ffff00 |
+| Navigation, fonts | #5f5f5f |
 
 ---
-# Deployment
+## Fonts and icons
 
-### Project is now live at *Netlify*
+ - [Pixabay](https://pixabay.com/pl/)
+ - [Fontawesome](https://fontawesome.com/icons)
+
+
+## THANK YOU
+#### *Ogromne podziękowania dla mentora kursu za nieustające wsparcie i wiarę w moje możliwości.*
+:checkered_flag: :fire: :raised_hands:
+
+---
+
+
+
+## Deployment
+
+#### Project is now live at *Netlify*
 
 ```https
 projektpuszek.netlify.app
