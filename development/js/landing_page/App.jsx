@@ -74,6 +74,7 @@ export default function App() {
                 element={<h1 style={{ color: "black" }}>Regulamin</h1>}
               />
             </Route>
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

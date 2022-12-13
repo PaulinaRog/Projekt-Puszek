@@ -40,36 +40,26 @@ export default function Care() {
       </div>
       <div className="care-background-element1"></div>
       <div className="care-background-element2">
-        <section className="care-owner">
-          <p className="care-owner-text">
+        <ul className="care-owner">
+          <li className="care-owner-text">
             Wyjeżdżasz na wakacje i nie masz z kim zostawić pupila?
-          </p>
-          <p className="care-owner-text">
-            Jesteś w trakcie remontu lub przeprowadzki?
-          </p>
-          <p className="care-owner-text">
-            Obawiasz się, że ciężko przejdzie pobyt w hotelu lub Cię na niego
-            nie stać?
-          </p>
-          <p className="care-owner-text">
-            Wyjeżdzasz do pracy za granicę i nie ma kto się nim zająć?
-          </p>
-        </section>
-        <section className="care-pet">
-          <p className="care-pet-text">
-            Chcesz adoptować zwierzaka i nie wiesz czy sobie poradzisz?
-          </p>
-          <p className="care-pet-text">
-            Twoje dziecko Cię o to prosi, a Ty nie wiesz jak sobie poradzi z
-            obowiązkiem?
-          </p>
-          <p className="care-pet-text">
-            Nie chcesz się zobowiązywać na dłużej, a kochasz zwierzęta?
-          </p>
-          <p className="care-pet-text">
+          </li>
+          <li className="care-owner-text">
+            Obawiasz się, że ciężko przejdzie pobyt w hotelu lub Cię na to nie
+            stać?
+          </li>
+        </ul>
+        <ul className="care-pet">
+          <li className="care-pet-text">
             Twój przyjaciel odszedł i brakuje Ci towarzystwa?
-          </p>
-        </section>
+          </li>
+          <li className="care-pet-text">
+            Chcesz adoptować zwierzaka i nie wiesz czy sobie poradzisz?
+          </li>
+          <li className="care-pet-text">
+            Nie chcesz się zobowiązywać na dłużej, a kochasz zwierzęta?
+          </li>
+        </ul>
       </div>
     </div>
   );

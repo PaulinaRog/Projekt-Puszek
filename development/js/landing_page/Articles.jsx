@@ -48,9 +48,21 @@ export default function Articles() {
             <div className="articles-background-element"></div>
             <SectionHeader title="ARTYKUŁY" />
             <article className="articles-cards-container">
-              <ArticleCards articleData={articleData[8]} />
-              <ArticleCards articleData={articleData[7]} />
-              <ArticleCards articleData={articleData[6]} />
+              <ArticleCards
+                articleData={
+                  articleData[Math.floor(Math.random() * (3 - 0 + 1) + 0)]
+                }
+              />
+              <ArticleCards
+                articleData={
+                  articleData[Math.floor(Math.random() * (6 - 4 + 1) + 4)]
+                }
+              />
+              <ArticleCards
+                articleData={
+                  articleData[Math.floor(Math.random() * (7 - 10 + 1) + 10)]
+                }
+              />
             </article>
             <NavLink to="articles">
               <button className="articles-button">PRZEJDZ DO ARTYKUŁÓW</button>

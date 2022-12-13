@@ -18,6 +18,7 @@ export default function Dashboard() {
   const { pathname } = useLocation();
   const [userInfo, setUserInfo] = useState(null);
   const [notify, setNotify] = useState(null);
+  const [visible, setVisible] = useState(null);
 
   useEffect(() => {
     const isUserLogged = async () => {
@@ -53,6 +54,7 @@ export default function Dashboard() {
               filter: `receiverid=eq.${userInfo.id}`,
             },
             (payload) => {
+              setVisible({ display: "block" });
               console.log("Change received!", payload);
               setNotify(payload);
             }
@@ -61,7 +63,7 @@ export default function Dashboard() {
       };
       listenToMessages();
     }
-  }, [isLogged]);
+  }, [notify, isLogged]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -80,6 +82,7 @@ export default function Dashboard() {
   };
 
   const updateState = (val) => {
+    setVisible(val);
     setNotify(val);
   };
 
@@ -122,7 +125,7 @@ export default function Dashboard() {
                   style={profileLinks}
                   className="dashboard-navlink-profile"
                 >
-                  WYŚWIETL PROFIL
+                  EDYTUJ PROFIL
                 </NavLink>
                 <NavLink
                   to="pfp"
@@ -156,9 +159,13 @@ export default function Dashboard() {
               </div>
               {pathname === "/dashboard" ? (
                 <main className="dashboard-bg">
-                  <div className="view-profile-card">
-                    {notify ? (
-                      <Notify onRead={updateState} notify={notify} />
+                  <div className="dashboard-card">
+                    {notify && notify ? (
+                      <Notify
+                        style={visible}
+                        onRead={updateState}
+                        notify={notify}
+                      />
                     ) : (
                       <p>Nie masz nowych powiadomień</p>
                     )}

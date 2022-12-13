@@ -6,7 +6,7 @@
   z-index: -3;
 
   @include big-screen {
-    margin-top: 15%;
+    margin-top: 7%;
   }
   @include panoramic {
     margin-top: 20%;
@@ -39,6 +39,7 @@
 
   &-text {
     color: white;
+    margin-bottom: 15px;
   }
 }
 .care-pet {
@@ -47,6 +48,7 @@
   padding: 20px;
   &-text {
     color: white;
+    margin-bottom: 15px;
   }
 }
 

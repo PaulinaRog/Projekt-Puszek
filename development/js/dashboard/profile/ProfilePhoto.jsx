@@ -12,6 +12,8 @@ export default function ProfilePhoto({}) {
   const [sitter, setSitter] = useState(null);
   const [forUpdate, setForUpdate] = useState(null);
   const [photoChange, setPhotoChange] = useState(false);
+  const [visible, setVisible] = useState({ display: "block" });
+  const [text, setText] = useState(null);
 
   useEffect(() => {
     const isUserLogged = async () => {
@@ -54,6 +56,8 @@ export default function ProfilePhoto({}) {
 
   const onPhotoChange = (value) => {
     setPhotoChange(value);
+    setVisible({ display: "none" });
+    setText("Zdjęcie zostało wysłane!");
   };
 
   const triggerFileSelectPopup = (e) => {
@@ -94,9 +98,15 @@ export default function ProfilePhoto({}) {
                   <button
                     className="pfp-button"
                     onClick={triggerFileSelectPopup}
+                    style={visible}
                   >
                     WYBIERZ NOWE ZDJĘCIE
                   </button>
+                  {text ? (
+                    <p className="text-ok">
+                      {text} <i className="fa-solid fa-paw"></i>
+                    </p>
+                  ) : null}
                 </main>
                 <div className="pfp-current">
                   {image &&

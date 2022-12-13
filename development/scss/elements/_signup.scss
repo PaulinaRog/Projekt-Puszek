@@ -50,7 +50,7 @@
       border: none;
     }
     &-button {
-      @include yellow-button(0.4em 1em);
+      @include button-app(0.4em 1em);
       margin-top: 1em;
       border: none;
       &:active {

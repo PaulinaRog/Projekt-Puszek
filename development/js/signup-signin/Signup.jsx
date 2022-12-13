@@ -68,13 +68,13 @@ function Signin() {
         </button>
         <p className="sign-form-err">{text}</p>
         {/* <p className="sign-form-passwd">Zapomniałeś hasła?</p>
-        <a className="sign-form-passwd-link" href="">
+        <NavLink to="/reset" className="sign-form-passwd-link">
           Kliknij tutaj
           <i
             style={{ fontSize: 15, padding: 5 }}
             className="fa-solid fa-unlock"
           ></i>
-        </a> */}
+        </NavLink> */}
       </form>
     </>
   );
