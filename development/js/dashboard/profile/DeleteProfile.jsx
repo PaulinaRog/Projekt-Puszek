@@ -67,17 +67,6 @@ export default function DeleteProfile({ id }) {
     }
   };
 
-  // USUNIĘCIE Z PROFILI
-  const deleteProfile = async () => {
-    const { error } = await supabase.from("profiles").delete().eq("id", id);
-    if (error) {
-      console.log(error);
-      setUser("Wystąpił błąd. Skontaktuj się z obsługą.");
-    } else {
-      setUser("Skasowano profil użytkownika");
-    }
-  };
-
   // WYLOGOWANIE
   const logOut = async () => {
     let { error } = await supabase.auth.signOut();
@@ -98,7 +87,6 @@ export default function DeleteProfile({ id }) {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    deleteProfile();
     deletePhoto();
     deleteProfileData();
     setTimeout(() => {

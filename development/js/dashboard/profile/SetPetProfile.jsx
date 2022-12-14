@@ -9,7 +9,7 @@ export default function SetPetProfile({}) {
   const [userId, setUserId] = useState(null);
   const [err, setErr] = useState(null);
   const [typeClicked, setTypeClicked] = useState("");
-  // const [size, setSize] = useState("");
+  const [size, setSize] = useState("");
   const [vaccineClicked, setVaccineClicked] = useState("");
   const [specCareClicked, setSpecCareClicked] = useState("");
   const [otherPetsClicked, setOtherPetsClicked] = useState("");
@@ -57,7 +57,7 @@ export default function SetPetProfile({}) {
       city: city,
       petName: formRef.current[4].value,
       type: typeClicked ? typeClicked : null,
-      // size: size,
+      size: size,
       character: formRef.current[8].value,
       perfectSitter: formRef.current[9].value,
       specialCare: specCareClicked ? specCareClicked : null,
@@ -75,7 +75,7 @@ export default function SetPetProfile({}) {
       town,
       petName,
       type,
-      // size,
+      size,
       character,
       perfectSitter,
       specialCare,
@@ -107,21 +107,21 @@ export default function SetPetProfile({}) {
       const uploadData = async () => {
         const { error } = await supabase.from("owner_form").insert([
           {
-            uuid: uuid,
-            name: name,
-            surname: surname,
-            birth: birth,
-            city: city,
-            petName: petName,
-            type: type,
-            // size: formData.size,
-            character: character,
-            perfectSitter: perfectSitter,
-            specialCare: specialCare,
-            specialCareDesc: specialCareDesc,
-            vaccine: vaccine,
-            otherPets: otherPets,
-            otherPetsDesc: otherPetsDesc,
+            uuid: userId,
+            name: formData.name,
+            surname: formData.surname,
+            birth: formData.birth,
+            city: formData.city,
+            petName: formData.petName,
+            type: formData.type,
+            size: formData.size,
+            character: formData.character,
+            perfectSitter: formData.perfectSitter,
+            specialCare: formData.specialCare,
+            specialCareDesc: formData.specialCareDesc,
+            vaccine: formData.vaccine,
+            otherPets: formData.otherPets,
+            otherPetsDesc: formData.otherPetsDesc,
           },
         ]);
 
@@ -214,8 +214,8 @@ export default function SetPetProfile({}) {
                       KOT
                     </button>
                   </div>
-                  {/* <label className="pf-label">Rozmiar:</label> */}
-                  {/* <div>
+                  <label className="pf-label">Rozmiar:</label>
+                  <div>
                     <select
                       className="pf-select"
                       value={size}
@@ -238,7 +238,7 @@ export default function SetPetProfile({}) {
                         Bardzo duży
                       </option>
                     </select>
-                  </div> */}
+                  </div>
                 </div>
               </div>
               <label className="pf-label">Charakter pupila:</label>

@@ -40,7 +40,6 @@ export default function ViewProfile({ id }) {
           <ViewSitterProfile id={id} />
         </>
       )}
-      {owner === null || sitter === null ? <NoProfile /> : null}
     </>
   );
 }
