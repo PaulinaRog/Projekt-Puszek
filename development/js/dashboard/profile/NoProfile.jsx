@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function NoProfile() {
+  const navigate = useNavigate();
+
   return (
     <div className="view-profile">
       <div className="view-profile-card">
