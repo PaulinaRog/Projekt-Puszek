@@ -9,6 +9,7 @@ import OtherPets from "./petData/OtherPets";
 import SpecialCare from "./petData/SpecialCare";
 import Vaccine from "./petData/Vaccine";
 import { useNavigate } from "react-router-dom";
+import NoProfile from "./NoProfile";
 
 export default function ViewPetProfile({ id }) {
   const [userData, setUserData] = useState(null);
@@ -103,25 +104,7 @@ export default function ViewPetProfile({ id }) {
               <Vaccine vaccine={userData.vaccine} id={id} />
             </div>
           )}
-          {!userData ? (
-            <div>
-              <p style={{ marginBottom: 20 }}>Nie znaleziono profilu</p>
-              <p>
-                Jeśli masz profil, poczekaj na jego załadowanie. Jeśli nie -
-              </p>
-              <p style={{ marginBottom: 20 }}>
-                Kliknij tutaj, żeby przejść do uzupełniania danych:
-              </p>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate("/setprofile");
-                }}
-              >
-                PROFIL
-              </button>
-            </div>
-          ) : null}
+          {!userData ? <NoProfile /> : null}
         </div>
       </div>
     </>

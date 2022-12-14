@@ -55,7 +55,6 @@ export default function Dashboard() {
             },
             (payload) => {
               setVisible({ display: "block" });
-              console.log("Change received!", payload);
               setNotify(payload);
             }
           )

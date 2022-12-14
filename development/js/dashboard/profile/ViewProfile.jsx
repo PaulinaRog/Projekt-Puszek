@@ -3,6 +3,7 @@ import supabase from "../../contexts/supabaseClient";
 import ViewPetProfile from "./ViewPetProfile";
 import ViewSitterProfile from "./ViewSitterProfile";
 import { useLocation } from "react-router-dom";
+import NoProfile from "./NoProfile";
 
 export default function ViewProfile({ id }) {
   const [owner, setOwner] = useState(null);
@@ -39,6 +40,7 @@ export default function ViewProfile({ id }) {
           <ViewSitterProfile id={id} />
         </>
       )}
+      {owner === null || sitter === null ? <NoProfile /> : null}
     </>
   );
 }

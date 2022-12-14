@@ -68,6 +68,7 @@ export default function SetPetProfile({}) {
     };
 
     const {
+      uuid,
       name,
       surname,
       birth,
@@ -106,21 +107,21 @@ export default function SetPetProfile({}) {
       const uploadData = async () => {
         const { error } = await supabase.from("owner_form").insert([
           {
-            uuid: userId,
-            name: formData.name,
-            surname: formData.surname,
-            birth: formData.birth,
-            city: formData.city,
-            petName: formData.petName,
-            type: formData.type,
+            uuid: uuid,
+            name: name,
+            surname: surname,
+            birth: birth,
+            city: city,
+            petName: petName,
+            type: type,
             // size: formData.size,
-            character: formData.character,
-            perfectSitter: formData.perfectSitter,
-            specialCare: formData.specialCare,
-            specialCareDesc: formData.specialCareDesc,
-            vaccine: formData.vaccine,
-            otherPets: formData.otherPets,
-            otherPetsDesc: formData.otherPetsDesc,
+            character: character,
+            perfectSitter: perfectSitter,
+            specialCare: specialCare,
+            specialCareDesc: specialCareDesc,
+            vaccine: vaccine,
+            otherPets: otherPets,
+            otherPetsDesc: otherPetsDesc,
           },
         ]);
 

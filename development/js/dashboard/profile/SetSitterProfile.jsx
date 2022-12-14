@@ -58,9 +58,9 @@ export default function SetSitterProfile({}) {
       vaccine: vaccineClicked ? vaccineClicked : null,
       experience: formRef.current[14].value,
     };
-    console.log(formData);
 
     const {
+      uuid,
       name,
       surname,
       birth,
@@ -94,18 +94,18 @@ export default function SetSitterProfile({}) {
       const uploadData = async () => {
         const { error } = await supabase.from("sitter_form").insert([
           {
-            uuid: formData.uuid,
-            name: formData.name,
-            surname: formData.surname,
-            birth: formData.birth,
-            city: formData.city,
-            description: formData.description,
-            motives: formData.motives,
-            preference: formData.preference,
-            pets: formData.pets,
-            petsDesc: formData.petsDesc,
-            vaccine: formData.vaccine,
-            experience: formData.experience,
+            uuid: uuid,
+            name: name,
+            surname: surname,
+            birth: birth,
+            city: city,
+            description: description,
+            motives: motives,
+            preference: preference,
+            pets: pets,
+            petsDesc: petsDesc,
+            vaccine: vaccine,
+            experience: experience,
           },
         ]);
 

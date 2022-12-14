@@ -9,6 +9,7 @@ import PetsDesc from "./sitterData/PetsDesc";
 import Vaccine from "./sitterData/Vaccine";
 import Preference from "./sitterData/Preference";
 import { useNavigate } from "react-router-dom";
+import NoProfile from "./NoProfile";
 
 export default function ViewSitterProfile({ id }) {
   const [userData, setUserData] = useState(null);
@@ -109,25 +110,7 @@ export default function ViewSitterProfile({ id }) {
               <Preference preference={userData.preference} id={id} />
             </div>
           )}
-          {!userData ? (
-            <div>
-              <p style={{ marginBottom: 20 }}>Nie znaleziono profilu</p>
-              <p>
-                Jeśli masz profil, poczekaj na jego załadowanie. Jeśli nie -
-              </p>
-              <p style={{ marginBottom: 20 }}>
-                kliknij tutaj, żeby przejść do uzupełniania danych:
-              </p>
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate("/setprofile");
-                }}
-              >
-                UZUPEŁNIJ PROFIL
-              </button>
-            </div>
-          ) : null}
+          {!userData ? <NoProfile /> : null}
         </div>
       </div>
     </>

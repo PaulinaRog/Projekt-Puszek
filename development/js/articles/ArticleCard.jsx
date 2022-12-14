@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import supabase from "../contexts/supabaseClient";
 
-export default function ArticleCard({ article, src, onDataChange }) {
+export default function ArticleCard({ article, onDataChange }) {
   const { id, category, title } = article;
   const [styles, setStyle] = useState({
     display: "none",
@@ -16,7 +16,7 @@ export default function ArticleCard({ article, src, onDataChange }) {
   const getSingleArticle = async () => {
     const { data, error } = await supabase
       .from("articles")
-      .select(" id, title, author, article, likes")
+      .select(" id, title, author, article")
       .eq("id", id)
       .single();
 
@@ -31,7 +31,6 @@ export default function ArticleCard({ article, src, onDataChange }) {
         title: data.title,
         author: data.author,
         article: data.article,
-        likes: data.likes,
       });
     }
   };
