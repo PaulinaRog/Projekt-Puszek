@@ -16,7 +16,7 @@
   },
   "keywords": [],
   "author": "Paulina Róg",
-  "license": "ISC",
+  "license": "Apache License",
   "bugs": {
     "url": "https://github.com/PaulinaRog/projekt_koncowy/issues"
   },
@@ -25,13 +25,10 @@
     "@supabase/auth-helpers-react": "^0.3.0-next.4",
     "@supabase/storage-js": "^2.0.0",
     "@supabase/supabase-js": "^2.1.0",
-    "easy-peasy": "^5.2.0",
     "emailjs-com": "^3.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3",
-    "react-toastify": "^9.1.1",
-    "reactjs-localstorage": "^1.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",
