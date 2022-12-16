@@ -36,8 +36,8 @@ describe("App successful start", () => {
   });
   it("shuld type in email and password, then submit and log in ", () => {
     cy.visit("http://127.0.0.1:5173/signup");
-    cy.get("[data-cy='input-email']").type("paulina@user.pl");
-    cy.get("[data-cy='input-password']").type("12Ananke");
+    cy.get("[data-cy='input-email']").type("user@user.pl");
+    cy.get("[data-cy='input-password']").type("1234Qwerty");
     cy.get("[data-cy='submit-button']").click();
     cy.request("http://127.0.0.1:5173/signup").should((response) => {
       expect(response.status).to.eq(200);
