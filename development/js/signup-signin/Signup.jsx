@@ -47,6 +47,8 @@ function Signin() {
           type="text"
           className="sign-form-input"
           required
+          data-cy="input-email"
+          name="login"
           ref={email}
         ></input>
         <label className="sign-form-label">Hasło</label>
@@ -54,9 +56,12 @@ function Signin() {
           type="password"
           className="sign-form-input"
           ref={password}
+          name="password"
+          data-cy="input-password"
           required
         ></input>
         <button
+          data-cy="submit-button"
           className="sign-form-button"
           onClick={(e) => {
             e.preventDefault();

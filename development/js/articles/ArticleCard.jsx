@@ -51,6 +51,7 @@ export default function ArticleCard({ article, onDataChange }) {
               </div>
               <button
                 className="card-button"
+                data-cy="article-button"
                 style={styles}
                 onClick={(e) => {
                   e.preventDefault();
