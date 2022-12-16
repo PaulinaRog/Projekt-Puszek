@@ -73,6 +73,7 @@ export default function Preference({ preference, id }) {
               </button>
               <button
                 value="OBOJĘTNE"
+                style={value === "OBOJĘTNE" ? clickedStyle : null}
                 onClick={(e) => {
                   e.preventDefault();
                   setValue(e.target.value);

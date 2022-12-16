@@ -99,6 +99,7 @@ export default function ViewSitterProfile({ id }) {
               <Motives motives={userData.motives} id={id} />
               <h3>CZY POSIADAM ZWIERZAKI:</h3>
               <Pets pets={userData.pets} id={id} />
+              <br />
               <PetsDesc petsDesc={userData.petsDesc} id={id} />
 
               <h3>

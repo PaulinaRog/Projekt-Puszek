@@ -57,7 +57,7 @@ export default function SetPetProfile({}) {
       city: city,
       petName: formRef.current[4].value,
       type: typeClicked ? typeClicked : null,
-      size: size,
+      size: formRef.current[7].value,
       character: formRef.current[8].value,
       perfectSitter: formRef.current[9].value,
       specialCare: specCareClicked ? specCareClicked : null,
