@@ -48,7 +48,7 @@ npm install --save react-router-dom
 ## *Articles*
 #### Treść artykułów oraz zdjęcia pobierane z supabase, wyświetlone za pomocą funkcji *map*.
 
-![App Screenshot](https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/screenshots/articles.png)
+![App Screenshot](https://live.staticflickr.com/65535/52566929404_75decf7cbb_z.jpg)
 
 
 ## SUPABASE API Reference
@@ -104,7 +104,7 @@ const supabase = createClient(supabaseUrl, supabaseKey)
 ## *Contact form*
 
 #### Możliwość wysyłania wiadomości bezpośrednio na skrzynkę pocztową za pomocą emailJS, dostępne dla wszystkich użytkowników.
-![App Screenshot](https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/screenshots/contact-form.png)
+![App Screenshot](https://live.staticflickr.com/65535/52567098360_0d511d9669_z.jpg)
 
 
 ## EmailJS Reference:
@@ -160,7 +160,7 @@ https://dashboard.emailjs.com/admin
 
 #### Dostępne dla wszystkich - karty użytkowników z fragmentem opisu "na odwrocie"
 
-![App Screenshot](https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/screenshots/user-preview.png)
+![App Screenshot](https://live.staticflickr.com/65535/52566189217_d85889ae89_z.jpg)
 
 #### fragmenty kodu - **user cards**
 Pobieranie danych oraz zdjęć z supabase
@@ -204,7 +204,7 @@ Pobieranie danych oraz zdjęć z supabase
 ## *Sign in - sign up form*
 
 #### Animowany formularz do logowania oraz rejestracji - po zarejestrowaniu dostępne na stronie tworzenie profilu, dodawanie zdjęcia profilowego przez formularz w aplikacji, usuwanie profilu, wysyłanie i odbieranie wiadomości.
-![App Screenshot](https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/screenshots/ligin-register.png)
+![App Screenshot](https://live.staticflickr.com/65535/52566189282_a50be1c76f_z.jpg)
 
 #### fragment kodu - **signup**
 ```javascript
@@ -239,7 +239,7 @@ Pobieranie danych oraz zdjęć z supabase
 
 #### Po zalogowaniu możliwość wysyłania i odbierania wiadomości w aplikacji. 
 
-![App Screenshot](https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/screenshots/messages.png)
+![App Screenshot](https://live.staticflickr.com/65535/52567177618_e48e0c4622_z.jpg)
 
 #### fragment kodu - **messages**
 ```javascript
@@ -267,7 +267,7 @@ export default function SingleMessage({ messages }) {
 
 #### W dashboardzie dostępne też powiadomienia dzięki *supabase subscribe*.
 
-![App Screenshot](https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/screenshots/dashboard-notifications.png)
+![App Screenshot](https://live.staticflickr.com/65535/52566929369_b917051a3a_z.jpg)
 
 #### fragment kodu - **dashboard**
 *supabase subscribe*
@@ -298,7 +298,7 @@ export default function SingleMessage({ messages }) {
 ## *Edit profile*
 
 #### Po kliknięciu na *profil* w nawigacji po lewej stronie dostajemy panel zarządzania profilem użytkownika - jedną z ważniejszych funkcji panelu jest edycja profilu.
-![App Screenshot](https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/screenshots/edit-profile.png)
+![App Screenshot](https://live.staticflickr.com/65535/52566656951_54419a1f25_z.jpg)
 
 #### fragment kodu - **view profile**
 *getting, saving and returning data*
@@ -374,7 +374,7 @@ const handleClick = (e) => {
 ## *Profile Photo*
 
 #### Możliwość zmiany zdjęcia profilowego dzięki *supabase storage*
-![App Screenshot](https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/screenshots/pfphotochange.png)
+![App Screenshot](https://live.staticflickr.com/65535/52566189262_ccd1c00268_z.jpg)
 
 #### fragment kodu - **set pet photo**
 
@@ -440,7 +440,7 @@ export default function SavePhoto({
 ## *Delete profile*
 
 #### Możliwość usunięcia aktualnego profilu użytkownika.
-![App Screenshot](https://vgrtdhqwzgkegugwynsl.supabase.co/storage/v1/object/public/screenshots/deletepf.png)
+![App Screenshot](https://live.staticflickr.com/65535/52566656976_75cc3b421d_z.jpg)
 
 #### fragment kodu - **delete profile**
 
@@ -491,7 +491,7 @@ export default function SavePhoto({
 | Navigation, fonts | #5f5f5f |
 
 ---
-## Fonts and icons
+## Icons and photos
 
  - [Pixabay](https://pixabay.com/pl/)
  - [Fontawesome](https://fontawesome.com/icons)
