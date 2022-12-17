@@ -73,9 +73,9 @@ export default function Dashboard() {
       if (error) {
         console.log(error);
       }
+      navigate("/signup");
       setIsLogged(false);
       window.location.reload(false);
-      navigate("/signup");
     };
     logOut();
   };
