@@ -75,6 +75,7 @@ export default function Dashboard() {
       }
       navigate("/signup");
       setIsLogged(false);
+      window.location.reload(false);
     };
     logOut();
   };

@@ -2,9 +2,16 @@ import React from "react";
 import { useEffect, useState } from "react";
 import SitterCard from "./SitterCard";
 import supabase from "../contexts/supabaseClient";
+import SearchEngine from "./searchEngine/SearchEngine";
 
 export default function Sitters() {
   const [profiles, setProfiles] = useState(null);
+
+  const [visibility, setVisibility] = useState(null);
+
+  const hideProfiles = (val) => {
+    setVisibility(val);
+  };
 
   useEffect(() => {
     const getProfiles = async () => {
@@ -26,7 +33,8 @@ export default function Sitters() {
     <div>
       <main className="care-app-sitters">
         <h1 className="care-app-header">PODEJMĄ SIĘ OPIEKI:</h1>
-        <div className="pets-cards-container">
+        <SearchEngine onHeightChange={hideProfiles} />
+        <div style={visibility && visibility} className="pets-cards-container">
           {profiles &&
             profiles.map((pf, idx) => {
               return (

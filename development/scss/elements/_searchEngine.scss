@@ -1,0 +1,60 @@
+.search {
+  background-color: $grey-light-transparent;
+  border-radius: 10px;
+  padding: 0.5em 2em;
+  margin: 1em 5em;
+  box-shadow: $shadow-inputs;
+  color: $grey;
+  position: relative;
+
+  @keyframes expand {
+    from {
+      height: 25px;
+    }
+    to {
+      height: 500px;
+    }
+  }
+
+  @keyframes hide {
+    from {
+      height: 500px;
+    }
+    to {
+      height: 25px;
+    }
+  }
+
+  &-header {
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  &-box {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  &-button {
+    @include button-app(200px);
+    margin-bottom: 0;
+
+    &-box {
+      margin-right: 1em;
+      position: absolute;
+      bottom: 2em;
+      right: 1em;
+    }
+  }
+
+  &-city-box {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1em;
+
+    &-select {
+      @include input(300px, 3em);
+    }
+  }
+}
