@@ -1,12 +1,15 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import SearchCity from "./SearchCity";
+import { useLocation } from "react-router-dom";
+import PetsSearch from "./PetsSearch";
+import SittersSearch from "./SittersSearch";
 
 export default function SearchEngine({ onHeightChange }) {
   const [style, setStyle] = useState(null);
   const [hide, setHide] = useState(null);
   const [visible, setVisible] = useState({ display: "none" });
+  const { pathname } = useLocation();
 
   useEffect(() => {
     onHeightChange(hide);
@@ -40,7 +43,8 @@ export default function SearchEngine({ onHeightChange }) {
         FILTRUJ <i className="fa-solid fa-caret-down"></i>
       </h1>
       <div style={visible} className="search-box">
-        <SearchCity />
+        {pathname.includes("pets") ? <PetsSearch /> : null}
+        {pathname.includes("sitters") ? <SittersSearch /> : null}
         <div className="search-button-box">
           <button className="search-button" onClick={handleCancel}>
             ANULUJ

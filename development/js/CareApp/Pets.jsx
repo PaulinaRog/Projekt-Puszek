@@ -33,7 +33,7 @@ export default function Pets({}) {
     <div>
       <main className="care-app-pets">
         <h1 className="care-app-header">SZUKAJĄ OPIEKUNÓW:</h1>
-        <SearchEngine onHeightChange={hideProfiles} />
+        {/* <SearchEngine onHeightChange={hideProfiles} /> */}
         <div style={visibility && visibility} className="pets-cards-container">
           {profiles &&
             profiles.map((pf, idx) => {

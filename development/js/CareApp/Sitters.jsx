@@ -33,7 +33,7 @@ export default function Sitters() {
     <div>
       <main className="care-app-sitters">
         <h1 className="care-app-header">PODEJMĄ SIĘ OPIEKI:</h1>
-        <SearchEngine onHeightChange={hideProfiles} />
+        {/* <SearchEngine onHeightChange={hideProfiles} /> */}
         <div style={visibility && visibility} className="pets-cards-container">
           {profiles &&
             profiles.map((pf, idx) => {

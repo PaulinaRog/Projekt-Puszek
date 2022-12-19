@@ -7,7 +7,7 @@ export default function SearchCity() {
 
   return (
     <div className="search-city-box">
-      <label>Miasto</label>
+      <label>Miasto:</label>
       <select
         className="search-city-box-select"
         onChange={(e) => {
