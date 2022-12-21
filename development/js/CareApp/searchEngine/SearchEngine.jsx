@@ -2,14 +2,23 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import PetsSearch from "./PetsSearch";
-import SittersSearch from "./SittersSearch";
+import SearchPets from "./SearchPets";
+import SearchCity from "./SearchCity";
+import SearchOtherPets from "./SearchOtherPets";
+import SearchType from "./SearchType";
+import { Link } from "react-router-dom";
+import SearchPreference from "./SearchPreference";
 
 export default function SearchEngine({ onHeightChange }) {
   const [style, setStyle] = useState(null);
   const [hide, setHide] = useState(null);
   const [visible, setVisible] = useState({ display: "none" });
   const { pathname } = useLocation();
+  const [parentCity, setParentCity] = useState(null);
+  const [type, setType] = useState(null);
+  const [otherPets, setOtherPets] = useState(null);
+  const [preference, setPreference] = useState(null);
+  const [pets, setPets] = useState(null);
 
   useEffect(() => {
     onHeightChange(hide);
@@ -43,13 +52,36 @@ export default function SearchEngine({ onHeightChange }) {
         FILTRUJ <i className="fa-solid fa-caret-down"></i>
       </h1>
       <div style={visible} className="search-box">
-        {pathname.includes("pets") ? <PetsSearch /> : null}
-        {pathname.includes("sitters") ? <SittersSearch /> : null}
+        {pathname.includes("pets") ? (
+          <>
+            <SearchCity setParentCity={setParentCity} />
+            <SearchType setType={setType} />
+            <SearchOtherPets setOtherPets={setOtherPets} />
+          </>
+        ) : null}
+        {pathname.includes("sitters") ? (
+          <>
+            <SearchCity setParentCity={setParentCity} />
+            <SearchPreference setPreference={setPreference} />
+            <SearchPets setPets={setPets} />
+          </>
+        ) : null}
         <div className="search-button-box">
           <button className="search-button" onClick={handleCancel}>
             ANULUJ
           </button>
-          <button className="search-button">SZUKAJ</button>
+          <Link
+            to={`${pathname.includes("pets") ? "searchpets" : "searchsitters"}`}
+            state={{
+              parentCity: parentCity,
+              type: type,
+              otherPets: otherPets,
+              preference: preference,
+              pets: pets,
+            }}
+          >
+            <button className="search-button">SZUKAJ</button>
+          </Link>
         </div>
       </div>
     </div>

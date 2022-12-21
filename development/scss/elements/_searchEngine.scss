@@ -57,4 +57,20 @@
       @include input(300px, 3em);
     }
   }
+  &-page {
+    background-image: url(../assets/cavalier-opacity50.jpg);
+    @include background-settings(80vw, 100vh);
+    float: right;
+  }
+
+  &-not-found {
+    background-color: $grey-light-transparent;
+    width: 80%;
+    padding: 2em;
+    color: $grey;
+    font-size: 25px;
+    border-radius: 1em;
+    height: 4em;
+    box-shadow: $shadow-inputs;
+  }
 }

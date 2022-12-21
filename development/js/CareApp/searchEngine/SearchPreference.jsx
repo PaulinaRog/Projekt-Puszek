@@ -1,13 +1,17 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function SearchPreference() {
+export default function SearchPreference({ setPreference }) {
   const [preferenceClicked, setPreferenceClicked] = useState("");
 
   const clickedStyle = {
     backgroundColor: "#a4a42ab2",
     boxShadow: "inset 3px 3px 5px rgba(0, 0, 0, 0.627)",
   };
+
+  useEffect(() => {
+    setPreference(preferenceClicked);
+  }, [preferenceClicked]);
 
   return (
     <>

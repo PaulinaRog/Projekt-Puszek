@@ -63,17 +63,17 @@ export default function PetCard({ petName, uuid, character, city }) {
   return (
     <>
       <div
-        className="pet-usercard"
+        className="usercard"
         onClick={(e) => {
           e.preventDefault();
           // fetchProfile();
           navigate(`/care/petpf/${uuid}`);
         }}
       >
-        <img src={src && src} className="pet-usercard-photo" style={hideImg} />
-        <h1 className="pet-usercard-name">{petName}</h1>
+        <img src={src && src} className="usercard-photo" style={hideImg} />
+        <h1 className="usercard-name">{petName}</h1>
         <p style={hideImg}>{city}</p>
-        <p className="pet-usercard-character" style={showInfo}>
+        <p className="usercard-character" style={showInfo}>
           {character.substring(0, 120) + "..."}
         </p>
         <i

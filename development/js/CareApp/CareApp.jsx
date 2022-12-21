@@ -5,6 +5,13 @@ import supabase from "../contexts/supabaseClient";
 
 function CareAppView({ isLogged }) {
   const { pathname } = useLocation();
+
+  const style = {
+    fontSize: 20,
+    paddingLeft: 50,
+    borderLeft: "5px solid yellow",
+  };
+
   return (
     <>
       <div className="care-app-nav-bg">
@@ -14,15 +21,13 @@ function CareAppView({ isLogged }) {
             OPIEKUNOWIE
           </NavLink>
           {pathname.includes("sitterpf") && (
-            <h3
-              style={{
-                fontSize: 20,
-                paddingLeft: 50,
-                borderLeft: "5px solid yellow",
-              }}
-              className="care-app-navlink care-nav"
-            >
+            <h3 style={style} className="care-app-navlink care-nav">
               PROFIL
+            </h3>
+          )}
+          {pathname.includes("searchsitter") && (
+            <h3 style={style} className="care-app-navlink care-nav">
+              WYNIKI FILTROWANIA
             </h3>
           )}
           <NavLink to="pets" className="care-app-navlink care-nav">
@@ -30,15 +35,13 @@ function CareAppView({ isLogged }) {
           </NavLink>
         </nav>
         {pathname.includes("petpf") && (
-          <h3
-            style={{
-              fontSize: 20,
-              paddingLeft: 50,
-              borderLeft: "5px solid yellow",
-            }}
-            className="care-app-navlink care-nav"
-          >
+          <h3 style={style} className="care-app-navlink care-nav">
             PROFIL
+          </h3>
+        )}
+        {pathname.includes("searchpet") && (
+          <h3 style={style} className="care-app-navlink care-nav">
+            WYNIKI FILTROWANIA
           </h3>
         )}
 

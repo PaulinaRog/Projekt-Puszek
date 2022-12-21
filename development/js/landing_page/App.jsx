@@ -22,6 +22,8 @@ import ProfilePhoto from "../dashboard/profile/ProfilePhoto";
 import DeleteProfile from "../dashboard/profile/DeleteProfile";
 import SingleMessage from "../dashboard/SingleMessage";
 import Contact from "../contact/Contact";
+import SearchResultPets from "../CareApp/searchEngine/SearchResultPets";
+import SearchResultSitters from "../CareApp/searchEngine/SearchResultSitters";
 
 export default function App() {
   return (
@@ -37,11 +39,14 @@ export default function App() {
               <Route path="petpf">
                 <Route path=":id" element={<PetPf />} />
               </Route>
-              <Route path="sitters" element={<Sitters />} />
-              <Route path="pets" element={<Pets />} />
+              <Route path="sitters" element={<Sitters />}>
+                <Route path="searchsitters" element={<SearchResultSitters />} />
+              </Route>
+              <Route path="pets" element={<Pets />}>
+                <Route path="searchpets" element={<SearchResultPets />} />
+              </Route>
               <Route path="adoptions" element={<Adoptions />} />
             </Route>
-
             <Route path="/articles" element={<ArticlesSite />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/signup" element={<Signup />} />

@@ -1,4 +1,4 @@
-.pets-cards-container {
+.cards-container {
   display: flex;
   gap: 3em;
   margin: 2em 5em 5em 5em;
@@ -6,9 +6,10 @@
   height: 73vh;
   flex-wrap: wrap;
   overflow-y: scroll;
+  padding: 0.5em;
 }
 
-.pet-usercard {
+.usercard {
   width: 180px;
   height: 260px;
   display: flex;

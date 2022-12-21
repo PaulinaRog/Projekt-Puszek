@@ -1,13 +1,17 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function SearchPets() {
+export default function SearchPets({ setPets }) {
   const [petsClicked, setPetsClicked] = useState("");
 
   const clickedStyle = {
     backgroundColor: "#a4a42ab2",
     boxShadow: "inset 3px 3px 5px rgba(0, 0, 0, 0.627)",
   };
+
+  useEffect(() => {
+    setPets(petsClicked);
+  }, [petsClicked]);
 
   return (
     <>

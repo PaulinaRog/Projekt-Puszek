@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
-export default function SearchType() {
+export default function SearchType({ setType }) {
   const [typeClicked, setTypeClicked] = useState("");
 
   const clickedStyle = {
     backgroundColor: "#a4a42ab2",
     boxShadow: "inset 3px 3px 5px rgba(0, 0, 0, 0.627)",
+  };
+
+  useEffect(() => {
+    setType(typeClicked);
+  }, [typeClicked]);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setTypeClicked(e.target.value);
   };
 
   return (
@@ -18,10 +27,7 @@ export default function SearchType() {
           className="search-button"
           style={typeClicked === "PIES" ? clickedStyle : null}
           value="PIES"
-          onClick={(e) => {
-            e.preventDefault();
-            setTypeClicked(e.target.value);
-          }}
+          onClick={handleClick}
         >
           PSEM
         </button>

@@ -65,16 +65,16 @@ export default function SitterCard({ name, uuid, description, age, city }) {
   return (
     <>
       <div
-        className="pet-usercard"
+        className="usercard"
         onClick={(e) => {
           e.preventDefault();
           // fetchProfile();
           navigate(`/care/sitterpf/${uuid}`);
         }}
       >
-        <img src={src && src} className="pet-usercard-photo" style={hideImg} />
-        <h1 className="pet-usercard-name">{name}</h1>
-        <p className="pet-usercard-character" style={showInfo}>
+        <img src={src && src} className="usercard-photo" style={hideImg} />
+        <h1 className="usercard-name">{name}</h1>
+        <p className="usercard-character" style={showInfo}>
           {description.substring(0, 120) + "..."}
         </p>
         <p style={hideImg}>{city}</p>
