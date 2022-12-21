@@ -11,6 +11,7 @@ export default function SearchResultSitters() {
   const filterByCity = location.state.parentCity;
   const filterByPreference = location.state.preference;
   const filterByPets = location.state.pets;
+  const whatever = "OBOJĘTNE";
 
   const [filtered, setFiltered] = useState(null);
 
@@ -24,18 +25,20 @@ export default function SearchResultSitters() {
       .select("id, name, city, uuid, description, birth");
 
     if (filterByCity && filterByPets && filterByPreference) {
-      query = query.match({
-        city: `${filterByCity}`,
-        pets: `${filterByPets}`,
-        preference: `${filterByPreference}`,
-      });
+      query = query
+        .match({
+          city: `${filterByCity}`,
+          pets: `${filterByPets}`,
+        })
+        .or(`preference.eq.${filterByPreference},preference.eq.${whatever}`);
     }
 
     if (filterByCity && filterByPreference) {
-      query = query.match({
-        city: `${filterByCity}`,
-        preference: `${filterByPreference}`,
-      });
+      query = query
+        .match({
+          city: `${filterByCity}`,
+        })
+        .or(`preference.eq.${filterByPreference},preference.eq.${whatever}`);
     }
     if (filterByCity && filterByPets) {
       query = query.match({
@@ -44,16 +47,19 @@ export default function SearchResultSitters() {
       });
     }
     if (filterByPreference && filterByPets) {
-      query = query.match({
-        preference: `${filterByPreference}`,
-        pets: `${filterByPets}`,
-      });
+      query = query
+        .match({
+          pets: `${filterByPets}`,
+        })
+        .or(`preference.eq.${filterByPreference},preference.eq.${whatever}`);
     }
     if (filterByCity) {
       query = query.eq("city", filterByCity);
     }
     if (filterByPreference) {
-      query = query.eq("preference", filterByPreference);
+      query = query.or(
+        `preference.eq.${filterByPreference},preference.eq.${whatever}`
+      );
     }
     if (filterByPets) {
       query = query.eq("pets", filterByPets);
@@ -64,7 +70,6 @@ export default function SearchResultSitters() {
       console.log(error);
     }
     if (data) {
-      console.log(data);
       setFiltered(data);
     }
   };

@@ -26,7 +26,6 @@ export default function SearchCloseSitterResults({
       console.log(error);
     }
     if (data) {
-      console.log(data);
       setProfiles(data);
     }
   };

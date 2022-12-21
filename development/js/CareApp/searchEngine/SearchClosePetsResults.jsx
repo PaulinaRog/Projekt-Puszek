@@ -26,7 +26,6 @@ export default function SearchClosePetsResults({
       console.log(error);
     }
     if (data) {
-      console.log(data);
       setProfiles(data);
     }
   };

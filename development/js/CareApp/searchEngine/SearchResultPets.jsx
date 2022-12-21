@@ -61,7 +61,6 @@ export default function SearchResultPets() {
       console.log(error);
     }
     if (data) {
-      console.log(data);
       setFiltered(data);
     }
   };
