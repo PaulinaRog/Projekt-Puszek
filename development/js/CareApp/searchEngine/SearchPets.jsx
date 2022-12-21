@@ -16,8 +16,7 @@ export default function SearchPets({ setPets }) {
   return (
     <>
       <div>
-        <span>Czy może mieć zwierzęta?</span>
-        <br />
+        <h3>Czy opiekun może mieć w domu zwierzęta?</h3>
         <button
           className="search-button"
           style={petsClicked === "TAK" ? clickedStyle : null}

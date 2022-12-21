@@ -16,8 +16,7 @@ export default function SearchPreference({ setPreference }) {
   return (
     <>
       <div>
-        <span>Szukasz dla:</span>
-        <br />
+        <h3>Szukasz opiekuna dla:</h3>
         <button
           className="search-button"
           value="PSEM"

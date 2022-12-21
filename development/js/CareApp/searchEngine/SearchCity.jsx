@@ -17,7 +17,9 @@ export default function SearchCity({ setParentCity }) {
 
   return (
     <div className="search-city-box">
-      <label>Miasto:</label>
+      <label style={{ fontWeight: 500, fontSize: 22, marginBottom: 5 }}>
+        Miasto:
+      </label>
       <select className="search-city-box-select" onChange={handleChange}>
         <option>Wybierz...</option>
         {cities.map((city) => (

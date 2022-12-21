@@ -7,6 +7,12 @@
   color: $grey;
   position: relative;
 
+  h3 {
+    font-weight: 500;
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+
   @keyframes expand {
     from {
       height: 25px;

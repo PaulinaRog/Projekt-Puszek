@@ -21,8 +21,7 @@ export default function SearchType({ setType }) {
   return (
     <>
       <div>
-        <span>Chcesz się zająć:</span>
-        <br />
+        <h3>Chcesz się zająć:</h3>
         <button
           className="search-button"
           style={typeClicked === "PIES" ? clickedStyle : null}

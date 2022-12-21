@@ -17,8 +17,7 @@ export default function SearchOtherPets({ setOtherPets }) {
   return (
     <>
       <div>
-        <span>Czy masz zwierzęta:</span>
-        <br />
+        <h3>Czy masz zwierzęta:</h3>
         <button
           className="search-button"
           value="TAK"
