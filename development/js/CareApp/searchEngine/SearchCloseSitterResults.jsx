@@ -10,6 +10,7 @@ export default function SearchCloseSitterResults({
   pets,
 }) {
   const [profiles, setProfiles] = useState(null);
+  const whatever = "OBOJĘTNE";
 
   useEffect(() => {
     if (!filtered.length) {
@@ -21,7 +22,9 @@ export default function SearchCloseSitterResults({
     const { data, error } = await supabase
       .from("sitter_form")
       .select("id, uuid, name, city, birth, description")
-      .or(`city.eq.${parentCity},preference.eq.${preference},pets.eq.${pets}`);
+      .or(
+        `city.eq.${parentCity},preference.eq.${preference},pets.eq.${pets},preference.eq.${whatever}`
+      );
     if (error) {
       console.log(error);
     }
