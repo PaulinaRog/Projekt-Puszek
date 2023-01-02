@@ -46,6 +46,11 @@ function CareAppView({ isLogged }) {
           <NavLink to="organisations" className="care-app-navlink care-nav">
             ORGANIZACJE
           </NavLink>
+          {pathname.includes("orgpf") && (
+            <h3 style={style} className="care-app-navlink care-nav">
+              PROFIL
+            </h3>
+          )}
         </nav>
 
         {isLogged ? (
