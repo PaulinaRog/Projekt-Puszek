@@ -85,3 +85,21 @@ strong {
 em {
   font-style: italic;
 }
+
+a {
+  color: black;
+  &:visited {
+    color: $grey-mid-transparent;
+  }
+
+  &:hover {
+    color: black;
+  }
+  &:focus {
+    color: $yellow-dark;
+  }
+
+  &:active {
+    color: $yellow;
+  }
+}
