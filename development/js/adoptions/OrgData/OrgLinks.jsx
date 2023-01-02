@@ -91,6 +91,7 @@ export default function OrgLinks({ facebook, instagram, www, id }) {
           <>
             <form ref={formRef} style={{ display: "grid" }}>
               <div style={{ display: "grid" }}>
+                <h3>Linki:</h3>
                 <label className="pf-label">Facebook:</label>
                 <input type="text" className="pf-text" placeholder="https://" />
               </div>
