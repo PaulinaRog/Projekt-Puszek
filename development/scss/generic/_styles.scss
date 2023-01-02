@@ -103,3 +103,9 @@ a {
     color: $yellow;
   }
 }
+
+blockquote {
+  border-left: 3px solid $grey-mid-transparent;
+  margin-left: 1em;
+  padding-left: 1em;
+}
