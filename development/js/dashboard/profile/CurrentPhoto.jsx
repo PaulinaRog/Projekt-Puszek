@@ -5,6 +5,7 @@ import supabase from "../../contexts/supabaseClient";
 export default function CurrentPhoto({ userInfo: { id }, photoChange }) {
   const [src, setSrc] = useState(null);
   const [src2, setSrc2] = useState(null);
+  const [src3, setSrc3] = useState(null);
 
   useEffect(() => {
     const urls = async () => {
@@ -34,6 +35,20 @@ export default function CurrentPhoto({ userInfo: { id }, photoChange }) {
       }
     };
     url();
+
+    const urrl = async () => {
+      const { data, error } = await supabase.storage
+        .from("avatars")
+        .createSignedUrls([`organisationpf/${id}`], 60);
+
+      if (error) {
+        console.log(error);
+      }
+      if (data) {
+        setSrc3(data[0].signedUrl);
+      }
+    };
+    urrl();
   }, [photoChange]);
 
   return (
@@ -41,6 +56,7 @@ export default function CurrentPhoto({ userInfo: { id }, photoChange }) {
       {" "}
       {src ? <img className="pfp-img" src={src} /> : null}
       {src2 ? <img className="pfp-img" src={src2} /> : null}
+      {src3 ? <img className="pfp-img" src={src3} /> : null}
     </>
   );
 }

@@ -5,7 +5,7 @@
   &-bg {
     background-color: $white-semi-bg;
     color: $grey;
-    width: 1000px;
+    width: 65vw;
     height: 60vh;
     float: right;
     overflow-y: scroll;
@@ -51,65 +51,70 @@
     justify-content: center;
     padding-top: 7em;
   }
-
-  .fa-hand-holding-heart,
-  .fa-paw {
-    font-size: 4em;
-    padding-bottom: 20px;
+}
+.hand-and-heart,
+.pawpaw,
+.fa-people-group {
+  font-size: 4em;
+  padding-bottom: 20px;
+}
+.pf-text {
+  @include input(300px, 2em);
+  border: none;
+  padding: 0.5em;
+  box-shadow: $shadow-inputs;
+  margin-bottom: 2em;
+}
+.pf-textarea {
+  height: 4em;
+  padding: 0.5em;
+  width: 800px;
+  border-radius: 0.5em;
+  font-size: 16px;
+  font-family: $main-font;
+  border: none;
+  box-shadow: $shadow-inputs;
+  margin-bottom: 2em;
+  overflow: hidden;
+  &:focus {
+    outline: 3px solid $yellow;
+    outline-offset: -3px;
   }
-  .pf-text {
-    @include input(300px, 2em);
-    border: none;
-    padding: 0.5em;
-    box-shadow: $shadow-inputs;
-    margin-bottom: 2em;
-  }
-  .pf-textarea {
-    height: 4em;
-    padding: 0.5em;
-    width: 800px;
-    border-radius: 0.5em;
-    font-size: 16px;
-    font-family: $main-font;
-    border: none;
-    box-shadow: $shadow-inputs;
-    margin-bottom: 2em;
-    overflow: hidden;
-    &:focus {
-      outline: 3px solid $yellow;
-      outline-offset: -3px;
-    }
-  }
-  .pf-label {
-    font-weight: 500;
-    margin-bottom: 5px;
-    font-size: 18px;
-  }
-  .pf-title {
-    margin-bottom: 1.5em;
-    font-size: 23px;
-    font-weight: 600;
-  }
-  .pf-select {
-    @include input(320px, 2em);
-    border: none;
-    box-shadow: $shadow-inputs;
-    margin-bottom: 2em;
-    height: 50px;
-  }
-  .pf-option {
-    padding: 1em;
-  }
-  .pf-button {
-    width: 200px;
-    @include button-app(150px);
-  }
-  .buttons-container {
-    display: flex;
-    gap: 10px;
-  }
-  .pf-submit-btn {
-    @include button-app(150px);
-    justify-self: flex-end;
-  }
+}
+.pf-label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+.pf-title {
+  margin-bottom: 1.5em;
+  font-size: 23px;
+  font-weight: 600;
+}
+.pf-select {
+  @include input(320px, 2em);
+  border: none;
+  box-shadow: $shadow-inputs;
+  margin-bottom: 2em;
+  height: 50px;
+}
+.pf-option {
+  padding: 1em;
+}
+.pf-button {
+  width: 200px;
+  @include button-app(150px);
+}
+.buttons-container {
+  display: flex;
+  gap: 10px;
+}
+.pf-submit-btn {
+  @include button-app(150px);
+  justify-self: flex-end;
+}
+.pf-sections {
+  font-size: 14px;
+  margin-top: 1em;
+  color: $grey-mid;
 }

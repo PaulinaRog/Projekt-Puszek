@@ -1,0 +1,31 @@
+.ty-container {
+  background-color: $grey-mid-transparent;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+
+  .ty-header {
+    font-size: 25px;
+    font-weight: 600;
+    color: $grey;
+    margin: 2em 0 2em 0;
+  }
+  a {
+    text-decoration: none;
+    color: $grey;
+    &:visited {
+      color: $grey-light-transparent;
+    }
+    &:hover {
+      color: $yellow;
+    }
+    &:focus {
+      color: $yellow-mid;
+    }
+    &:active {
+      color: $yellow-dark;
+    }
+  }
+}

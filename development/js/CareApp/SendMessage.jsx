@@ -5,11 +5,28 @@ export default function SendMessage({ loggedInfo, userData }) {
   const textRef = useRef();
   const [text, setText] = useState("");
   const [err, setErr] = useState("");
-
-  const [ownerName, setOwnerName] = useState(null);
-  const [sitterName, setSitterName] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [type, setType] = useState(null);
 
   useEffect(() => {
+    const viewProfile = async () => {
+      const { data } = await supabase
+        .from("profiles")
+        .select("ownerOrSitter")
+        .eq("id", loggedInfo.id)
+        .single();
+      if (data) {
+        if (data.ownerOrSitter === "owner") {
+          viewOwner();
+        } else if (data.ownerOrSitter === "sitter") {
+          viewSitter();
+        } else if (data.ownerOrSitter === "organisation") {
+          viewOrg();
+        }
+      }
+    };
+    viewProfile();
+
     const viewOwner = async () => {
       const { data } = await supabase
         .from("owner_form")
@@ -17,10 +34,9 @@ export default function SendMessage({ loggedInfo, userData }) {
         .eq("uuid", loggedInfo.id)
         .single();
       if (data) {
-        setOwnerName(data.name);
+        setProfile(data.name);
       }
     };
-    viewOwner();
 
     const viewSitter = async () => {
       const { data } = await supabase
@@ -30,10 +46,21 @@ export default function SendMessage({ loggedInfo, userData }) {
         .single();
 
       if (data) {
-        setSitterName(data.name);
+        setProfile(data.name);
       }
     };
-    viewSitter();
+
+    const viewOrg = async () => {
+      const { data } = await supabase
+        .from("organisation")
+        .select("name, type")
+        .eq("uuid", loggedInfo.id)
+        .single();
+      if (data) {
+        setProfile(data.name);
+        setType(data.type);
+      }
+    };
   }, []);
 
   const sendMessage = async () => {
@@ -43,8 +70,8 @@ export default function SendMessage({ loggedInfo, userData }) {
         receiverid: userData.uuid,
         message: textRef.current[0].value,
         sentat: today,
-        senderName: ownerName ? ownerName : sitterName,
-        receiverName: userData.name,
+        senderName: type ? `${type + profile}` : profile,
+        receiverName: type ? `${type + userData.name}` : userData.name,
       },
     ]);
     if (error) {
@@ -75,6 +102,8 @@ export default function SendMessage({ loggedInfo, userData }) {
       setErr(null);
     }
   };
+
+  console.log(profile);
 
   return (
     <form ref={textRef} className="profile-message-container">

@@ -16,6 +16,7 @@ export default function NoProfile() {
           e.preventDefault();
           navigate("/setprofile");
         }}
+        className="pf-button"
       >
         PROFIL
       </button>

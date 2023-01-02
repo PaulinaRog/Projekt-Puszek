@@ -8,12 +8,11 @@ export default function ProfilePhoto({}) {
   const inputRef = useRef();
   const [image, setImage] = useState();
   const [userInfo, setUserInfo] = useState(null);
-  const [owner, setOwner] = useState(null);
-  const [sitter, setSitter] = useState(null);
   const [forUpdate, setForUpdate] = useState(null);
   const [photoChange, setPhotoChange] = useState(false);
   const [visible, setVisible] = useState({ display: "block" });
   const [text, setText] = useState(null);
+  const [profile, setProfile] = useState(null);
 
   useEffect(() => {
     const isUserLogged = async () => {
@@ -47,8 +46,13 @@ export default function ProfilePhoto({}) {
         console.log(error);
       }
       if (data) {
-        data.ownerOrSitter === "owner" ? setOwner("pet") : null;
-        data.ownerOrSitter === "sitter" ? setSitter("sitter") : null;
+        if (data.ownerOrSitter === "owner") {
+          setProfile("pet");
+        } else if (data.ownerOrSitter === "sitter") {
+          setProfile("sitter");
+        } else if (data.ownerOrSitter === "organisation") {
+          setProfile("organisation");
+        }
       }
     };
     checkProfile();
@@ -109,24 +113,15 @@ export default function ProfilePhoto({}) {
                   ) : null}
                 </main>
                 <div className="pfp-current">
-                  {image &&
-                    (sitter ? (
-                      <SavePhoto
-                        profile={sitter}
-                        image={image}
-                        forUpdate={forUpdate}
-                        id={userInfo.id}
-                        setChange={onPhotoChange}
-                      />
-                    ) : (
-                      <SavePhoto
-                        profile={owner}
-                        image={image}
-                        forUpdate={forUpdate}
-                        id={userInfo.id}
-                        setChange={onPhotoChange}
-                      />
-                    ))}
+                  {image && (
+                    <SavePhoto
+                      profile={profile}
+                      image={image}
+                      forUpdate={forUpdate}
+                      id={userInfo.id}
+                      setChange={onPhotoChange}
+                    />
+                  )}
                 </div>
               </div>
             </div>

@@ -19,6 +19,7 @@ export default function Dashboard() {
   const [userInfo, setUserInfo] = useState(null);
   const [notify, setNotify] = useState(null);
   const [visible, setVisible] = useState(null);
+  // const [organisation, setOrganisation] = useState(null);
 
   useEffect(() => {
     const isUserLogged = async () => {
@@ -61,6 +62,22 @@ export default function Dashboard() {
           .subscribe();
       };
       listenToMessages();
+
+      // const checkIfOrganisation = async () => {
+      //   const { data, error } = await supabase
+      //     .from("profiles")
+      //     .select("ownerOrSitter")
+      //     .eq("id", userInfo.id)
+      //     .single();
+      //   if (error) {
+      //     console.log(error);
+      //   }
+      //   if (data) {
+      //     setOrganisation(data);
+      //     console.log(data);
+      //   }
+      // };
+      // checkIfOrganisation();
     }
   }, [notify, isLogged]);
 
@@ -140,7 +157,15 @@ export default function Dashboard() {
                 >
                   USUŃ PROFIL
                 </NavLink>
-
+                {/* {organisation.ownerOrSitter === "organisation" ? (
+                  <NavLink
+                    to="addpet"
+                    style={profileLinks}
+                    className="dashboard-navlink-profile"
+                  >
+                    DODAJ PODOPIECZNYCH
+                  </NavLink>
+                ) : null} */}
                 <span
                   className="dashboard-logout"
                   style={{

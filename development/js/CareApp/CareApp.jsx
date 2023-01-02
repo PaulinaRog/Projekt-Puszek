@@ -33,17 +33,20 @@ function CareAppView({ isLogged }) {
           <NavLink to="pets" className="care-app-navlink care-nav">
             OGŁOSZENIA
           </NavLink>
+          {pathname.includes("petpf") && (
+            <h3 style={style} className="care-app-navlink care-nav">
+              PROFIL
+            </h3>
+          )}
+          {pathname.includes("searchpet") && (
+            <h3 style={style} className="care-app-navlink care-nav">
+              WYNIKI FILTROWANIA
+            </h3>
+          )}
+          <NavLink to="organisations" className="care-app-navlink care-nav">
+            ORGANIZACJE
+          </NavLink>
         </nav>
-        {pathname.includes("petpf") && (
-          <h3 style={style} className="care-app-navlink care-nav">
-            PROFIL
-          </h3>
-        )}
-        {pathname.includes("searchpet") && (
-          <h3 style={style} className="care-app-navlink care-nav">
-            WYNIKI FILTROWANIA
-          </h3>
-        )}
 
         {isLogged ? (
           <NavLink to="/dashboard" className="care-app-signup care-nav">

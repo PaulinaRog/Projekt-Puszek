@@ -24,6 +24,10 @@ import SingleMessage from "../dashboard/SingleMessage";
 import Contact from "../contact/Contact";
 import SearchResultPets from "../CareApp/searchEngine/SearchResultPets";
 import SearchResultSitters from "../CareApp/searchEngine/SearchResultSitters";
+import ThankYou from "./ThankYou";
+import RegistrationForm from "../adoptions/RegistrationForm";
+import Organisations from "../adoptions/Organisations";
+import OrgPf from "../adoptions/OrgPf";
 
 export default function App() {
   return (
@@ -39,12 +43,16 @@ export default function App() {
               <Route path="petpf">
                 <Route path=":id" element={<PetPf />} />
               </Route>
+              <Route path="orgpf">
+                <Route path=":id" element={<OrgPf />} />
+              </Route>
               <Route path="sitters" element={<Sitters />}>
                 <Route path="searchsitters" element={<SearchResultSitters />} />
               </Route>
               <Route path="pets" element={<Pets />}>
                 <Route path="searchpets" element={<SearchResultPets />} />
               </Route>
+              <Route path="organisations" element={<Organisations />} />
               <Route path="adoptions" element={<Adoptions />} />
             </Route>
             <Route path="/articles" element={<ArticlesSite />} />
@@ -63,6 +71,7 @@ export default function App() {
             <Route path="/setprofile" element={<PickProfile />} />
             <Route path="/sitterpf" element={<SetSitterProfile />} />
             <Route path="/petpf" element={<SetPetProfile />} />
+            <Route path="/organisationpf" element={<RegistrationForm />} />
 
             <Route
               path="documents"
@@ -79,7 +88,7 @@ export default function App() {
                 element={<h1 style={{ color: "black" }}>Regulamin</h1>}
               />
             </Route>
-
+            <Route path="thankyou" element={<ThankYou />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

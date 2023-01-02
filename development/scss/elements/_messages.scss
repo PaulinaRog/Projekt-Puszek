@@ -113,3 +113,27 @@
     color: $grey-mid;
   }
 }
+
+.read-msg-userpf {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  text-decoration: none;
+  color: $grey;
+  font-weight: 700;
+
+  &:visited {
+    color: $grey-mid-transparent;
+  }
+
+  &:hover {
+    color: black;
+  }
+  &:focus {
+    color: $yellow-dark;
+  }
+
+  &:active {
+    color: $yellow;
+  }
+}

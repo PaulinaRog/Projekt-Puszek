@@ -31,7 +31,7 @@ export default function Messages({ id }) {
     const getMyMessages = async () => {
       const { data, error } = await supabase
         .from("messages")
-        .select("id, sentat, senderName")
+        .select("id, sentat, senderName, senderid")
         .eq("receiverid", id)
         .order("id", { ascending: false });
 

@@ -30,6 +30,13 @@ export default function Footer() {
           >
             <span className="footer-links">Regulamin</span>
           </NavLink>
+          <NavLink
+            className="footer-link"
+            to="/thankyou"
+            style={{ textDecoration: "none", color: "white", visited: "grey" }}
+          >
+            <span className="footer-links">Podziękowania</span>
+          </NavLink>
           <h5 className="footer-madeby">MADE BY</h5>
           <span className="footer-madeby-name">Paulina Róg</span>
           <div className="footer-decorative-elem2"></div>

@@ -6,12 +6,10 @@ export default function DeleteProfile({ id }) {
   const [style, setStyle] = useState({
     display: "none",
   });
-  const [owner, setOwner] = useState(null);
-  const [sitter, setSitter] = useState(null);
   const [userData, setUserData] = useState(null);
-  const [user, setUser] = useState(null);
   const [userPhoto, setUserPhoto] = useState(null);
   const [text, setText] = useState(null);
+  const [profile, setProfile] = useState(null);
 
   // SPRAWDZENIE KTÓRY PROFIL
   useEffect(() => {
@@ -26,8 +24,11 @@ export default function DeleteProfile({ id }) {
         console.log(error);
       }
       if (data) {
-        data.ownerOrSitter === "owner" ? setOwner("pet") : null;
-        data.ownerOrSitter === "sitter" ? setSitter("sitter") : null;
+        data.ownerOrSitter === "owner" ? setProfile("pet") : null;
+        data.ownerOrSitter === "sitter" ? setProfile("sitter") : null;
+        data.ownerOrSitter === "organisation"
+          ? setProfile("organisation")
+          : null;
       }
     };
     checkProfile();
@@ -38,7 +39,7 @@ export default function DeleteProfile({ id }) {
   const deletePhoto = async () => {
     const { data, error } = await supabase.storage
       .from("avatars")
-      .remove(`${owner ? owner : sitter}pf/${id}`);
+      .remove(`${profile}pf/${id}`);
     if (error) {
       console.log(error);
       setUserPhoto("Wystąpił błąd. Skontaktuj się z obsługą.");
@@ -53,7 +54,11 @@ export default function DeleteProfile({ id }) {
 
   const deleteProfileData = async () => {
     const { error } = await supabase
-      .from(`${owner ? "owner" : sitter}_form`)
+      .from(
+        profile === "sitter" || profile === "pet"
+          ? `${profile}_form`
+          : `${profile}`
+      )
       .delete()
       .eq("uuid", id);
     if (error) {
@@ -67,7 +72,7 @@ export default function DeleteProfile({ id }) {
     }
   };
 
-  // WYLOGOWANIE
+  // WYLOGOWANIE;
   const logOut = async () => {
     let { error } = await supabase.auth.signOut();
 
@@ -124,7 +129,6 @@ export default function DeleteProfile({ id }) {
               <details>
                 <p style={{ fontSize: 15 }}>{userPhoto && userPhoto}</p>
                 <p style={{ fontSize: 15 }}>{userData && userData}</p>
-                <p style={{ fontSize: 15 }}>{user && user}</p>
               </details>
             </div>
             {text ? (

@@ -27,16 +27,6 @@ export default function PetPf() {
     };
     getProfile();
 
-    const sitterPhoto = async () => {
-      const { data, error } = await supabase.storage
-        .from("avatars")
-        .download(`petpf/${id}`);
-      if (error) {
-        console.log(error);
-      }
-    };
-    sitterPhoto();
-
     const urls = async () => {
       const { data, error } = await supabase.storage
         .from("avatars")

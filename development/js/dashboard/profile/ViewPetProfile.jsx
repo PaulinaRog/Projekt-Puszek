@@ -14,7 +14,6 @@ import NoProfile from "./NoProfile";
 export default function ViewPetProfile({ id }) {
   const [userData, setUserData] = useState(null);
   const [src, setSrc] = useState(null);
-  const [photo, setPhoto] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,18 +32,6 @@ export default function ViewPetProfile({ id }) {
       }
     };
     viewOwner();
-    const sitterPhoto = async () => {
-      const { data, error } = await supabase.storage
-        .from("avatars")
-        .download(`petpf/${id}`);
-      if (error) {
-        console.log(error);
-      }
-      if (data) {
-        setPhoto(data);
-      }
-    };
-    sitterPhoto();
 
     const urls = async () => {
       const { data, error } = await supabase.storage

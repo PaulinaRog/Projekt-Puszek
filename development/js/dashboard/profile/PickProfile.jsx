@@ -60,6 +60,23 @@ export default function PickProfile() {
     pickProfile();
   };
 
+  const handleClickOrganisation = (e) => {
+    e.preventDefault();
+
+    const pickProfile = async () => {
+      const { error } = await supabase
+        .from("profiles")
+        .update({ ownerOrSitter: "organisation" })
+        .eq("id", user);
+
+      if (error) {
+        console.log(error);
+      }
+      navigate("/organisationpf");
+    };
+    pickProfile();
+  };
+
   return (
     <>
       {isLogged && (
@@ -71,15 +88,23 @@ export default function PickProfile() {
                 value="sitter"
                 onClick={handleClickSitter}
               >
-                <i className="fa-solid fa-hand-holding-heart"></i>CHCĘ ZOSTAĆ
-                OPIEKUNEM
+                <i className="fa-solid fa-hand-holding-heart hand-and-heart"></i>
+                CHCĘ ZOSTAĆ OPIEKUNEM
               </button>
               <button
                 className="profile-form-button-pickone"
                 value="owner"
                 onClick={handleClickOwner}
               >
-                <i className="fa-solid fa-paw"></i>JESTEM WŁAŚCICIELEM
+                <i className="fa-solid fa-paw pawpaw"></i>JESTEM WŁAŚCICIELEM
+              </button>
+              <button
+                className="profile-form-button-pickone"
+                value="sitter"
+                onClick={handleClickOrganisation}
+              >
+                <i className="fa-solid fa-people-group"></i>REJESTRACJA JAKO
+                ORGANIZACJA
               </button>
             </main>
           </div>
